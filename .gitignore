@@ -39,7 +39,7 @@
 
 .jobs
 
-### project synth
+### Project synth
 */*.runs/synth*/*.xml
 */*.runs/synth*/*.txt
 */*.runs/synth*/*.sh
@@ -56,7 +56,7 @@
 *.runs/synth*/*.xdc
 !*.runs/synth*/*utilization*.rpt
 
-### project impl
+### Project impl
 */*.runs/impl*/*.xml
 */*.runs/impl*/*.html
 */*.runs/impl*/*.txt
@@ -73,7 +73,7 @@
 *.runs/impl*/*.bat
 !*.runs/impl*/*utilization*.rpt
 
-### block design
+### Block design
 */*/bd/*/hdl
 */*/*/bd/*/hdl
 
@@ -100,3 +100,5 @@
 */*/*/bd/*/ip/*/*.tcl
 hw_handoff
 ipshared
+
+*.sim/

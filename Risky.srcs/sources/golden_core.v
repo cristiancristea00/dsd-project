@@ -175,7 +175,7 @@ always @ (posedge clk or negedge rst) begin
             `JUMP : begin
                 case (instruction[`JUMP_SELECT])
                     `JMP  : pc = registers[operand0][`ADDRESS_SIZE - 1:0];
-                    `JMPR : pc = pc + $signed(offset);
+                    `JMPR : pc = pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset });
                 endcase
             end
 
@@ -183,19 +183,19 @@ always @ (posedge clk or negedge rst) begin
                 case (instruction[`JUMP_SELECT])
                     `JMPCOND : begin
                         case (condition)
-                            `N  : pc = registers[operand0] < 0  ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1; 
-                            `NN : pc = registers[operand0] >= 0 ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1;
-                            `Z  : pc = registers[operand0] == 0 ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1;
-                            `NZ : pc = registers[operand0] != 0 ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1;
+                            `N  : pc = $signed(registers[operand0]) < 0  ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1; 
+                            `NN : pc = $signed(registers[operand0]) >= 0 ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1;
+                            `Z  : pc = $signed(registers[operand0]) == 0 ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1;
+                            `NZ : pc = $signed(registers[operand0]) != 0 ? registers[operand1][`ADDRESS_SIZE - 1:0] : pc + 1;
                         endcase
                     end
                     
                     `JMPRCOND : begin
                         case (condition)
-                            `N  : pc = registers[operand0] < 0  ? pc + $signed(offset) : pc + 1;
-                            `NN : pc = registers[operand0] >= 0 ? pc + $signed(offset) : pc + 1;
-                            `Z  : pc = registers[operand0] == 0 ? pc + $signed(offset) : pc + 1;
-                            `NZ : pc = registers[operand0] != 0 ? pc + $signed(offset) : pc + 1;
+                            `N  : pc = $signed(registers[operand0]) < 0  ? pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset }) : pc + 1;
+                            `NN : pc = $signed(registers[operand0]) >= 0 ? pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset }) : pc + 1;
+                            `Z  : pc = $signed(registers[operand0]) == 0 ? pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset }) : pc + 1;
+                            `NZ : pc = $signed(registers[operand0]) != 0 ? pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset }) : pc + 1;
                         endcase
                     end
                 endcase

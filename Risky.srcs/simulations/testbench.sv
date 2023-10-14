@@ -141,13 +141,25 @@ task perform_memory_operations();
 endtask
 
 task perform_jump_operations();
-    instruction = { `JMP, 9'd0, `R6 }; // PC = 0x030
+    instruction = { `JMP, 9'd0, `R6 };              // PC = 0x030
     `WAIT_CLK_NEG;
-    instruction = { `JMPR, 6'd0, 6'd50 }; // PC = 0x062
+    instruction = { `JMPR, 6'd0, 6'd20 };           // PC = 0x044
     `WAIT_CLK_NEG;
-    instruction = { `JMPR, 6'd0, -6'd10 }; // PC = 0x058
+    instruction = { `JMPR, 6'd0, -6'd10 };          // PC = 0x03A
+    `WAIT_CLK_NEG;
+    instruction = { `JMPCOND, `N, `R3, 3'b0, `R2 }; // PC = 0x01C 
+    `WAIT_CLK_NEG;
+    instruction = { `JMPRCOND, `NN, `R6, 6'd5 };    // PC = 0x021
     `WAIT_CLK_NEG;
 endtask
+
+task perform_nop_and_reset_and_halt();
+    instruction = `NOP;
+    repeat (10) `WAIT_CLK_NEG;
+    reset_core();
+    instruction = `HALT;
+    repeat (10) `WAIT_CLK_NEG;
+endtask;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -167,6 +179,7 @@ initial begin
     perform_shift_operations();
     perform_memory_operations();
     perform_jump_operations();
+    perform_nop_and_reset_and_halt();
     #`HPERIOD $finish;
 end
 
