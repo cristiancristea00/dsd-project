@@ -12,23 +12,23 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="610.037 ns"></ZoomEndTime>
-      <Cursor1Time time="461.103 ns"></Cursor1Time>
+      <ZoomEndTime time="480.001 ns"></ZoomEndTime>
+      <Cursor1Time time="480.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="276"></NameColumnWidth>
-      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+      <NameColumnWidth column_width="274"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="17" />
-   <wvobject fp_name="/testbench/rst" type="logic">
+   <wvobject type="logic" fp_name="/testbench/rst">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">rst</obj_property>
       <obj_property name="ObjectShortName">rst</obj_property>
-      <obj_property name="CustomSignalColor">#A0A0A4</obj_property>
+      <obj_property name="CustomSignalColor">#FFFFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="label">Reset</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/clk" type="logic">
+   <wvobject type="logic" fp_name="/testbench/clk">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -36,16 +36,7 @@
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="label">Clock</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/instruction" type="array">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">instruction[15:0]</obj_property>
-      <obj_property name="ObjectShortName">instruction[15:0]</obj_property>
-      <obj_property name="CustomSignalColor">#FF0080</obj_property>
-      <obj_property name="UseCustomSignalColor">true</obj_property>
-      <obj_property name="label">Instruction</obj_property>
-      <obj_property name="Radix">HEXRADIX</obj_property>
-   </wvobject>
-   <wvobject fp_name="/testbench/pc" type="array">
+   <wvobject type="array" fp_name="/testbench/pc">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">pc[9:0]</obj_property>
       <obj_property name="ObjectShortName">pc[9:0]</obj_property>
@@ -54,23 +45,32 @@
       <obj_property name="label">Program Counter</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/read" type="logic">
+   <wvobject type="array" fp_name="/testbench/instruction">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">instruction[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction[15:0]</obj_property>
+      <obj_property name="CustomSignalColor">#FF0080</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+      <obj_property name="label">Instruction</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/testbench/read">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">read</obj_property>
       <obj_property name="ObjectShortName">read</obj_property>
       <obj_property name="label">Read</obj_property>
-      <obj_property name="CustomSignalColor">#A52A2A</obj_property>
+      <obj_property name="CustomSignalColor">#E0FFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/write" type="logic">
+   <wvobject type="logic" fp_name="/testbench/write">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">write</obj_property>
       <obj_property name="ObjectShortName">write</obj_property>
       <obj_property name="label">Write</obj_property>
-      <obj_property name="CustomSignalColor">#A52A2A</obj_property>
+      <obj_property name="CustomSignalColor">#E0FFFF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/address" type="array">
+   <wvobject type="array" fp_name="/testbench/address">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">address[9:0]</obj_property>
       <obj_property name="ObjectShortName">address[9:0]</obj_property>
@@ -79,25 +79,25 @@
       <obj_property name="label">Address</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/data_out" type="array">
+   <wvobject type="array" fp_name="/testbench/data_out">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data_out[31:0]</obj_property>
       <obj_property name="ObjectShortName">data_out[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#800080</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="label">Data Out</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/data_in" type="array">
+   <wvobject type="array" fp_name="/testbench/data_in">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">data_in[31:0]</obj_property>
       <obj_property name="ObjectShortName">data_in[31:0]</obj_property>
-      <obj_property name="CustomSignalColor">#800080</obj_property>
+      <obj_property name="CustomSignalColor">#FF00FF</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
       <obj_property name="label">Data In</obj_property>
       <obj_property name="Radix">HEXRADIX</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[0]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[0]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[0][31:0]</obj_property>
       <obj_property name="ObjectShortName">[0][31:0]</obj_property>
@@ -106,7 +106,7 @@
       <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[1]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[1]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[1][31:0]</obj_property>
       <obj_property name="ObjectShortName">[1][31:0]</obj_property>
@@ -115,7 +115,7 @@
       <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[2]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[2]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[2][31:0]</obj_property>
       <obj_property name="ObjectShortName">[2][31:0]</obj_property>
@@ -124,7 +124,7 @@
       <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[3]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[3]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[3][31:0]</obj_property>
       <obj_property name="ObjectShortName">[3][31:0]</obj_property>
@@ -133,7 +133,7 @@
       <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[4]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[4]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[4][31:0]</obj_property>
       <obj_property name="ObjectShortName">[4][31:0]</obj_property>
@@ -142,7 +142,7 @@
       <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[5]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[5]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[5][31:0]</obj_property>
       <obj_property name="ObjectShortName">[5][31:0]</obj_property>
@@ -151,7 +151,7 @@
       <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[6]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[6]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[6][31:0]</obj_property>
       <obj_property name="ObjectShortName">[6][31:0]</obj_property>
@@ -160,7 +160,7 @@
       <obj_property name="CustomSignalColor">#00FF7F</obj_property>
       <obj_property name="UseCustomSignalColor">true</obj_property>
    </wvobject>
-   <wvobject fp_name="/testbench/dut/registers[7]" type="array">
+   <wvobject type="array" fp_name="/testbench/dut/registers[7]">
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="ElementShortName">[7][31:0]</obj_property>
       <obj_property name="ObjectShortName">[7][31:0]</obj_property>
