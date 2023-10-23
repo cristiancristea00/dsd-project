@@ -4,8 +4,8 @@
 module golden_core
 (
     /* Control signals */
-    input		                         clk,         // Clock
-    input 		                         rst,         // Reset (Active 0)
+    input		                         clock,       // Clock
+    input 		                         reset,       // Reset (Active 0)
     
     /* Signals related to the program memory */
     input      [`INSTRUCTION_SIZE - 1:0] instruction, // Current instruction
@@ -24,15 +24,15 @@ reg [`DATA_SIZE - 1:0] registers [0:`NUMBER_OF_GPRS - 1];
 
 
 // Temporary values for instruction decoding
-reg [`INST_TYPE_SIZE - 1:0] op_type;
+reg [`INST_TYPE_SIZE - 1:0] inst_type;
 reg [`GPR_SIZE - 1:0] operand0;
 reg [`GPR_SIZE - 1:0] operand1;
 reg [`GPR_SIZE - 1:0] operand2;
-reg [`DATA_SIZE - 1:0] result;
 reg [`VALUE_SIZE - 1:0] value;
 reg [`CONSTANT_SIZE - 1:0] constant;
 reg [`OFFSET_SIZE - 1:0] offset;
 reg [`CONDITION_SIZE - 1:0] condition;
+reg [`DATA_SIZE - 1:0] result;
 reg [`ADDRESS_SIZE - 1:0] next_pc;
 
 
@@ -40,17 +40,11 @@ reg [`ADDRESS_SIZE - 1:0] next_pc;
 always @ (*) begin
 
     // Get the instruction type
-    op_type = instruction[`INST_SELECT];
+    inst_type = instruction[`INST_SELECT];
 
     // Decode the intruction
-    case (op_type)
-        `ARITHMETIC : begin
-            operand0 <= instruction[8:6];
-            operand1 <= instruction[5:3];
-            operand2 <= instruction[2:0];
-        end
-        
-        `LOGIC : begin
+    case (inst_type)
+        `ARITHMETIC, `LOGIC : begin
             operand0 <= instruction[8:6];
             operand1 <= instruction[5:3];
             operand2 <= instruction[2:0];
@@ -62,26 +56,45 @@ always @ (*) begin
         end
         
         `MEMORY_ACCESS : begin
-            operand0 <= instruction[10:8];
-            operand1 <= instruction[2:0];
-            constant <= instruction[7:0];
+            case (instruction[`MEMORY_ACCESS_SELECT])
+                `LOAD, `STORE : begin
+                    operand0 <= instruction[10:8];
+                    operand1 <= instruction[2:0];
+                end
+                
+                `LOADC : begin
+                    operand0  <= instruction[10:8];
+                    constant  <= instruction[7:0];
+                end
+            endcase
         end
         
         `JUMP : begin
-            operand0 <= instruction[2:0];
-            offset   <= instruction[5:0];
+            case (instruction[`JUMP_SELECT])
+                `JMP  : operand0 <= instruction[2:0];
+                `JMPR : offset   <= instruction[5:0];
+            endcase
         end
         
         `JUMP_COND : begin
-            condition <= instruction[11:9];
-            operand0  <= instruction[8:6];
-            operand1  <= instruction[2:0];
-            offset    <= instruction[5:0];
+            case (instruction[`JUMP_SELECT])
+                `JMPCOND : begin
+                    operand0  <= instruction[8:6];
+                    operand1  <= instruction[2:0];
+                    condition <= instruction[11:9];
+                end
+                
+                `JMPRCOND : begin
+                    operand0  <= instruction[8:6];
+                    offset    <= instruction[5:0];
+                    condition <= instruction[11:9];
+                end
+            endcase
         end
     endcase
     
     // Compute the result of the instruction that interacts with registers and/or data memory
-    case (op_type)
+    case (inst_type)
         `ARITHMETIC : begin
             case (instruction[`ARITHMETIC_SELECT])
                 `ADD  : result <= registers[operand1] + registers[operand2];
@@ -98,7 +111,7 @@ always @ (*) begin
                 `XOR  : result <=  ( registers[operand1] ^ registers[operand2] );
                 `NAND : result <= ~( registers[operand1] & registers[operand2] );
                 `NOR  : result <= ~( registers[operand1] | registers[operand2] );
-                `XNOR : result <= ~( registers[operand1] ^ registers[operand2] );
+                `NXOR : result <= ~( registers[operand1] ^ registers[operand2] );
             endcase
         end
         
@@ -147,12 +160,13 @@ always @ (*) begin
     end
     
     // Compute the next Program Counter based on the instruction received
-    case (op_type)
-        `SPECIAL : begin
-            case (instruction)
-                `NOP  : next_pc <= pc + 1;
-                `HALT : next_pc <= pc;
-            endcase
+    case (inst_type)
+        `NOP : begin
+            next_pc <= pc + 1;
+        end
+
+        `HALT : begin
+            next_pc <= pc;
         end
         
         `JUMP : begin
@@ -190,10 +204,10 @@ end
 
 
 // Main synchronous block
-always @ (posedge clk or negedge rst) begin
+always @ (posedge clock or negedge reset) begin
 
     // Treat the Reset signal
-    if (!rst) begin 
+    if (!reset) begin 
         pc <= 0;
         read <= 0;
         write <= 0;
@@ -212,26 +226,14 @@ always @ (posedge clk or negedge rst) begin
     
     else begin
         // Execute the instruction that interacts with registers and/or data memory
-        case (op_type)
-            `ARITHMETIC : begin
-                registers[operand0] <= result;
-            end
-            
-            `LOGIC : begin 
-                registers[operand0] <= result;
-            end
-            
-            `SHIFT : begin
+        case (inst_type)
+            `ARITHMETIC, `LOGIC, `SHIFT : begin
                 registers[operand0] <= result;
             end
             
             `MEMORY_ACCESS : begin
                 case (instruction[`MEMORY_ACCESS_SELECT])
-                    `LOAD : begin
-                        registers[operand0] <= result;
-                    end
-                    
-                    `LOADC : begin
+                    `LOAD, `LOADC : begin
                         registers[operand0] <= result;
                     end
                 endcase

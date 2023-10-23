@@ -24,18 +24,19 @@
 `define INST_TYPE_SIZE    3
 `define INST_SELECT       15:13
 
-`define SPECIAL          3'b000
-`define ARITHMETIC       3'b001
-`define LOGIC            3'b010
-`define SHIFT            3'b011
-`define MEMORY_ACCESS    3'b100
-`define JUMP             3'b101
-`define JUMP_COND        3'b110
+`define NOP               3'b000
+`define HALT              3'b111
+`define ARITHMETIC        3'b001
+`define LOGIC             3'b010
+`define SHIFT             3'b011
+`define MEMORY_ACCESS     3'b100
+`define JUMP              3'b101
+`define JUMP_COND         3'b110
 
 
 // Special instructions
-`define NOP     { `SPECIAL, 13'b0_0000_0000_0000 }
-`define HALT    { `SPECIAL, 13'b0_0000_0000_0001 }
+`define NOP_INST     16'b0000_0000_0000_0000
+`define HALT_INST    16'b1111_1111_1111_1111
 
 
 // Arithmetic instructions
@@ -55,7 +56,7 @@
 `define XOR     { `LOGIC, 4'b0010 }
 `define NAND    { `LOGIC, 4'b0011 }
 `define NOR     { `LOGIC, 4'b0100 }
-`define XNOR    { `LOGIC, 4'b0101 }
+`define NXOR    { `LOGIC, 4'b0101 }
 
 
 // Shift instructions
@@ -95,3 +96,17 @@
 `define NN    3'b001
 `define Z     3'b010
 `define NZ    3'b011
+
+// Opcodes
+`define OPCODE_SIZE      7
+`define OPCODE_SELECT    15:9
+
+`define OP_INST_SELECT             6:4
+`define OP_ARITHMETIC_SELECT       6:0
+`define OP_LOGIC_SELECT            6:0
+`define OP_SHIFT_SELECT            6:0
+`define OP_MEMORY_ACCESS_SELECT    6:2
+`define OP_JUMP_SELECT             6:3
+
+`define OP_NOP     7'b000_0000
+`define OP_HALT    7'b111_1111

@@ -10,8 +10,8 @@ module testbench;
 ////////////////////////////////////////////////////////////////////////////////
 
 /* Control signals */
-bit                           clk;
-bit                           rst;
+bit                           clock;
+bit                           reset;
 
 /* Signals related to the program memory */
 bit [`INSTRUCTION_SIZE - 1:0] instruction;
@@ -32,8 +32,8 @@ bit [`DATA_SIZE - 1:0]	      data_in;
 ////////////////////////////////////////////////////////////////////////////////
 
 golden_core dut(
-    .clk          (clk),
-    .rst          (rst),
+    .clock        (clock),
+    .reset        (reset),
     .instruction  (instruction),
     .pc           (pc),
     .read         (read),
@@ -51,8 +51,8 @@ golden_core dut(
 ////////////////////////////////////////////////////////////////////////////////
 
 initial begin
-    clk = 0;
-    forever #10 clk = ~clk;
+    clock = 0;
+    forever #10 clock = ~clock;
 end
 
 
@@ -63,7 +63,7 @@ end
 ////////////////////////////////////////////////////////////////////////////////
 
 task nop();
-    @ (negedge clk);
+    @ (negedge clock);
 endtask
 
 task wait_new_pc();
@@ -73,8 +73,8 @@ endtask;
 task reset_core();
     instruction = `NOP;
     data_in = 0;
-    rst = 0;
-    #1 rst = 1;
+    reset = 0;
+    #1 reset = 1;
 endtask
 
 task load_registers();
