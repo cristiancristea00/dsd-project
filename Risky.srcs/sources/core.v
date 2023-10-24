@@ -2,26 +2,21 @@
 
 
 module register_file
-#(
-    parameter NUMBER_OF_REGISTERS = `NUMBER_OF_GPRS,
-    parameter REGISTER_SIZE       = `DATA_SIZE,
-    parameter ADDRESS_SIZE        = `GPR_SIZE
-)
 (
-    input                        clock,
-    input                        reset,
-    input                        write_enable,
-    input  [ADDRESS_SIZE - 1:0]  write_address,
-    input  [REGISTER_SIZE - 1:0] write_data,
-    input  [ADDRESS_SIZE - 1:0]  read_address0,
-    input  [ADDRESS_SIZE - 1:0]  read_address1,
-    input  [ADDRESS_SIZE - 1:0]  read_address2,
-    output [REGISTER_SIZE - 1:0] read_data0,
-    output [REGISTER_SIZE - 1:0] read_data1,
-    output [REGISTER_SIZE - 1:0] read_data2
+    input                     clock,
+    input                     reset,
+    input                     write_enable,
+    input  [`GPR_SIZE - 1:0]  write_address,
+    input  [`DATA_SIZE - 1:0] write_data,
+    input  [`GPR_SIZE - 1:0]  read_address0,
+    input  [`GPR_SIZE - 1:0]  read_address1,
+    input  [`GPR_SIZE - 1:0]  read_address2,
+    output [`DATA_SIZE - 1:0] read_data0,
+    output [`DATA_SIZE - 1:0] read_data1,
+    output [`DATA_SIZE - 1:0] read_data2
 );
 
-reg [REGISTER_SIZE - 1:0] registers [0:NUMBER_OF_REGISTERS - 1];
+reg [`DATA_SIZE - 1:0] registers [0:`NUMBER_OF_GPRS - 1];
 
 
 assign read_data0 = registers[read_address0];
@@ -29,12 +24,12 @@ assign read_data1 = registers[read_address1];
 assign read_data2 = registers[read_address2];
 
 
-reg [REGISTER_SIZE - 1:0] index;
+reg [`NUMBER_OF_GPRS - 1:0] index;
 
 
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
-        for (index = 0; index < NUMBER_OF_REGISTERS; index = index + 1) begin
+        for (index = 0; index < `NUMBER_OF_GPRS; index = index + 1) begin
             registers[index] <= 0;
         end
     end 
@@ -50,6 +45,7 @@ module fetch
 (
     input		                         clock,
     input 		                         reset,
+    input                                halt,
     input      [`INSTRUCTION_SIZE - 1:0] instruction,
     output reg [`ADDRESS_SIZE - 1:0]     pc,
 
@@ -58,21 +54,16 @@ module fetch
 );
 
 always @ (posedge clock or negedge reset) begin
-    if (!reset) begin
-        pc <= 0;
-    end
-    else begin
-        pc <= pc + 1;
-    end
+    if (!reset)    pc <= 0;
+    else if (halt) pc <= pc;
+    else           pc <= pc + 1;
+    
 end
 
 always @ (posedge clock or negedge reset) begin
-    if (!reset) begin
-        instruction_out <= `NOP;
-    end
-    else begin
-        instruction_out <= instruction;
-    end
+    if (!reset)    instruction_out <= `NOP_INST;
+    else if (halt) instruction_out <= instruction_out;
+    else           instruction_out <= instruction;
 end
 
 endmodule
@@ -103,6 +94,7 @@ module read
 );
 
 wire [`INST_TYPE_SIZE - 1:0] inst_type;
+
 assign inst_type = instruction[`INST_SELECT];
 
 always @ (*) begin
@@ -147,13 +139,17 @@ end
 
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
-        operand0  <= 0;
-        operand1  <= 0;
-        operand2  <= 0;
-        value     <= 0;
-        constant  <= 0;
-        offset    <= 0;
-        condition <= 0;
+        opcode        <= 0;
+        operand0      <= 0;
+        operand1      <= 0;
+        operand2      <= 0;
+        value         <= 0;
+        constant      <= 0;
+        offset        <= 0;
+        condition     <= 0;
+        read_address0 <= 0;
+        read_address1 <= 0;
+        read_address2 <= 0;
     end
     else begin
         opcode <= instruction[`OPCODE_SELECT];
@@ -213,7 +209,7 @@ end
 endmodule
 
 
-module executeint_result
+module execute
 (
     input		                        clock,
     input 		                        reset,
@@ -225,25 +221,27 @@ module executeint_result
     input      [`CONSTANT_SIZE - 1:0]   constant,
     input      [`OFFSET_SIZE - 1:0]     offset,
     input      [`CONDITION_SIZE - 1:0]  condition,
-    output reg                          read,
-    output reg                          write,
+    output                              read,
+    output                              write,
     output reg [`ADDRESS_SIZE - 1:0]    address,
     output reg [`DATA_SIZE - 1:0]       data_out,
 
     // Third pipeline stage output
     output reg [`DATA_SIZE - 1:0]       result,
     output reg [`GPR_SIZE - 1:0]        destination,
-    output                              write_enable
+    output reg [`OP_WB_SIZE - 1:0]      writeback
 );
 
 wire [`INST_TYPE_SIZE - 1:0] inst_type;
+
 assign inst_type = opcode[`OP_INST_SELECT];
 
-reg [`DATA_SIZE - 1:0] int_result;
-reg [`ADDRESS_SIZE - 1:0] int_address;
-reg [`OPCODE_SIZE - 1:0] int_destination;
+reg [`DATA_SIZE - 1:0]    int_result;
+reg [`GPR_SIZE - 1:0]  int_destination;
+reg [`OP_WB_SIZE - 1:0]   int_writeback;
 
-assign write_enable = opcode[`OP_MEMORY_ACCESS_SELECT] != `STORE;
+assign read  = opcode[`OP_MEMORY_ACCESS_SELECT] == `LOAD;
+assign write = opcode[`OP_MEMORY_ACCESS_SELECT] == `STORE;
 
 always @ (*) begin
     case (inst_type)
@@ -265,7 +263,7 @@ always @ (*) begin
                 `XOR  : int_result <=  ( operand1 ^ operand2 );
                 `NAND : int_result <= ~( operand1 & operand2 );
                 `NOR  : int_result <= ~( operand1 | operand2 );
-                `NXOR : int_result <= ~( operand1 ^ operand2 );
+                `XNOR : int_result <= ~( operand1 ^ operand2 );
             endcase
 
             int_destination <= operand0;
@@ -284,41 +282,40 @@ always @ (*) begin
         `MEMORY_ACCESS : begin
             case (opcode[`OP_MEMORY_ACCESS_SELECT])
                 `LOADC : begin
-                    int_result  <= { operand0[`DATA_SIZE - 1:8], constant };
+                    int_result      <= { operand0[`DATA_SIZE - 1:8], constant };
                     int_destination <= operand0;
-                    int_address <= `ADDRESS_SIZE'b0;
-                    read    <= 1'b0;
-                    write   <= 1'b0;
                 end
 
                 `LOAD : begin
-                    int_address <= operand1[`ADDRESS_SIZE - 1:0];
+                    address         <= operand1[`ADDRESS_SIZE - 1:0];
                     int_destination <= operand0;
-                    read    <= 1'b1;
-                    write   <= 1'b0;
                 end
 
                 `STORE : begin
-                    int_address  <= operand0[`ADDRESS_SIZE - 1:0];
-                    int_destination <= `ADDRESS_SIZE'b0;
-                    data_out <= operand1;
-                    read     <= 1'b0;
-                    write    <= 1'b1;
+                    address     <= operand0[`ADDRESS_SIZE - 1:0];
+                    data_out    <= operand1;
                 end
             endcase
         end
     endcase
+
+    if (opcode[`OP_MEMORY_ACCESS_SELECT] == `LOAD)                                                                                 int_writeback <= `WB_MEMORY;
+    else if (inst_type == `ARITHMETIC || inst_type == `LOGIC || inst_type == `SHIFT || opcode[`OP_MEMORY_ACCESS_SELECT] == `LOADC) int_writeback <= `WB_REGISTER;
+    else                                                                                                                           int_writeback <= `WB_NONE;
 end
 
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
+        address     <= 0;
+        data_out    <= 0;
         result      <= 0;
         destination <= 0;
+        writeback   <= 0;
     end
     else begin
         result      <= int_result;
         destination <= int_destination;
-        address     <= int_address;
+        writeback   <= int_writeback;
     end
 end
 
@@ -327,29 +324,45 @@ endmodule
 
 module write_back
 (
-    input		                        clock,
-    input 		                        reset,
-    input      [`DATA_SIZE - 1:0]       result,
-    input      [`ADDRESS_SIZE - 1:0]    destination,
-    input                               write_enable,
-    input      [`DATA_SIZE - 1:0]       data_in,
-    output reg [`GPR_SIZE - 1:0]        write_address,
-    output reg [`DATA_SIZE - 1:0]       write_data,
-    output reg                          write_enable_out
+    input 		                   reset,
+    input      [`DATA_SIZE - 1:0]  result,
+    input      [`GPR_SIZE - 1:0]   destination,
+    input      [`OP_WB_SIZE - 1:0] writeback,
+    input      [`DATA_SIZE - 1:0]  data_in,
+    output reg [`GPR_SIZE - 1:0]   write_address,
+    output reg [`DATA_SIZE - 1:0]  write_data,
+    output reg                     write_enable
 );
 
 
-always @ (posedge clock or negedge reset) begin
+always @ (negedge reset) begin
     if (!reset) begin
-        write_address    <= 1'b0;
-        write_data       <= 1'b0;
-        write_enable_out <= 1'b0;
+        write_address <= 1'b0;
+        write_data    <= 1'b0;
+        write_enable  <= 1'b0;
     end
-    else if (write_enable) begin
-        write_address    <= destination;
-        write_data       <= result;
-        write_enable_out <= 1'b1;
-    end
+end
+
+always @ (*) begin
+    case (writeback)
+        `WB_REGISTER : begin
+            write_address <= destination;
+            write_data    <= result;
+            write_enable  <= 1'b1;
+        end
+
+        `WB_MEMORY : begin
+            write_address <= destination;
+            write_data    <= data_in;
+            write_enable  <= 1'b1;
+        end
+
+        `WB_NONE : begin
+            write_address <= `GPR_SIZE'b0;
+            write_data    <= `DATA_SIZE'b0;
+            write_enable  <= 1'b0;
+        end
+    endcase
 end
 
 endmodule
@@ -359,8 +372,8 @@ endmodule
 module core
 (
     /* Control signals */
-    input		                         clock,       // Clock
-    input 		                         reset,       // Reset (Active 0)
+    input		                     clock,       // Clock
+    input 		                     reset,       // Reset (Active 0)
     
     /* Signals related to the program memory */
     input  [`INSTRUCTION_SIZE - 1:0] instruction, // Current instruction
@@ -378,38 +391,38 @@ module core
 wire [`INSTRUCTION_SIZE - 1:0] fetch;
 
 // Second pipeline stage output
-wire [`OPCODE_SIZE - 1:0]      opcode;
-wire [`DATA_SIZE - 1:0]        operand0;
-wire [`DATA_SIZE - 1:0]        operand1;
-wire [`DATA_SIZE - 1:0]        operand2;
-wire [`VALUE_SIZE - 1:0]       value;
-wire [`CONSTANT_SIZE - 1:0]    constant;
-wire [`OFFSET_SIZE - 1:0]      offset;
-wire [`CONDITION_SIZE - 1:0]   condition;
+wire [`OPCODE_SIZE - 1:0]    opcode;
+wire [`DATA_SIZE - 1:0]      operand0;
+wire [`DATA_SIZE - 1:0]      operand1;
+wire [`DATA_SIZE - 1:0]      operand2;
+wire [`VALUE_SIZE - 1:0]     value;
+wire [`CONSTANT_SIZE - 1:0]  constant;
+wire [`OFFSET_SIZE - 1:0]    offset;
+wire [`CONDITION_SIZE - 1:0] condition;
 
 // Third pipeline stage output
-wire [`DATA_SIZE - 1:0]       result;
-wire [`GPR_SIZE - 1:0]        destination;
-wire                          write_enable;
+wire [`DATA_SIZE - 1:0]      result;
+wire [`GPR_SIZE - 1:0]       destination;
+wire [`OP_WB_SIZE - 1:0]     writeback;
 
 // Wires between the read unit and the register file
-wire [`DATA_SIZE - 1:0]        read_data0;
-wire [`DATA_SIZE - 1:0]        read_data1;
-wire [`DATA_SIZE - 1:0]        read_data2;
-wire [`GPR_SIZE - 1:0]         read_address0;
-wire [`GPR_SIZE - 1:0]         read_address1;
-wire [`GPR_SIZE - 1:0]         read_address2;
+wire [`DATA_SIZE - 1:0]      read_data0;
+wire [`DATA_SIZE - 1:0]      read_data1;
+wire [`DATA_SIZE - 1:0]      read_data2;
+wire [`GPR_SIZE - 1:0]       read_address0;
+wire [`GPR_SIZE - 1:0]       read_address1;
+wire [`GPR_SIZE - 1:0]       read_address2;
 
 // Wires between the write back unit and the register file
-wire [`GPR_SIZE - 1:0]         write_address;
-wire [`DATA_SIZE - 1:0]        write_data;
-wire                           write_enable_out;
+wire [`GPR_SIZE - 1:0]       write_address;
+wire [`DATA_SIZE - 1:0]      write_data;
+wire                         write_enable;
 
 register_file register_file_unit
 (
     .clock         (clock),
     .reset         (reset),
-    .write_enable  (write_enable_out),
+    .write_enable  (write_enable),
     .write_address (write_address),
     .write_data    (write_data),
     .read_address0 (read_address0),
@@ -468,20 +481,19 @@ execute execute_unit
     .data_out     (data_out),
     .result       (result),
     .destination  (destination),
-    .write_enable (write_enable)
+    .writeback    (writeback)
 );
 
 write_back write_back_unit
 (
-    .clock            (clock),
-    .reset            (reset),
-    .result           (result),
-    .destination      (destination),
-    .write_enable     (write_enable),
-    .data_in          (data_in),
-    .write_address    (write_address),
-    .write_data       (write_data),
-    .write_enable_out (write_enable_out)
+    .reset         (reset),
+    .result        (result),
+    .destination   (destination),
+    .writeback     (writeback),
+    .data_in       (data_in),
+    .write_address (write_address),
+    .write_data    (write_data),
+    .write_enable  (write_enable)
 );
 
 endmodule

@@ -56,7 +56,7 @@
 `define XOR     { `LOGIC, 4'b0010 }
 `define NAND    { `LOGIC, 4'b0011 }
 `define NOR     { `LOGIC, 4'b0100 }
-`define NXOR    { `LOGIC, 4'b0101 }
+`define XNOR    { `LOGIC, 4'b0101 }
 
 
 // Shift instructions
@@ -110,3 +110,10 @@
 
 `define OP_NOP     7'b000_0000
 `define OP_HALT    7'b111_1111
+
+// Writeback signals
+`define OP_WB_SIZE    2
+
+`define WB_NONE        2'b00
+`define WB_REGISTER    2'b01
+`define WB_MEMORY      2'b10

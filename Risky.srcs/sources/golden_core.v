@@ -111,7 +111,7 @@ always @ (*) begin
                 `XOR  : result <=  ( registers[operand1] ^ registers[operand2] );
                 `NAND : result <= ~( registers[operand1] & registers[operand2] );
                 `NOR  : result <= ~( registers[operand1] | registers[operand2] );
-                `NXOR : result <= ~( registers[operand1] ^ registers[operand2] );
+                `XNOR : result <= ~( registers[operand1] ^ registers[operand2] );
             endcase
         end
         
@@ -225,7 +225,7 @@ always @ (posedge clock or negedge reset) begin
     end
     
     else begin
-        // Execute the instruction that interacts with registers and/or data memory
+        // Execute the instruction that interacts with registers
         case (inst_type)
             `ARITHMETIC, `LOGIC, `SHIFT : begin
                 registers[operand0] <= result;

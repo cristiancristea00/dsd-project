@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="250.001 ns"></ZoomEndTime>
+      <Cursor1Time time="250.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="274"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="37" />
+   <wvobject fp_name="/testbench/clock" type="logic">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/reset" type="logic">
+      <obj_property name="ElementShortName">reset</obj_property>
+      <obj_property name="ObjectShortName">reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/instruction" type="array">
+      <obj_property name="ElementShortName">instruction[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/pc" type="array">
+      <obj_property name="ElementShortName">pc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/read" type="logic">
+      <obj_property name="ElementShortName">read</obj_property>
+      <obj_property name="ObjectShortName">read</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/write" type="logic">
+      <obj_property name="ElementShortName">write</obj_property>
+      <obj_property name="ObjectShortName">write</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/address" type="array">
+      <obj_property name="ElementShortName">address[9:0]</obj_property>
+      <obj_property name="ObjectShortName">address[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/data_out" type="array">
+      <obj_property name="ElementShortName">data_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_out[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/data_in" type="array">
+      <obj_property name="ElementShortName">data_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[0]" type="array">
+      <obj_property name="ElementShortName">[0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[0][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[1]" type="array">
+      <obj_property name="ElementShortName">[1][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[1][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[2]" type="array">
+      <obj_property name="ElementShortName">[2][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[2][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[3]" type="array">
+      <obj_property name="ElementShortName">[3][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[3][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[4]" type="array">
+      <obj_property name="ElementShortName">[4][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[4][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[5]" type="array">
+      <obj_property name="ElementShortName">[5][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[5][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[6]" type="array">
+      <obj_property name="ElementShortName">[6][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[6][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/registers[7]" type="array">
+      <obj_property name="ElementShortName">[7][31:0]</obj_property>
+      <obj_property name="ObjectShortName">[7][31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/read_address0" type="array">
+      <obj_property name="ElementShortName">read_address0[2:0]</obj_property>
+      <obj_property name="ObjectShortName">read_address0[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/read_address1" type="array">
+      <obj_property name="ElementShortName">read_address1[2:0]</obj_property>
+      <obj_property name="ObjectShortName">read_address1[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/read_address2" type="array">
+      <obj_property name="ElementShortName">read_address2[2:0]</obj_property>
+      <obj_property name="ObjectShortName">read_address2[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/read_data0" type="array">
+      <obj_property name="ElementShortName">read_data0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data0[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/read_data1" type="array">
+      <obj_property name="ElementShortName">read_data1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/register_file_unit/read_data2" type="array">
+      <obj_property name="ElementShortName">read_data2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">read_data2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/opcode" type="array">
+      <obj_property name="ElementShortName">opcode[6:0]</obj_property>
+      <obj_property name="ObjectShortName">opcode[6:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/operand0" type="array">
+      <obj_property name="ElementShortName">operand0[31:0]</obj_property>
+      <obj_property name="ObjectShortName">operand0[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/operand1" type="array">
+      <obj_property name="ElementShortName">operand1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">operand1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/operand2" type="array">
+      <obj_property name="ElementShortName">operand2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">operand2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/value" type="array">
+      <obj_property name="ElementShortName">value[5:0]</obj_property>
+      <obj_property name="ObjectShortName">value[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/constant" type="array">
+      <obj_property name="ElementShortName">constant[7:0]</obj_property>
+      <obj_property name="ObjectShortName">constant[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/offset" type="array">
+      <obj_property name="ElementShortName">offset[5:0]</obj_property>
+      <obj_property name="ObjectShortName">offset[5:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/read_unit/condition" type="array">
+      <obj_property name="ElementShortName">condition[2:0]</obj_property>
+      <obj_property name="ObjectShortName">condition[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/writeback" type="array">
+      <obj_property name="ElementShortName">writeback[1:0]</obj_property>
+      <obj_property name="ObjectShortName">writeback[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/write_back_unit/write_address" type="array">
+      <obj_property name="ElementShortName">write_address[2:0]</obj_property>
+      <obj_property name="ObjectShortName">write_address[2:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/write_back_unit/write_data" type="array">
+      <obj_property name="ElementShortName">write_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">write_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/write_back_unit/write_enable" type="logic">
+      <obj_property name="ElementShortName">write_enable</obj_property>
+      <obj_property name="ObjectShortName">write_enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/execute_unit/result" type="array">
+      <obj_property name="ElementShortName">result[31:0]</obj_property>
+      <obj_property name="ObjectShortName">result[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/dut/write_back_unit/destination" type="array">
+      <obj_property name="ElementShortName">destination[2:0]</obj_property>
+      <obj_property name="ObjectShortName">destination[2:0]</obj_property>
+   </wvobject>
+</wave_config>
