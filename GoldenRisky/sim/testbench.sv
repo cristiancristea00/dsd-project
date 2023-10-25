@@ -1,7 +1,7 @@
 `include "architecture.vh"
 
 
-module testbench_golden;
+module testbench;
 
 ////////////////////////////////////////////////////////////////////////////////
 //                                                                            //
