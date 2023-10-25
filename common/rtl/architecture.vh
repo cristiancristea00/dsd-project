@@ -8,7 +8,7 @@
 
 // General Purpose Registers
 `define GPR_SIZE          3
-`define NUMBER_OF_GPRS    2 ** 3
+`define NUMBER_OF_GPRS    8
 
 `define R0    3'd0
 `define R1    3'd1
@@ -108,12 +108,51 @@
 `define OP_MEMORY_ACCESS_SELECT    6:2
 `define OP_JUMP_SELECT             6:3
 
-`define OP_NOP     7'b000_0000
-`define OP_HALT    7'b111_1111
-
 // Writeback signals
 `define OP_WB_SIZE    2
 
 `define WB_NONE        2'b00
 `define WB_REGISTER    2'b01
 `define WB_MEMORY      2'b10
+
+/* Assembly macros */
+
+// Arithmetic instructions
+`define ADD_INST(OP0, OP1, OP2)             { `ADD,  OP0, OP1, OP2 }
+`define ADDF_INST(OP0, OP1, OP2)            { `ADDF, OP0, OP1, OP2 }
+`define SUB_INST(OP0, OP1, OP2)             { `SUB,  OP0, OP1, OP2 }
+`define SUBF_INST(OP0, OP1, OP2)            { `SUBF, OP0, OP1, OP2 }
+
+// Logic instructions
+`define AND_INST(OP0, OP1, OP2)             { `AND,  OP0, OP1, OP2 }
+`define OR_INST(OP0, OP1, OP2)              { `OR,   OP0, OP1, OP2 }   
+`define XOR_INST(OP0, OP1, OP2)             { `XOR,  OP0, OP1, OP2 }
+`define NAND_INST(OP0, OP1, OP2)            { `NAND, OP0, OP1, OP2 }
+`define NOR_INST(OP0, OP1, OP2)             { `NOR,  OP0, OP1, OP2 }
+`define XNOR_INST(OP0, OP1, OP2)            { `XNOR, OP0, OP1, OP2 }
+
+// Shift instructions
+`define SHIFTR_INST(OP0, VAL)               { `SHIFTR,  OP0, VAL }
+`define SHIFTRA_INST(OP0, VAL)              { `SHIFTRA, OP0, VAL }
+`define SHIFTL_INST(OP0, VAL)               { `SHIFTL,  OP0, VAL }
+
+// Memory access instructions
+`define LOAD_INST(OP0, OP1)                 { `LOAD,  OP0, 5'd0, OP1 }
+`define LOADC_INST(OP0, CONST)              { `LOADC, OP0, CONST }
+`define STORE_INST(OP0, OP1)                { `STORE, OP0, 5'd0, OP1 }
+
+// Jump instructions
+`define JMP_INST(OP0)                       { `JMP, 9'd0, OP0 }
+`define JMPR_INST(OFFSET)                   { `JMPR, 6'd0, OFFSET }
+
+`define JMPCOND_INST(COND, OP0, OP1)        { `JMPCOND, COND, OP0, 3'd0, OP1 }
+`define JMPN_INST(OP0, OP1)                 `JMPCOND_INST(`N,  OP0, OP1)
+`define JMPNN_INST(OP0, OP1)                `JMPCOND_INST(`NN, OP0, OP1)
+`define JMPZ_INST(OP0, OP1)                 `JMPCOND_INST(`Z,  OP0, OP1)
+`define JMPNZ_INST(OP0, OP1)                `JMPCOND_INST(`NZ, OP0, OP1)
+
+`define JMPRCOND_INST(COND, OP0, OFFSET)    { `JMPRCOND, COND, OP0, OFFSET }
+`define JMPRN_INST(OP0, OFFSET)             `JMPRCOND_INST(`N,  OP0, OFFSET)
+`define JMPRNN_INST(OP0, OFFSET)            `JMPRCOND_INST(`NN, OP0, OFFSET)
+`define JMPRZ_INST(OP0, OFFSET)             `JMPRCOND_INST(`Z,  OP0, OFFSET)
+`define JMPRNZ_INST(OP0, OFFSET)            `JMPRCOND_INST(`NZ, OP0, OFFSET)

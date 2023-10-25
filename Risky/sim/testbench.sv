@@ -71,35 +71,35 @@ task wait_new_pc();
 endtask;
 
 task reset_core();
-    instruction = `NOP;
+    instruction = `NOP_INST;
     data_in = 0;
     reset = 0;
     #1 reset = 1;
 endtask
 
 task load_registers();
-    instruction = { `LOADC, `R0, 8'hD }; // R0 = 0x0000_000D
+    instruction = `LOADC_INST(`R0, 8'hD); // R0 = 0x0000_000D
     wait_new_pc();
-    instruction = { `LOADC, `R1, 8'hE }; // R1 = 0x0000_000E
+    instruction = `LOADC_INST(`R1, 8'hE); // R1 = 0x0000_000E
     wait_new_pc();
-    instruction = { `LOADC, `R2, 8'hA }; // R2 = 0x0000_000A
+    instruction = `LOADC_INST(`R2, 8'hA); // R2 = 0x0000_000A
     wait_new_pc();
-    instruction = { `LOADC, `R3, 8'hD }; // R3 = 0x0000_000D
+    instruction = `LOADC_INST(`R3, 8'hD); // R3 = 0x0000_000D
     wait_new_pc();
-    instruction = { `LOADC, `R4, 8'hB }; // R4 = 0x0000_000B
+    instruction = `LOADC_INST(`R4, 8'hB); // R4 = 0x0000_000B
     wait_new_pc();
-    instruction = { `LOADC, `R5, 8'hA }; // R5 = 0x0000_000A
+    instruction = `LOADC_INST(`R5, 8'hA); // R5 = 0x0000_000A
     wait_new_pc();
-    instruction = { `LOADC, `R6, 8'hB }; // R6 = 0x0000_000B
+    instruction = `LOADC_INST(`R6, 8'hB); // R6 = 0x0000_000B
     wait_new_pc();
-    instruction = { `LOADC, `R7, 8'hE }; // R7 = 0x0000_000E
+    instruction = `LOADC_INST(`R7, 8'hE); // R7 = 0x0000_000E
     wait_new_pc();
 endtask
 
 task perform_nop_and_halt();
-    instruction = `NOP;
+    instruction = `NOP_INST;
     repeat (10) nop();
-    instruction = `HALT;
+    instruction = `HALT_INST;
     repeat (10) nop();
 endtask;
 
@@ -113,6 +113,7 @@ endtask;
 initial begin
     reset_core();
     load_registers();
+    perform_nop_and_halt();
     #100 $finish;
 end
 
