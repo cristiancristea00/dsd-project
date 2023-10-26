@@ -1,6 +1,9 @@
 `include "architecture.vh"
 
 
+`define MEM(NO, INST)    dut.program_memory_unit.memory[NO] = INST
+
+
 module testbench;
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -10,19 +13,8 @@ module testbench;
 ////////////////////////////////////////////////////////////////////////////////
 
 /* Control signals */
-bit                           clock;
-bit                           reset;
-
-/* Signals related to the program memory */
-bit [`INSTRUCTION_SIZE - 1:0] instruction;
-bit [`ADDRESS_SIZE - 1:0]     pc;
-
-/* Signals related to the data memory */
-bit                           read;
-bit                           write;
-bit [`ADDRESS_SIZE - 1:0]	  address;
-bit [`DATA_SIZE - 1:0]	      data_out;
-bit [`DATA_SIZE - 1:0]	      data_in;
+bit clock;
+bit reset;
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -31,16 +23,9 @@ bit [`DATA_SIZE - 1:0]	      data_in;
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
-core dut(
-    .clock        (clock),
-    .reset        (reset),
-    .instruction  (instruction),
-    .pc           (pc),
-    .read         (read),
-    .write        (write),
-    .address      (address),
-    .data_out     (data_out),
-    .data_in      (data_in)
+computer dut(
+    .clock(clock),
+    .reset(reset)
 );
 
 
@@ -62,46 +47,33 @@ end
 //                                                                            //
 ////////////////////////////////////////////////////////////////////////////////
 
-task nop();
+task wait_clock();
     @ (negedge clock);
 endtask
 
-task wait_new_pc();
-    @ (pc);
-endtask;
-
 task reset_core();
-    instruction = `NOP_INST;
-    data_in = 0;
     reset = 0;
     #1 reset = 1;
 endtask
 
-task load_registers();
-    instruction = `LOADC_INST(`R0, 8'hD); // R0 = 0x0000_000D
-    wait_new_pc();
-    instruction = `LOADC_INST(`R1, 8'hE); // R1 = 0x0000_000E
-    wait_new_pc();
-    instruction = `LOADC_INST(`R2, 8'hA); // R2 = 0x0000_000A
-    wait_new_pc();
-    instruction = `LOADC_INST(`R3, 8'hD); // R3 = 0x0000_000D
-    wait_new_pc();
-    instruction = `LOADC_INST(`R4, 8'hB); // R4 = 0x0000_000B
-    wait_new_pc();
-    instruction = `LOADC_INST(`R5, 8'hA); // R5 = 0x0000_000A
-    wait_new_pc();
-    instruction = `LOADC_INST(`R6, 8'hB); // R6 = 0x0000_000B
-    wait_new_pc();
-    instruction = `LOADC_INST(`R7, 8'hE); // R7 = 0x0000_000E
-    wait_new_pc();
-endtask
+task load_program();
+    reg [`PROG_MEMORY_SIZE - 1:0] idx;
 
-task perform_nop_and_halt();
-    instruction = `NOP_INST;
-    repeat (10) nop();
-    instruction = `HALT_INST;
-    repeat (10) nop();
-endtask;
+    for (idx = 0; idx < `PROG_MEMORY_SIZE; idx = idx + 1) begin
+        `MEM(idx, `HALT_INST);
+    end
+
+    `MEM( 0,  `LOADC_INST(`R0, 8'hD) ); // R0 = 0x0000_000D
+    `MEM( 1,  `LOADC_INST(`R1, 8'hE) ); // R1 = 0x0000_000E
+    `MEM( 2,  `LOADC_INST(`R2, 8'hA) ); // R2 = 0x0000_000A
+    `MEM( 3,  `LOADC_INST(`R3, 8'hD) ); // R3 = 0x0000_000D
+    `MEM( 4,  `LOADC_INST(`R4, 8'hB) ); // R4 = 0x0000_000B
+    `MEM( 5,  `LOADC_INST(`R5, 8'hA) ); // R5 = 0x0000_000A
+    `MEM( 6,  `LOADC_INST(`R6, 8'hB) ); // R6 = 0x0000_000B
+    `MEM( 7,  `LOADC_INST(`R7, 8'hE) ); // R7 = 0x0000_000E
+    `MEM( 8,  `NOP_INST );
+    `MEM( 9,  `NOP_INST );
+endtask
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -111,10 +83,10 @@ endtask;
 ////////////////////////////////////////////////////////////////////////////////
 
 initial begin
+    load_program();
     reset_core();
-    load_registers();
-    perform_nop_and_halt();
-    #100 $finish;
+    repeat (30) wait_clock();
+    $finish;
 end
 
 

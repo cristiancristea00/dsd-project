@@ -5,6 +5,9 @@
 `define ADDRESS_SIZE        10
 `define INSTRUCTION_SIZE    16
 
+`define DATA_MEMORY_SIZE    32
+`define PROG_MEMORY_SIZE    32
+
 
 // General Purpose Registers
 `define GPR_SIZE          3
