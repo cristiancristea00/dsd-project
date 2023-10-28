@@ -9,6 +9,8 @@ module read_unit
     input      [`INSTRUCTION_SIZE - 1:0] instruction,
     input      [`DATA_SIZE - 1:0]        read_data0,
     input      [`DATA_SIZE - 1:0]        read_data1,
+
+    // Access to register file
     output reg [`GPR_SIZE - 1:0]         read_address0,
     output reg [`GPR_SIZE - 1:0]         read_address1,
 

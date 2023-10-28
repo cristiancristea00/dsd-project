@@ -37,11 +37,21 @@ wire [`DATA_SIZE - 1:0]      result;
 wire [`GPR_SIZE - 1:0]       destination;
 wire [`OP_WB_SIZE - 1:0]     writeback;
 
-// Wires between the read unit and the register file
-wire [`DATA_SIZE - 1:0]      read_data0;
-wire [`DATA_SIZE - 1:0]      read_data1;
+// Wires between the read unit and the register file and the dependency unit
 wire [`GPR_SIZE - 1:0]       read_address0;
 wire [`GPR_SIZE - 1:0]       read_address1;
+
+// Wires between the read unit and the dependency unit
+wire [`DATA_SIZE - 1:0]      result0;
+wire [`DATA_SIZE - 1:0]      result1;
+
+// Wires between the dependency unit and register file
+wire [`DATA_SIZE - 1:0]      read_data0;
+wire [`DATA_SIZE - 1:0]      read_data1;
+
+// Wires between the dependency unit and the execute unit
+wire [`DATA_SIZE - 1:0]      exec_result;
+wire [`GPR_SIZE - 1:0]       exec_destination;
 
 // Wires between the write back unit and the register file
 wire [`GPR_SIZE - 1:0]       write_address;
@@ -64,6 +74,20 @@ register_file_unit register_file
     .read_data1    (read_data1)
 );
 
+dependency_unit dependency
+(
+    .exec_result      (exec_result),
+    .exec_destination (exec_destination),
+    .wb_result        (result),
+    .wb_destination   (destination),
+    .read_address0    (read_address0),
+    .read_address1    (read_address1),
+    .read_operand0    (read_data0),
+    .read_operand1    (read_data1),
+    .result0          (result0),
+    .result1          (result1)
+);
+
 fetch_unit fetch_stage
 (
     .clock           (clock),
@@ -80,8 +104,8 @@ read_unit read_stage
     .reset         (reset),
     .halt          (halt),
     .instruction   (fetch),
-    .read_data0    (read_data0),
-    .read_data1    (read_data1),
+    .read_data0    (result0),
+    .read_data1    (result1),
     .read_address0 (read_address0),
     .read_address1 (read_address1),
     .opcode        (opcode),
@@ -96,24 +120,26 @@ read_unit read_stage
 
 execute_unit execute_stage
 (
-    .clock        (clock),
-    .reset        (reset),
-    .opcode       (opcode),
-    .operand0     (operand0),
-    .operand1     (operand1),
-    .operand2     (operand2),
-    .value        (value),
-    .constant     (constant),
-    .offset       (offset),
-    .condition    (condition),
-    .halt         (halt),
-    .read         (read),
-    .write        (write),
-    .address      (address),
-    .data_out     (data_out),
-    .result       (result),
-    .destination  (destination),
-    .writeback    (writeback)
+    .clock           (clock),
+    .reset           (reset),
+    .opcode          (opcode),
+    .operand0        (operand0),
+    .operand1        (operand1),
+    .operand2        (operand2),
+    .value           (value),
+    .constant        (constant),
+    .offset          (offset),
+    .condition       (condition),
+    .halt            (halt),
+    .read            (read),
+    .write           (write),
+    .dep_result      (exec_result),
+    .dep_destination (exec_destination),
+    .address         (address),
+    .data_out        (data_out),
+    .result          (result),
+    .destination     (destination),
+    .writeback       (writeback)
 );
 
 write_back_unit write_back_stage
