@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="263.125 ns"></ZoomEndTime>
-      <Cursor1Time time="600.000 ns"></Cursor1Time>
+      <ZoomStartTime time="470.303 ns"></ZoomStartTime>
+      <ZoomEndTime time="711.607 ns"></ZoomEndTime>
+      <Cursor1Time time="590.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="248"></NameColumnWidth>
+      <NameColumnWidth column_width="228"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="17" />
+   <WVObjectSize size="20" />
    <wvobject type="logic" fp_name="/testbench/clock">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
@@ -87,5 +87,17 @@
    <wvobject type="array" fp_name="/testbench/dut/core_unit/constant">
       <obj_property name="ElementShortName">constant[7:0]</obj_property>
       <obj_property name="ObjectShortName">constant[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/dut/core_unit/writeback">
+      <obj_property name="ElementShortName">writeback[1:0]</obj_property>
+      <obj_property name="ObjectShortName">writeback[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/dut/core_unit/data_in">
+      <obj_property name="ElementShortName">data_in[31:0]</obj_property>
+      <obj_property name="ObjectShortName">data_in[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/testbench/dut/data_memory_unit/data_pipe">
+      <obj_property name="ElementShortName">data_pipe[9:0]</obj_property>
+      <obj_property name="ObjectShortName">data_pipe[9:0]</obj_property>
    </wvobject>
 </wave_config>

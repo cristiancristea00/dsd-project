@@ -19,7 +19,7 @@ reg [DATA_SIZE - 1:0] memory [0:SIZE - 1];
 
 assign data_out = memory[address];
 
-reg [SIZE - 1:0] idx;
+reg [$clog2(SIZE):0] idx;
 
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin

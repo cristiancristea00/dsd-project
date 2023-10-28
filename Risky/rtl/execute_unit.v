@@ -74,9 +74,9 @@ always @ (*) begin
 
         `SHIFT : begin
             case (opcode[`OP_SHIFT_SELECT])
-                `SHIFTR  : dep_result = operand0 >>  value;
-                `SHIFTRA : dep_result = operand0 >>> value;
-                `SHIFTL  : dep_result = operand0 <<  value;
+                `SHIFTR  : dep_result = operand1 >>  value;
+                `SHIFTRA : dep_result = operand1 >>> value;
+                `SHIFTL  : dep_result = operand1 <<  value;
             endcase
 
             dep_destination = operand0;
@@ -99,6 +99,13 @@ always @ (*) begin
                     data_out = operand1;
                 end
             endcase
+        end
+        
+        default : begin
+            dep_result      = `DATA_SIZE'h0;
+            dep_destination = `GPR_SIZE'h0;
+            address         = `ADDRESS_SIZE'h0;
+            data_out        = `DATA_SIZE'h0;
         end
     endcase
 

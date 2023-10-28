@@ -93,7 +93,8 @@ always @ (posedge clock or negedge reset) begin
             end
 
             `SHIFT : begin
-                operand0 <= read_data0;
+                operand0 <= instruction[8:6];
+                operand1 <= read_data0;
                 value    <= instruction[5:0];
             end
 

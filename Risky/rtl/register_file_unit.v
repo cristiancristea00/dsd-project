@@ -21,13 +21,12 @@ assign read_data0 = registers[read_address0];
 assign read_data1 = registers[read_address1];
 
 
-reg [`NUMBER_OF_GPRS - 1:0] index;
-
+reg [`NUMBER_OF_GPRS - 1:0] idx;
 
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
-        for (index = 0; index < `NUMBER_OF_GPRS; index = index + 1) begin
-            registers[index] <= 0;
+        for (idx = 0; idx < `NUMBER_OF_GPRS; idx = idx + 1) begin
+            registers[idx] <= 0;
         end
     end 
     else if (write_enable) begin

@@ -5,8 +5,8 @@
 `define ADDRESS_SIZE        10
 `define INSTRUCTION_SIZE    16
 
-`define DATA_MEMORY_SIZE    32
-`define PROG_MEMORY_SIZE    32
+`define DATA_MEMORY_SIZE    64
+`define PROG_MEMORY_SIZE    64
 
 
 // General Purpose Registers
@@ -67,9 +67,9 @@
 
 `define VALUE_SIZE      6
 
-`define SHIFTR     { `SHIFT, 4'b0000 }
-`define SHIFTRA    { `SHIFT, 4'b0001 }
-`define SHIFTL     { `SHIFT, 4'b0010 }
+`define SHIFTR     { `SHIFT, 4'b0001 }
+`define SHIFTRA    { `SHIFT, 4'b0010 }
+`define SHIFTL     { `SHIFT, 4'b0100 }
 
 
 // Memory access instructions
