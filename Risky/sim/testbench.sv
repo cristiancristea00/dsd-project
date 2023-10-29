@@ -121,7 +121,7 @@ initial begin
     load_memory();
     load_program();
     reset_core();
-    repeat (40) wait_clock();
+    repeat (50) wait_clock();
     $finish;
 end
 

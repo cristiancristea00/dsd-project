@@ -58,8 +58,13 @@ wire [`GPR_SIZE - 1:0]       write_address;
 wire [`DATA_SIZE - 1:0]      write_data;
 wire                         write_enable;
 
-// Halt signal
+// Halt and stall signals
 wire                         halt;
+wire                         stall;
+wire                         halt_or_stall;
+
+assign halt_or_stall = halt || stall;
+
 
 register_file_unit register_file
 (
@@ -76,23 +81,27 @@ register_file_unit register_file
 
 dependency_unit dependency
 (
+    .is_load          (read),
     .exec_result      (exec_result),
     .exec_destination (exec_destination),
+    .writeback        (writeback),
     .wb_result        (result),
     .wb_destination   (destination),
+    .wb_data_in       (data_in),
     .read_address0    (read_address0),
     .read_address1    (read_address1),
     .read_operand0    (read_data0),
     .read_operand1    (read_data1),
     .result0          (result0),
-    .result1          (result1)
+    .result1          (result1),
+    .stall            (stall)
 );
 
 fetch_unit fetch_stage
 (
     .clock           (clock),
     .reset           (reset),
-    .halt            (halt),
+    .halt_or_stall   (halt_or_stall),
     .instruction     (instruction),
     .pc              (pc),
     .instruction_out (fetch)
@@ -102,7 +111,7 @@ read_unit read_stage
 (
     .clock         (clock),
     .reset         (reset),
-    .halt          (halt),
+    .stall         (stall),
     .instruction   (fetch),
     .read_data0    (result0),
     .read_data1    (result1),

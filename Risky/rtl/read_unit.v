@@ -5,7 +5,7 @@ module read_unit
 (
     input		                         clock,
     input 		                         reset,
-    input                                halt,
+    input                                stall,
     input      [`INSTRUCTION_SIZE - 1:0] instruction,
     input      [`DATA_SIZE - 1:0]        read_data0,
     input      [`DATA_SIZE - 1:0]        read_data1,
@@ -63,24 +63,17 @@ end
 
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
-        opcode        <= 0;
-        operand0      <= 0;
-        operand1      <= 0;
-        operand2      <= 0;
-        value         <= 0;
-        constant      <= 0;
-        offset        <= 0;
-        condition     <= 0;
+        opcode    <= 0;
+        operand0  <= 0;
+        operand1  <= 0;
+        operand2  <= 0;
+        value     <= 0;
+        constant  <= 0;
+        offset    <= 0;
+        condition <= 0;
     end
-    else if (halt) begin
-        opcode        <= opcode;
-        operand0      <= operand0;
-        operand1      <= operand1;
-        operand2      <= operand2;
-        value         <= value;
-        constant      <= constant;
-        offset        <= offset;
-        condition     <= condition;
+    else if (stall) begin
+        opcode    <= `NOP;
     end
     else begin
         opcode <= instruction[`OPCODE_SELECT];
