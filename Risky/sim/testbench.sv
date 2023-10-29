@@ -108,6 +108,8 @@ task load_program();
     `PROG_MEM(30, `ADD_INST(`R0, `R7, `R1));  // R0 = 0xDEAD_BEF0
     `PROG_MEM(31, `NOP_INST);
     `PROG_MEM(32, `NOP_INST);
+    `PROG_MEM(33, `LOADC_INST(`R7, 8'h0));    // R0 = 0x0000_0000
+    `PROG_MEM(34, `JMP_INST(`R7));            // PC = 0x0000_0000
 endtask
 
 
@@ -121,7 +123,7 @@ initial begin
     load_memory();
     load_program();
     reset_core();
-    repeat (50) wait_clock();
+    repeat (80) wait_clock();
     $finish;
 end
 

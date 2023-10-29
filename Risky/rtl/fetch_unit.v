@@ -6,7 +6,9 @@ module fetch_unit
     input		                         clock,
     input 		                         reset,
     input                                halt_or_stall,
+    input                                jump,
     input      [`INSTRUCTION_SIZE - 1:0] instruction,
+    input      [`ADDRESS_SIZE - 1:0]     jump_pc,
     output reg [`ADDRESS_SIZE - 1:0]     pc,
 
     // First pipeline stage output
@@ -14,13 +16,22 @@ module fetch_unit
 );
 
 always @ (posedge clock or negedge reset) begin
-    if (!reset)             pc <= 0;
-    else if (halt_or_stall) pc <= pc;
-    else                    pc <= pc + 1;
-    
-    if (!reset)             instruction_out <= `NOP_INST;
-    else if (halt_or_stall) instruction_out <= instruction_out;
-    else                    instruction_out <= instruction;
+    if (!reset) begin
+        pc              <= 0;
+        instruction_out <= `NOP_INST;
+    end
+    else if (halt_or_stall) begin
+        pc              <= pc;
+        instruction_out <= instruction_out;
+    end
+    else if (jump) begin
+        pc              <= jump_pc;
+        instruction_out <= `NOP_INST;
+    end
+    else begin
+        pc              <= pc + 1;
+        instruction_out <= instruction;
+    end
 end
 
 endmodule

@@ -6,6 +6,8 @@ module read_unit
     input		                         clock,
     input 		                         reset,
     input                                stall,
+    input                                jump,
+    input      [`ADDRESS_SIZE - 1:0]     pc,
     input      [`INSTRUCTION_SIZE - 1:0] instruction,
     input      [`DATA_SIZE - 1:0]        read_data0,
     input      [`DATA_SIZE - 1:0]        read_data1,
@@ -22,7 +24,8 @@ module read_unit
     output reg [`VALUE_SIZE - 1:0]       value,
     output reg [`CONSTANT_SIZE - 1:0]    constant,
     output reg [`OFFSET_SIZE - 1:0]      offset,
-    output reg [`CONDITION_SIZE - 1:0]   condition
+    output reg [`CONDITION_SIZE - 1:0]   condition,
+    output reg [`DATA_SIZE - 1:0]        read_pc
 );
 
 wire [`INST_TYPE_SIZE - 1:0] inst_type;
@@ -71,11 +74,14 @@ always @ (posedge clock or negedge reset) begin
         constant  <= 0;
         offset    <= 0;
         condition <= 0;
+        read_pc   <= 0;
     end
-    else if (stall) begin
-        opcode    <= `NOP;
+    else if (stall || jump) begin
+        opcode <= `NOP;
     end
     else begin
+        read_pc <= pc;
+
         opcode <= instruction[`OPCODE_SELECT];
 
         case (inst_type)

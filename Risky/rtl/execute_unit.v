@@ -13,6 +13,7 @@ module execute_unit
     input      [`CONSTANT_SIZE - 1:0]   constant,
     input      [`OFFSET_SIZE - 1:0]     offset,
     input      [`CONDITION_SIZE - 1:0]  condition,
+    input      [`ADDRESS_SIZE - 1:0]    pc,
     output                              halt,
     output                              read,
     output                              write,
@@ -20,6 +21,10 @@ module execute_unit
     // Result and destination to the dependency unit
     output reg [`DATA_SIZE - 1:0]       dep_result,
     output reg [`GPR_SIZE - 1:0]        dep_destination,
+
+    // Jump signals
+    output reg [`ADDRESS_SIZE - 1:0]    jump_pc,
+    output reg                          jump,
 
     // Access to data memory
     output reg [`ADDRESS_SIZE - 1:0]    address,
@@ -106,6 +111,46 @@ always @ (*) begin
             dep_destination = `GPR_SIZE'h0;
             address         = `ADDRESS_SIZE'h0;
             data_out        = `DATA_SIZE'h0;
+        end
+    endcase
+
+    case (inst_type)
+        `JUMP : begin
+            jump = 1'b1;
+
+            case (opcode[`OP_JUMP_SELECT])
+                `JMP  : begin
+                    jump_pc = operand0[`ADDRESS_SIZE - 1:0];
+                end
+
+                `JMPR : begin
+                    jump_pc = pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset });
+                end
+            endcase
+        end
+
+        `JUMP_COND : begin
+            case (condition)
+                `N      : jump = operand0 <  0;
+                `NN     : jump = operand0 >= 0;
+                `Z      : jump = operand0 == 0;
+                `NZ     : jump = operand0 != 0;
+                default : jump = 1'b0;
+            endcase
+
+            case (opcode[`OP_JUMP_SELECT])
+                `JMPCOND : begin
+                    jump_pc = operand1[`ADDRESS_SIZE - 1:0];
+                end
+
+                `JMPRCOND : begin
+                    jump_pc = pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset });
+                end
+            endcase
+        end
+
+        default : begin
+            jump    = 1'b0;
         end
     endcase
 

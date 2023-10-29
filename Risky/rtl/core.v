@@ -31,6 +31,7 @@ wire [`VALUE_SIZE - 1:0]     value;
 wire [`CONSTANT_SIZE - 1:0]  constant;
 wire [`OFFSET_SIZE - 1:0]    offset;
 wire [`CONDITION_SIZE - 1:0] condition;
+wire [`ADDRESS_SIZE - 1:0]   read_pc;
 
 // Third pipeline stage output
 wire [`DATA_SIZE - 1:0]      result;
@@ -57,6 +58,10 @@ wire [`GPR_SIZE - 1:0]       exec_destination;
 wire [`GPR_SIZE - 1:0]       write_address;
 wire [`DATA_SIZE - 1:0]      write_data;
 wire                         write_enable;
+
+// Jump signals
+wire [`ADDRESS_SIZE - 1:0]   jump_pc;
+wire                         jump;
 
 // Halt and stall signals
 wire                         halt;
@@ -102,7 +107,9 @@ fetch_unit fetch_stage
     .clock           (clock),
     .reset           (reset),
     .halt_or_stall   (halt_or_stall),
+    .jump            (jump),
     .instruction     (instruction),
+    .jump_pc         (jump_pc),
     .pc              (pc),
     .instruction_out (fetch)
 );
@@ -112,6 +119,8 @@ read_unit read_stage
     .clock         (clock),
     .reset         (reset),
     .stall         (stall),
+    .jump          (jump),
+    .pc            (pc),
     .instruction   (fetch),
     .read_data0    (result0),
     .read_data1    (result1),
@@ -124,7 +133,8 @@ read_unit read_stage
     .value         (value),
     .constant      (constant),
     .offset        (offset),
-    .condition     (condition)
+    .condition     (condition),
+    .read_pc       (read_pc)
 );
 
 execute_unit execute_stage
@@ -139,11 +149,14 @@ execute_unit execute_stage
     .constant        (constant),
     .offset          (offset),
     .condition       (condition),
+    .pc              (read_pc),
     .halt            (halt),
     .read            (read),
     .write           (write),
     .dep_result      (exec_result),
     .dep_destination (exec_destination),
+    .jump_pc         (jump_pc),
+    .jump            (jump),
     .address         (address),
     .data_out        (data_out),
     .result          (result),
