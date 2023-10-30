@@ -5,7 +5,8 @@ module fetch_unit
 (
     input		                         clock,
     input 		                         reset,
-    input                                halt_or_stall,
+    input                                halt,
+    input                                stall,
     input                                jump,
     input      [`INSTRUCTION_SIZE - 1:0] instruction,
     input      [`ADDRESS_SIZE - 1:0]     jump_pc,
@@ -20,7 +21,7 @@ always @ (posedge clock or negedge reset) begin
         pc              <= 0;
         instruction_out <= `NOP_INST;
     end
-    else if (halt_or_stall) begin
+    else if (halt || stall) begin
         pc              <= pc;
         instruction_out <= instruction_out;
     end

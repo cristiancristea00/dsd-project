@@ -25,7 +25,7 @@ module read_unit
     output reg [`CONSTANT_SIZE - 1:0]    constant,
     output reg [`OFFSET_SIZE - 1:0]      offset,
     output reg [`CONDITION_SIZE - 1:0]   condition,
-    output reg [`DATA_SIZE - 1:0]        read_pc
+    output reg [`ADDRESS_SIZE - 1:0]     read_pc
 );
 
 wire [`INST_TYPE_SIZE - 1:0] inst_type;
@@ -61,6 +61,8 @@ always @ (*) begin
                 read_address1 = instruction[2:0];
             end
         end
+        
+        default : begin end
     endcase
 end
 
@@ -108,6 +110,8 @@ always @ (posedge clock or negedge reset) begin
                         operand0 <= instruction[10:8];
                         constant <= instruction[7:0];
                     end
+                    
+                    default : begin end
                 endcase
             end
 
@@ -115,6 +119,7 @@ always @ (posedge clock or negedge reset) begin
                 case (instruction[`JUMP_SELECT])
                     `JMP  : operand0 <= read_data0;
                     `JMPR : offset   <= instruction[5:0];
+                    default : begin end
                 endcase
             end
 
@@ -131,8 +136,12 @@ always @ (posedge clock or negedge reset) begin
                         offset    <= instruction[5:0];
                         condition <= instruction[11:9];
                     end
+                    
+                    default : begin end
                 endcase
             end
+            
+            default : begin end
         endcase
     end
 end

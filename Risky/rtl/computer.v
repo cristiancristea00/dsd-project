@@ -18,6 +18,7 @@ wire [`ADDRESS_SIZE - 1:0]     address;
 wire [`DATA_SIZE - 1:0]        data_out;
 wire [`DATA_SIZE - 1:0]        data_in;
 
+
 core core_unit(
     .clock         (clock),
     .reset         (reset),

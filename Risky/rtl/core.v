@@ -66,7 +66,6 @@ wire                         jump;
 // Halt and stall signals
 wire                         halt;
 wire                         stall;
-wire                         halt_or_stall;
 
 assign halt_or_stall = halt || stall;
 
@@ -106,7 +105,8 @@ fetch_unit fetch_stage
 (
     .clock           (clock),
     .reset           (reset),
-    .halt_or_stall   (halt_or_stall),
+    .halt            (halt),
+    .stall           (stall),
     .jump            (jump),
     .instruction     (instruction),
     .jump_pc         (jump_pc),

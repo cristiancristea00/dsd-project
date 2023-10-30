@@ -23,9 +23,14 @@ reg [ADDRESS_SIZE - 1:0] data_pipe;
 
 assign data_out = memory[data_pipe];
 
+reg [$clog2(SIZE):0] idx;
+
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
         data_pipe <= 0;
+        for (idx = 0; idx < SIZE; idx = idx + 1) begin
+            memory[idx] <= 0;
+        end
     end
     else begin
         if (write) begin

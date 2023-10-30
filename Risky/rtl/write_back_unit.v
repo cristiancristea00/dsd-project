@@ -33,6 +33,8 @@ always @ (*) begin
             write_data    = `DATA_SIZE'b0;
             write_enable  = 1'b0;
         end
+        
+        default : begin end
     endcase
 end
 

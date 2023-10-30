@@ -55,10 +55,11 @@ always @ (*) begin
     case (inst_type)
         `ARITHMETIC : begin
             case (opcode[`OP_ARITHMETIC_SELECT])
-                `ADD  : dep_result = operand1 + operand2;
-                `ADDF : dep_result = operand1 + operand2;
-                `SUB  : dep_result = operand1 - operand2;
-                `SUBF : dep_result = operand1 - operand2;
+                `ADD    : dep_result = operand1 + operand2;
+                `ADDF   : dep_result = operand1 + operand2;
+                `SUB    : dep_result = operand1 - operand2;
+                `SUBF   : dep_result = operand1 - operand2;
+                default : begin end
             endcase
 
             dep_destination = operand0;
@@ -66,12 +67,13 @@ always @ (*) begin
 
         `LOGIC : begin
             case (opcode[`OP_LOGIC_SELECT])
-                `AND  : dep_result =  ( operand1 & operand2 );
-                `OR   : dep_result =  ( operand1 | operand2 );
-                `XOR  : dep_result =  ( operand1 ^ operand2 );
-                `NAND : dep_result = ~( operand1 & operand2 );
-                `NOR  : dep_result = ~( operand1 | operand2 );
-                `XNOR : dep_result = ~( operand1 ^ operand2 );
+                `AND    : dep_result =  ( operand1 & operand2 );
+                `OR     : dep_result =  ( operand1 | operand2 );
+                `XOR    : dep_result =  ( operand1 ^ operand2 );
+                `NAND   : dep_result = ~( operand1 & operand2 );
+                `NOR    : dep_result = ~( operand1 | operand2 );
+                `XNOR   : dep_result = ~( operand1 ^ operand2 );
+                default : begin end
             endcase
 
             dep_destination = operand0;
@@ -82,6 +84,7 @@ always @ (*) begin
                 `SHIFTR  : dep_result = operand1 >>  value;
                 `SHIFTRA : dep_result = operand1 >>> value;
                 `SHIFTL  : dep_result = operand1 <<  value;
+                default  : begin end
             endcase
 
             dep_destination = operand0;
@@ -103,6 +106,8 @@ always @ (*) begin
                     address  = operand0[`ADDRESS_SIZE - 1:0];
                     data_out = operand1;
                 end
+                
+                default : begin end
             endcase
         end
         
@@ -126,6 +131,8 @@ always @ (*) begin
                 `JMPR : begin
                     jump_pc = pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset });
                 end
+                
+                default : begin end
             endcase
         end
 
@@ -146,6 +153,8 @@ always @ (*) begin
                 `JMPRCOND : begin
                     jump_pc = pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset });
                 end
+                
+                default : begin end
             endcase
         end
 
