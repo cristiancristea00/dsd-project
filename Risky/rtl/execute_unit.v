@@ -1,5 +1,7 @@
 `include "architecture.vh"
 
+`define SIGNED_OFFSET(OFFSET)    $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ OFFSET[`OFFSET_SIZE - 1] } }, OFFSET })
+
 
 module execute_unit
 (
@@ -30,28 +32,22 @@ module execute_unit
     output reg [`ADDRESS_SIZE - 1:0]    address,
     output reg [`DATA_SIZE - 1:0]       data_out,
 
-    // Third pipeline stage output
+    // Pipeline third stage output
     output reg [`DATA_SIZE - 1:0]       result,
     output reg [`GPR_SIZE - 1:0]        destination,
     output reg [`OP_WB_SIZE - 1:0]      writeback
 );
 
-wire [`INST_TYPE_SIZE - 1:0] inst_type;
 
-assign inst_type = opcode[`OP_INST_SELECT];
+reg [`INST_TYPE_SIZE - 1:0] inst_type;
 
 
 reg [`OP_WB_SIZE - 1:0] int_writeback;
 
-
-assign halt = opcode[`OP_INST_SELECT] == `HALT;
-
-
-assign read  = opcode[`OP_MEMORY_ACCESS_SELECT] == `LOAD;
-assign write = opcode[`OP_MEMORY_ACCESS_SELECT] == `STORE;
-
-
+// Combinationally compute the result and destination
 always @ (*) begin
+    inst_type = opcode[`OP_INST_SELECT];
+
     case (inst_type)
         `ARITHMETIC : begin
             case (opcode[`OP_ARITHMETIC_SELECT])
@@ -59,10 +55,13 @@ always @ (*) begin
                 `ADDF   : dep_result = operand1 + operand2;
                 `SUB    : dep_result = operand1 - operand2;
                 `SUBF   : dep_result = operand1 - operand2;
-                default : begin end
+                default : dep_result = `DATA_SIZE'b0;
             endcase
 
             dep_destination = operand0;
+
+            address  = `ADDRESS_SIZE'b0;
+            data_out = `DATA_SIZE'b0;
         end
 
         `LOGIC : begin
@@ -73,10 +72,13 @@ always @ (*) begin
                 `NAND   : dep_result = ~( operand1 & operand2 );
                 `NOR    : dep_result = ~( operand1 | operand2 );
                 `XNOR   : dep_result = ~( operand1 ^ operand2 );
-                default : begin end
+                default : dep_result = `DATA_SIZE'b0;
             endcase
 
             dep_destination = operand0;
+
+            address  = `ADDRESS_SIZE'b0;
+            data_out = `DATA_SIZE'b0;
         end
 
         `SHIFT : begin
@@ -84,10 +86,13 @@ always @ (*) begin
                 `SHIFTR  : dep_result = operand1 >>  value;
                 `SHIFTRA : dep_result = operand1 >>> value;
                 `SHIFTL  : dep_result = operand1 <<  value;
-                default  : begin end
+                default  : dep_result = `DATA_SIZE'b0;
             endcase
 
             dep_destination = operand0;
+
+            address  = `ADDRESS_SIZE'b0;
+            data_out = `DATA_SIZE'b0;
         end
 
         `MEMORY_ACCESS : begin
@@ -95,27 +100,41 @@ always @ (*) begin
                 `LOADC : begin
                     dep_result      = { operand0[`DATA_SIZE - 1:8], constant };
                     dep_destination = operand0;
+
+                    address  = `ADDRESS_SIZE'b0;
+                    data_out = `DATA_SIZE'b0;
                 end
 
                 `LOAD : begin
                     address         = operand1[`ADDRESS_SIZE - 1:0];
                     dep_destination = operand0;
+
+                    dep_result = `DATA_SIZE'b0;
+                    data_out   = `DATA_SIZE'b0;
                 end
 
                 `STORE : begin
                     address  = operand0[`ADDRESS_SIZE - 1:0];
                     data_out = operand1;
+
+                    dep_result      = `DATA_SIZE'b0;
+                    dep_destination = `GPR_SIZE'b0;
                 end
                 
-                default : begin end
+                default : begin
+                    dep_result      = `DATA_SIZE'b0;
+                    dep_destination = `GPR_SIZE'b0;
+                    address         = `ADDRESS_SIZE'b0;
+                    data_out        = `DATA_SIZE'b0;
+                end
             endcase
         end
         
         default : begin
-            dep_result      = `DATA_SIZE'h0;
-            dep_destination = `GPR_SIZE'h0;
-            address         = `ADDRESS_SIZE'h0;
-            data_out        = `DATA_SIZE'h0;
+            dep_result      = `DATA_SIZE'b0;
+            dep_destination = `GPR_SIZE'b0;
+            address         = `ADDRESS_SIZE'b0;
+            data_out        = `DATA_SIZE'b0;
         end
     endcase
 
@@ -129,10 +148,12 @@ always @ (*) begin
                 end
 
                 `JMPR : begin
-                    jump_pc = pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset });
+                    jump_pc = pc + `SIGNED_OFFSET(offset);
                 end
                 
-                default : begin end
+                default : begin
+                    jump_pc = pc;
+                end
             endcase
         end
 
@@ -151,28 +172,39 @@ always @ (*) begin
                 end
 
                 `JMPRCOND : begin
-                    jump_pc = pc + $signed({ { `ADDRESS_SIZE - `OFFSET_SIZE{ offset[`OFFSET_SIZE - 1] } }, offset });
+                    jump_pc = pc + `SIGNED_OFFSET(offset);
                 end
                 
-                default : begin end
+                default : begin
+                    jump_pc = pc;
+                end
             endcase
         end
 
         default : begin
+            jump_pc = pc;
             jump    = 1'b0;
         end
     endcase
 
-    if (opcode[`OP_MEMORY_ACCESS_SELECT] == `LOAD)                                                                                 int_writeback = `WB_MEMORY;
-    else if (inst_type == `ARITHMETIC || inst_type == `LOGIC || inst_type == `SHIFT || opcode[`OP_MEMORY_ACCESS_SELECT] == `LOADC) int_writeback = `WB_REGISTER;
-    else                                                                                                                           int_writeback = `WB_NONE;
+    if (opcode[`OP_MEMORY_ACCESS_SELECT] == `LOAD) begin
+        int_writeback = `WB_MEMORY;
+    end
+    else if (inst_type == `ARITHMETIC || inst_type == `LOGIC || inst_type == `SHIFT || opcode[`OP_MEMORY_ACCESS_SELECT] == `LOADC) begin
+        int_writeback = `WB_REGISTER;
+    end
+    else begin
+        int_writeback = `WB_NONE;
+    end
 end
 
+
+// Syncronously update the result, destination and writeback signals for the pipeline third stage
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
-        result      <= 0;
-        destination <= 0;
-        writeback   <= 0;
+        result      <= `DATA_SIZE'b0;
+        destination <= `GPR_SIZE'b0;
+        writeback   <= `WB_NONE;
     end
     else begin
         result      <= dep_result;
@@ -180,5 +212,13 @@ always @ (posedge clock or negedge reset) begin
         writeback   <= int_writeback;
     end
 end
+
+// Combinationally compute the halt signal
+assign halt  = opcode[`OP_INST_SELECT] == `HALT;
+
+// Combinationally compute the read and write signals for the data memory
+assign read  = opcode[`OP_MEMORY_ACCESS_SELECT] == `LOAD;
+assign write = opcode[`OP_MEMORY_ACCESS_SELECT] == `STORE;
+
 
 endmodule

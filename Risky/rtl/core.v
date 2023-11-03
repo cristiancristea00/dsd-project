@@ -67,8 +67,6 @@ wire                         jump;
 wire                         halt;
 wire                         stall;
 
-assign halt_or_stall = halt || stall;
-
 
 register_file_unit register_file
 (

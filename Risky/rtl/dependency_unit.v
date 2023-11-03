@@ -20,6 +20,7 @@ module dependency_unit
     input     [`DATA_SIZE - 1:0]  read_operand0,
     input     [`DATA_SIZE - 1:0]  read_operand1,
 
+    // Forwarded results from the register file or the memory
     output reg [`DATA_SIZE - 1:0] result0,
     output reg [`DATA_SIZE - 1:0] result1,
 
@@ -27,10 +28,12 @@ module dependency_unit
     output                        stall
 );
 
+
 // Stall if the read unit is using a source register that the LOAD instruction is going to write to
 assign stall = is_load && (read_address0 == exec_destination || read_address1 == exec_destination);
 
 
+// Combinationally forward the results from the register file or the memory to the read unit
 always @ (*) begin
     if (read_address0 == exec_destination) begin
         result0 = exec_result;
@@ -60,5 +63,6 @@ always @ (*) begin
         result1 = read_operand1;
     end
 end
+
 
 endmodule

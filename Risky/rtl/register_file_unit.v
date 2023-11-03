@@ -14,15 +14,14 @@ module register_file_unit
     output [`DATA_SIZE - 1:0] read_data1
 );
 
+
+// Actual register storage
 reg [`DATA_SIZE - 1:0] registers [0:`NUMBER_OF_GPRS - 1];
 
 
-assign read_data0 = registers[read_address0];
-assign read_data1 = registers[read_address1];
+reg [`GPR_SIZE:0] idx;
 
-
-reg [`NUMBER_OF_GPRS - 1:0] idx;
-
+// Synchronous write port and asynchronous reset
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
         for (idx = 0; idx < `NUMBER_OF_GPRS; idx = idx + 1) begin
@@ -33,5 +32,11 @@ always @ (posedge clock or negedge reset) begin
         registers[write_address] <= write_data;
     end
 end
+
+
+// Asynchronous read ports
+assign read_data0 = registers[read_address0];
+assign read_data1 = registers[read_address1];
+
 
 endmodule

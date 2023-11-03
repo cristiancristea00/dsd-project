@@ -14,6 +14,8 @@ module write_back_unit
     output reg                     write_enable
 );
 
+
+// Combinationally set the signals for the register file
 always @ (*) begin
     case (writeback)
         `WB_REGISTER : begin
@@ -34,8 +36,13 @@ always @ (*) begin
             write_enable  = 1'b0;
         end
         
-        default : begin end
+        default : begin
+            write_address = `GPR_SIZE'b0;
+            write_data    = `DATA_SIZE'b0;
+            write_enable  = 1'b0;
+        end
     endcase
 end
+
 
 endmodule

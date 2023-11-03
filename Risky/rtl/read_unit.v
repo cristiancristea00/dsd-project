@@ -16,7 +16,7 @@ module read_unit
     output reg [`GPR_SIZE - 1:0]         read_address0,
     output reg [`GPR_SIZE - 1:0]         read_address1,
 
-    // Second pipeline stage output
+    // Pipeline second stage output
     output reg [`OPCODE_SIZE - 1:0]      opcode,
     output reg [`DATA_SIZE - 1:0]        operand0,
     output reg [`DATA_SIZE - 1:0]        operand1,
@@ -28,11 +28,14 @@ module read_unit
     output reg [`ADDRESS_SIZE - 1:0]     read_pc
 );
 
-wire [`INST_TYPE_SIZE - 1:0] inst_type;
 
-assign inst_type = instruction[`INST_SELECT];
+reg [`INST_TYPE_SIZE - 1:0] inst_type;
 
+
+// Combinationally decode the instruction and set the register file read addresses
 always @ (*) begin
+    inst_type = instruction[`INST_SELECT];
+
     case (inst_type)
         `ARITHMETIC, `LOGIC : begin
             read_address0 = instruction[5:3];
@@ -41,17 +44,28 @@ always @ (*) begin
 
         `SHIFT : begin
             read_address0 = instruction[8:6];
+            read_address1 = `GPR_SIZE'b0;
         end
 
         `MEMORY_ACCESS : begin
             if (instruction[`MEMORY_ACCESS_SELECT] == `LOAD || instruction[`MEMORY_ACCESS_SELECT] == `STORE) begin
                 read_address0 = instruction[2:0];
+                read_address1 = `GPR_SIZE'b0;
+            end
+            else begin
+                read_address0 = `GPR_SIZE'b0;
+                read_address1 = `GPR_SIZE'b0;
             end
         end
 
         `JUMP : begin
             if (instruction[`JUMP_SELECT] == `JMP) begin
                 read_address0 = instruction[2:0];
+                read_address1 = `GPR_SIZE'b0;
+            end
+            else begin
+                read_address0 = `GPR_SIZE'b0;
+                read_address1 = `GPR_SIZE'b0;
             end
         end
 
@@ -60,23 +74,31 @@ always @ (*) begin
                 read_address0 = instruction[8:6];
                 read_address1 = instruction[2:0];
             end
+            else begin
+                read_address0 = `GPR_SIZE'b0;
+                read_address1 = `GPR_SIZE'b0;
+            end
         end
         
-        default : begin end
+        default : begin
+            read_address0 = `GPR_SIZE'b0;
+            read_address1 = `GPR_SIZE'b0;
+        end
     endcase
 end
 
+// Synchronous decode the instruction and set the pipeline second stage output
 always @ (posedge clock or negedge reset) begin
     if (!reset) begin
-        opcode    <= 0;
-        operand0  <= 0;
-        operand1  <= 0;
-        operand2  <= 0;
-        value     <= 0;
-        constant  <= 0;
-        offset    <= 0;
-        condition <= 0;
-        read_pc   <= 0;
+        opcode    <= `NOP;
+        operand0  <= `DATA_SIZE'b0;
+        operand1  <= `DATA_SIZE'b0;
+        operand2  <= `DATA_SIZE'b0;
+        value     <= `VALUE_SIZE'b0;
+        constant  <= `CONSTANT_SIZE'b0;
+        offset    <= `OFFSET_SIZE'b0;
+        condition <= `CONDITION_SIZE'b0;
+        read_pc   <= `ADDRESS_SIZE'b0;
     end
     else if (stall || jump) begin
         opcode <= `NOP;
@@ -91,12 +113,22 @@ always @ (posedge clock or negedge reset) begin
                 operand0 <= instruction[8:6];
                 operand1 <= read_data0;
                 operand2 <= read_data1;
+
+                value     <= `VALUE_SIZE'b0;
+                constant  <= `CONSTANT_SIZE'b0;
+                offset    <= `OFFSET_SIZE'b0;
+                condition <= `CONDITION_SIZE'b0;
             end
 
             `SHIFT : begin
                 operand0 <= instruction[8:6];
                 operand1 <= read_data0;
                 value    <= instruction[5:0];
+
+                operand2  <= `DATA_SIZE'b0;
+                constant  <= `CONSTANT_SIZE'b0;
+                offset    <= `OFFSET_SIZE'b0;
+                condition <= `CONDITION_SIZE'b0;
             end
 
             `MEMORY_ACCESS : begin
@@ -104,22 +136,70 @@ always @ (posedge clock or negedge reset) begin
                     `LOAD, `STORE : begin
                         operand0 <= instruction[10:8];
                         operand1 <= read_data0;
+
+                        operand2  <= `DATA_SIZE'b0;
+                        value     <= `VALUE_SIZE'b0;
+                        constant  <= `CONSTANT_SIZE'b0;
+                        offset    <= `OFFSET_SIZE'b0;
+                        condition <= `CONDITION_SIZE'b0;
                     end
 
                     `LOADC : begin
                         operand0 <= instruction[10:8];
                         constant <= instruction[7:0];
+
+                        operand1  <= `DATA_SIZE'b0;
+                        operand2  <= `DATA_SIZE'b0;
+                        value     <= `VALUE_SIZE'b0;
+                        offset    <= `OFFSET_SIZE'b0;
+                        condition <= `CONDITION_SIZE'b0;
                     end
                     
-                    default : begin end
+                    default : begin
+                        operand0  <= `DATA_SIZE'b0;
+                        operand1  <= `DATA_SIZE'b0;
+                        operand2  <= `DATA_SIZE'b0;
+                        value     <= `VALUE_SIZE'b0;
+                        constant  <= `CONSTANT_SIZE'b0;
+                        offset    <= `OFFSET_SIZE'b0;
+                        condition <= `CONDITION_SIZE'b0;
+                    end
                 endcase
             end
 
             `JUMP : begin
                 case (instruction[`JUMP_SELECT])
-                    `JMP  : operand0 <= read_data0;
-                    `JMPR : offset   <= instruction[5:0];
-                    default : begin end
+                    `JMP  : begin
+                        operand0 <= read_data0;
+
+                        operand1  <= `DATA_SIZE'b0;
+                        operand2  <= `DATA_SIZE'b0;
+                        value     <= `VALUE_SIZE'b0;
+                        constant  <= `CONSTANT_SIZE'b0;
+                        offset    <= `OFFSET_SIZE'b0;
+                        condition <= `CONDITION_SIZE'b0;
+                    end
+
+                    `JMPR : begin
+                        offset <= instruction[5:0];
+
+                        operand0  <= `DATA_SIZE'b0;
+                        operand1  <= `DATA_SIZE'b0;
+                        operand2  <= `DATA_SIZE'b0;
+                        value     <= `VALUE_SIZE'b0;
+                        constant  <= `CONSTANT_SIZE'b0;
+                        condition <= `CONDITION_SIZE'b0;
+                    end
+
+                    default : begin
+                        operand0  <= `DATA_SIZE'b0;
+                        operand1  <= `DATA_SIZE'b0;
+                        operand2  <= `DATA_SIZE'b0;
+                        value     <= `VALUE_SIZE'b0;
+                        constant  <= `CONSTANT_SIZE'b0;
+                        offset    <= `OFFSET_SIZE'b0;
+                        condition <= `CONDITION_SIZE'b0;
+                    end
                 endcase
             end
 
@@ -129,21 +209,50 @@ always @ (posedge clock or negedge reset) begin
                         operand0  <= read_data0;
                         operand1  <= read_data1;
                         condition <= instruction[11:9];
+
+                        operand2 <= `DATA_SIZE'b0;
+                        value    <= `VALUE_SIZE'b0;
+                        constant <= `CONSTANT_SIZE'b0;
+                        offset   <= `OFFSET_SIZE'b0;
                     end
 
                     `JMPRCOND : begin
                         operand0  <= read_data0;
                         offset    <= instruction[5:0];
                         condition <= instruction[11:9];
+
+                        operand1 <= `DATA_SIZE'b0;
+                        operand2 <= `DATA_SIZE'b0;
+                        value    <= `VALUE_SIZE'b0;
+                        constant <= `CONSTANT_SIZE'b0;
                     end
                     
-                    default : begin end
+                    default : begin
+                        operand0  <= `DATA_SIZE'b0;
+                        operand1  <= `DATA_SIZE'b0;
+                        operand2  <= `DATA_SIZE'b0;
+                        value     <= `VALUE_SIZE'b0;
+                        constant  <= `CONSTANT_SIZE'b0;
+                        offset    <= `OFFSET_SIZE'b0;
+                        condition <= `CONDITION_SIZE'b0;
+                    end
                 endcase
             end
             
-            default : begin end
+            default : begin
+                opcode    <= `NOP;
+                operand0  <= `DATA_SIZE'b0;
+                operand1  <= `DATA_SIZE'b0;
+                operand2  <= `DATA_SIZE'b0;
+                value     <= `VALUE_SIZE'b0;
+                constant  <= `CONSTANT_SIZE'b0;
+                offset    <= `OFFSET_SIZE'b0;
+                condition <= `CONDITION_SIZE'b0;
+                read_pc   <= `ADDRESS_SIZE'b0;
+            end
         endcase
     end
 end
+
 
 endmodule
