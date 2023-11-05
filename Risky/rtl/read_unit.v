@@ -48,36 +48,55 @@ always @ (*) begin
         end
 
         `MEMORY_ACCESS : begin
-            if (instruction[`MEMORY_ACCESS_SELECT] == `LOAD || instruction[`MEMORY_ACCESS_SELECT] == `STORE) begin
-                read_address0 = instruction[2:0];
-                read_address1 = `GPR_SIZE'b0;
-            end
-            else begin
-                read_address0 = `GPR_SIZE'b0;
-                read_address1 = `GPR_SIZE'b0;
-            end
+            case (instruction[`MEMORY_ACCESS_SELECT])
+                `LOAD, `STORE : begin
+                    read_address0 = instruction[2:0];
+                    read_address1 = `GPR_SIZE'b0;
+                end
+
+                default : begin
+                    read_address0 = `GPR_SIZE'b0;
+                    read_address1 = `GPR_SIZE'b0;
+                end
+            endcase
         end
 
         `JUMP : begin
-            if (instruction[`JUMP_SELECT] == `JMP) begin
-                read_address0 = instruction[2:0];
-                read_address1 = `GPR_SIZE'b0;
-            end
-            else begin
-                read_address0 = `GPR_SIZE'b0;
-                read_address1 = `GPR_SIZE'b0;
-            end
-        end
+            case (instruction[`JUMP_SELECT])
+                `JMP : begin
+                    read_address0 = instruction[2:0];
+                    read_address1 = `GPR_SIZE'b0;
+                end
 
+                `JMPR : begin
+                    read_address0 = `GPR_SIZE'b0;
+                    read_address1 = `GPR_SIZE'b0;
+                end
+
+                default : begin
+                    read_address0 = `GPR_SIZE'b0;
+                    read_address1 = `GPR_SIZE'b0;
+                end
+            endcase
+        end
+        
         `JUMP_COND : begin
-            if (instruction[`JUMP_SELECT] == `JMPCOND) begin
-                read_address0 = instruction[8:6];
-                read_address1 = instruction[2:0];
-            end
-            else begin
-                read_address0 = `GPR_SIZE'b0;
-                read_address1 = `GPR_SIZE'b0;
-            end
+            case (instruction[`JUMP_SELECT])
+                `JMPCOND : begin
+                    read_address0 = instruction[8:6];
+                    read_address1 = instruction[2:0];
+                end
+
+                `JMPRCOND : begin
+                    read_address0 = instruction[8:6];
+                    read_address1 = `GPR_SIZE'b0;
+                end
+
+                default : begin
+                    read_address0 = `GPR_SIZE'b0;
+                    read_address1 = `GPR_SIZE'b0;
+                end
+            endcase
         end
         
         default : begin

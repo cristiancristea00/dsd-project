@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
 
+
 // General architecture parameters
 `define DATA_SIZE           32
 `define ADDRESS_SIZE        10
@@ -117,6 +118,7 @@
 `define WB_NONE        2'b00
 `define WB_REGISTER    2'b01
 `define WB_MEMORY      2'b10
+
 
 /* Assembly macros */
 

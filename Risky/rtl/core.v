@@ -19,8 +19,10 @@ module core
     input  [`DATA_SIZE - 1:0]        data_in      // Data got from the data memory
 );
 
+
 // First pipeline stage output
 wire [`INSTRUCTION_SIZE - 1:0] fetch;
+wire [`ADDRESS_SIZE - 1:0]     last_pc;
 
 // Second pipeline stage output
 wire [`OPCODE_SIZE - 1:0]    opcode;
@@ -108,6 +110,7 @@ fetch_unit fetch_stage
     .jump            (jump),
     .instruction     (instruction),
     .jump_pc         (jump_pc),
+    .last_pc         (last_pc),
     .pc              (pc),
     .instruction_out (fetch)
 );
@@ -118,7 +121,7 @@ read_unit read_stage
     .reset         (reset),
     .stall         (stall),
     .jump          (jump),
-    .pc            (pc),
+    .pc            (last_pc),
     .instruction   (fetch),
     .read_data0    (result0),
     .read_data1    (result1),
@@ -172,5 +175,6 @@ write_back_unit write_back_stage
     .write_data    (write_data),
     .write_enable  (write_enable)
 );
+
 
 endmodule

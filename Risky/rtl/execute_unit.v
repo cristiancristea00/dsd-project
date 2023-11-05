@@ -159,10 +159,10 @@ always @ (*) begin
 
         `JUMP_COND : begin
             case (condition)
-                `N      : jump = operand0 <  0;
-                `NN     : jump = operand0 >= 0;
-                `Z      : jump = operand0 == 0;
-                `NZ     : jump = operand0 != 0;
+                `N      : jump = $signed(operand0) <  0;
+                `NN     : jump = $signed(operand0) >= 0;
+                `Z      : jump = $signed(operand0) == 0;
+                `NZ     : jump = $signed(operand0) != 0;
                 default : jump = 1'b0;
             endcase
 
