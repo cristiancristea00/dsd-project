@@ -85,6 +85,7 @@ task load_test_program();
     `DATA_MEM('h1C, `DATA_SIZE'h5318_0008);
     `DATA_MEM('h30, `DATA_SIZE'hDEAD_BEEF);
 
+
     `PROG_MEM( 0, `LOADC_INST(`R0, 8'hD));    // R0 = 0x0000_000D
     `PROG_MEM( 1, `LOADC_INST(`R1, 8'hE));    // R1 = 0x0000_000E
     `PROG_MEM( 2, `LOADC_INST(`R2, 8'hA));    // R2 = 0x0000_000A
@@ -128,9 +129,11 @@ task load_test_program();
     `PROG_MEM(40, `JMP_INST(`R7));            // PC = 0x0000_0000
 endtask
 
+
 task load_simple_program();
     `DATA_MEM('h10, `DATA_SIZE'h80);
     `DATA_MEM('h20, `DATA_SIZE'h60);
+    
     
     `PROG_MEM( 0, `LOADC_INST(`R0, 8'h10));    // R0 = 0x0000_0010
     `PROG_MEM( 1, `LOADC_INST(`R1, 8'h20));    // R1 = 0x0000_0020
@@ -140,15 +143,55 @@ task load_simple_program();
     `PROG_MEM( 5, `JMPRN_INST(`R4, 6'd11));    // PC = 0x0000_0010
     `PROG_MEM( 6, `JMPR_INST(6'd26));          // PC = 0x0000_0020
 
+    // Correct jump
     `PROG_MEM(16, `LOADC_INST(`R0, 8'hB));     // R0 = 0x0000_000B
     `PROG_MEM(17, `LOADC_INST(`R1, 8'h0));     // R1 = 0x0000_0000
     `PROG_MEM(18, `LOADC_INST(`R2, 8'h0));     // R2 = 0x0000_0000
     `PROG_MEM(19, `LOADC_INST(`R3, 8'hB));     // R3 = 0x0000_000B
 
+    // Incorrect jump
     `PROG_MEM(32, `LOADC_INST(`R0, 8'hD));     // R0 = 0x0000_000D
     `PROG_MEM(33, `LOADC_INST(`R1, 8'hE));     // R1 = 0x0000_000E
     `PROG_MEM(34, `LOADC_INST(`R2, 8'hA));     // R2 = 0x0000_000A
     `PROG_MEM(35, `LOADC_INST(`R3, 8'hD));     // R3 = 0x0000_000D
+endtask
+
+
+task load_vector_add_program();
+    `DATA_MEM( 0, `DATA_SIZE'h1);
+    `DATA_MEM( 1, `DATA_SIZE'h2);
+    `DATA_MEM( 2, `DATA_SIZE'h3);
+    `DATA_MEM( 3, `DATA_SIZE'h4);
+    `DATA_MEM( 4, `DATA_SIZE'h5);
+    `DATA_MEM( 5, `DATA_SIZE'h6);
+    `DATA_MEM( 6, `DATA_SIZE'h7);
+    `DATA_MEM( 7, `DATA_SIZE'h8);
+    `DATA_MEM( 8, `DATA_SIZE'h9); 
+    
+    `DATA_MEM( 9, `DATA_SIZE'h1);
+    `DATA_MEM(10, `DATA_SIZE'h2);
+    `DATA_MEM(11, `DATA_SIZE'h3);
+    `DATA_MEM(12, `DATA_SIZE'h4);
+    `DATA_MEM(13, `DATA_SIZE'h5);
+    `DATA_MEM(14, `DATA_SIZE'h6);
+    `DATA_MEM(15, `DATA_SIZE'h7);
+    `DATA_MEM(16, `DATA_SIZE'h8);
+    `DATA_MEM(17, `DATA_SIZE'h9);
+
+    `PROG_MEM( 0, `LOADC_INST(`R0, 8'h9));   // Load the counter with 9
+    `PROG_MEM( 1, `LOADC_INST(`R1, 8'h1));   // Load the increment constant with 1
+    `PROG_MEM( 2, `LOADC_INST(`R2, 8'd0));   // Load the address of the first vector
+    `PROG_MEM( 3, `LOADC_INST(`R3, 8'd9));   // Load the address of the second vector
+    `PROG_MEM( 4, `LOADC_INST(`R4, 8'd18));  // Load the address of the result vector
+    `PROG_MEM( 5, `LOAD_INST(`R5, `R2));     // Load the current element of the first vector
+    `PROG_MEM( 6, `LOAD_INST(`R6, `R3));     // Load the current element of the second vector
+    `PROG_MEM( 7, `ADD_INST(`R7, `R5, `R6)); // Add the elements of the vectors
+    `PROG_MEM( 8, `STORE_INST(`R4, `R7));    // Store the result
+    `PROG_MEM( 9, `ADD_INST(`R2, `R2, `R1)); // Increment the address of the first vector
+    `PROG_MEM(10, `ADD_INST(`R3, `R3, `R1)); // Increment the address of the second vector
+    `PROG_MEM(11, `ADD_INST(`R4, `R4, `R1)); // Increment the address of the result vector
+    `PROG_MEM(12, `SUB_INST(`R0, `R0, `R1)); // Decrement the counter
+    `PROG_MEM(13, `JMPRNZ_INST(`R0, -6'd8)); // Jump to the beginning of the loop if the counter is not zero
 endtask
 
 
@@ -159,14 +202,10 @@ endtask
 ////////////////////////////////////////////////////////////////////////////////
 
 initial begin
-//    clear_memory();
-//    load_test_program();
-//    reset_core();
-//    wait_clock(50);
     clear_memory();
-    load_simple_program();
+    load_vector_add_program();
     reset_core();
-    wait_clock(20);
+    wait_clock(120);
     $stop;
 end
 

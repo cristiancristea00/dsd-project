@@ -60,9 +60,14 @@ always @ (*) begin
 
         `MEMORY_ACCESS : begin
             case (instruction[`MEMORY_ACCESS_SELECT])
-                `LOAD, `STORE : begin
-                    read_address0 = instruction[2:0];
-                    read_address1 = `GPR_SIZE'b0;
+                `LOAD : begin
+                    read_address0 = `GPR_SIZE'b0;
+                    read_address1 = instruction[2:0];
+                end
+                
+                `STORE : begin
+                    read_address0 = instruction[10:8];
+                    read_address1 = instruction[2:0];
                 end
 
                 default : begin
@@ -157,9 +162,20 @@ always @ (*) begin
 
             `MEMORY_ACCESS : begin
                 case (instruction[`MEMORY_ACCESS_SELECT])
-                    `LOAD, `STORE : begin
+                    `LOAD: begin
                         int_operand0 = instruction[10:8];
-                        int_operand1 = read_data0;
+                        int_operand1 = read_data1;
+
+                        int_operand2  = `DATA_SIZE'b0;
+                        int_value     = `VALUE_SIZE'b0;
+                        int_constant  = `CONSTANT_SIZE'b0;
+                        int_offset    = `OFFSET_SIZE'b0;
+                        int_condition = `CONDITION_SIZE'b0;
+                    end
+                    
+                    `STORE : begin
+                        int_operand0 = read_data0;
+                        int_operand1 = read_data1;
 
                         int_operand2  = `DATA_SIZE'b0;
                         int_value     = `VALUE_SIZE'b0;

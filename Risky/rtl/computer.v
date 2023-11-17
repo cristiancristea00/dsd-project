@@ -41,7 +41,7 @@ program_memory program_memory_unit(
 
 data_memory data_memory_unit(
     .clock         (clock),
-    .reset         (reset),
+    .reset         (1'b1),
     .read          (read),
     .write         (write),
     .address       (address),
