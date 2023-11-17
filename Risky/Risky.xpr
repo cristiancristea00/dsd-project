@@ -61,7 +61,7 @@
     <Option Name="IPStaticSourceDir" Val="$PIPUSERFILESDIR/ipstatic"/>
     <Option Name="EnableBDX" Val="FALSE"/>
     <Option Name="DSABoardId" Val="nexys-a7-100t"/>
-    <Option Name="WTXSimLaunchSim" Val="328"/>
+    <Option Name="WTXSimLaunchSim" Val="329"/>
     <Option Name="WTModelSimLaunchSim" Val="0"/>
     <Option Name="WTQuestaLaunchSim" Val="0"/>
     <Option Name="WTIesLaunchSim" Val="0"/>
@@ -172,7 +172,7 @@
       </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="computer"/>
+        <Option Name="TopModule" Val="core"/>
         <Option Name="dataflowViewerSettings" Val="min_width=10"/>
       </Config>
     </FileSet>
@@ -247,16 +247,17 @@
           <Desc>Vivado Synthesis Defaults</Desc>
         </StratHandle>
         <Step Id="synth_design">
+          <Option Id="Directive">7</Option>
           <Option Id="FlattenHierarchy">1</Option>
           <Option Id="ReTiming">1</Option>
         </Step>
       </Strategy>
       <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2023" CtrlBit="true">
-        <ReportConfig DisplayName="synthesis_report" Name="synthesis_synth_synthesis_report_0" Spec="" RunStep="synth_design" ReportFile="computer.vds">
+        <ReportConfig DisplayName="synthesis_report" Name="synthesis_synth_synthesis_report_0" Spec="" RunStep="synth_design" ReportFile="core.vds">
           <ReportConfigOption Name="dummy_option" Type="string"/>
         </ReportConfig>
-        <ReportConfig DisplayName="Utilization - Synth Design" Name="synthesis_synth_report_utilization_0" Spec="report_utilization" RunStep="synth_design" ReportFile="computer_utilization_synth.rpt" Version="1" Minor="0">
+        <ReportConfig DisplayName="Utilization - Synth Design" Name="synthesis_synth_report_utilization_0" Spec="report_utilization" RunStep="synth_design" ReportFile="core_utilization_synth.rpt" Version="1" Minor="0">
           <ReportConfigOption Name="dummy_option" Type="string"/>
           <ReportConfigOutputOption Name="pb" Type="string" Value="computer_utilization_synth.pb"/>
         </ReportConfig>
@@ -264,7 +265,7 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>
     </Run>
-    <Run Id="implementation" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="constraints" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" SynthRun="synthesis" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" LaunchOptions="-jobs 4 ">
+    <Run Id="implementation" Type="Ft2:EntireDesign" Part="xc7a100tcsg324-1" ConstrsSet="constraints" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PRUNDIR/implementation" SynthRun="synthesis" IncludeInArchive="true" IsChild="false" GenFullBitstream="true" LaunchOptions="-jobs 4 ">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2023">
           <Desc>Default settings for Implementation.</Desc>
@@ -279,6 +280,7 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
+      <GeneratedRun Dir="$PRUNDIR" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2023"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
       <RQSFiles/>

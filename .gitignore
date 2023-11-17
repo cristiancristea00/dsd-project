@@ -101,4 +101,7 @@
 hw_handoff
 ipshared
 
+### Others
 *.sim/
+*.runs/
+.vscode/
