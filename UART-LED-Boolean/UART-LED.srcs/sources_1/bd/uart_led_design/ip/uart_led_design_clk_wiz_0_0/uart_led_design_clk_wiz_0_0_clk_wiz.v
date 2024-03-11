@@ -70,8 +70,6 @@ module uart_led_design_clk_wiz_0_0_clk_wiz
  (// Clock in ports
   // Clock out ports
   output        clk,
-  // Status and control signals
-  input         resetn,
   input         clk_in1
  );
   // Input buffering
@@ -119,7 +117,6 @@ wire clk_in2_uart_led_design_clk_wiz_0_0;
   wire        clkout6_unused;
   wire        clkfbstopped_unused;
   wire        clkinstopped_unused;
-  wire        reset_high;
   (* KEEP = "TRUE" *) 
   (* ASYNC_REG = "TRUE" *)
   reg  [7 :0] seq_reg1 = 0;
@@ -178,8 +175,7 @@ wire clk_in2_uart_led_design_clk_wiz_0_0;
     .CLKINSTOPPED        (clkinstopped_unused),
     .CLKFBSTOPPED        (clkfbstopped_unused),
     .PWRDWN              (1'b0),
-    .RST                 (reset_high));
-  assign reset_high = ~resetn; 
+    .RST                 (1'b0));
 
 // Clock Monitor clock assigning
 //--------------------------------------
@@ -204,15 +200,8 @@ wire clk_in2_uart_led_design_clk_wiz_0_0;
   BUFH clkout1_buf_en
    (.O   (clk_uart_led_design_clk_wiz_0_0_en_clk),
     .I   (clk_uart_led_design_clk_wiz_0_0));
-  always @(posedge clk_uart_led_design_clk_wiz_0_0_en_clk or posedge reset_high) begin
-    if(reset_high == 1'b1) begin
-	    seq_reg1 <= 8'h00;
-    end
-    else begin
+  always @(posedge clk_uart_led_design_clk_wiz_0_0_en_clk)
         seq_reg1 <= {seq_reg1[6:0],locked_int};
-  
-    end
-  end
 
 
 

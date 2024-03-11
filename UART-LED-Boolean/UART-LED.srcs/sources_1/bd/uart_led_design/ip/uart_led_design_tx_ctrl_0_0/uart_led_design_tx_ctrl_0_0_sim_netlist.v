@@ -4,8 +4,8 @@
 // Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
 // Date        : Sun Mar 10 14:04:13 2024
 // Host        : Jupiter running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               w:/dsd-project/UART-LED-Boolean/UART-LED.srcs/sources_1/bd/uart_led_design/ip/uart_led_design_tx_ctrl_0_0/uart_led_design_tx_ctrl_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top uart_led_design_tx_ctrl_0_0 -prefix
+//               uart_led_design_tx_ctrl_0_0_ uart_led_design_tx_ctrl_0_0_sim_netlist.v
 // Design      : uart_led_design_tx_ctrl_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -13,93 +13,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "uart_led_design_tx_ctrl_0_0,tx_ctrl,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "tx_ctrl,Vivado 2023.1.1" *) 
-(* NotValidForBitStream *)
-module uart_led_design_tx_ctrl_0_0
-   (clk,
-    rstn,
-    push,
-    sw,
-    awaddr,
-    awvalid,
-    awready,
-    wdata,
-    wvalid,
-    wready,
-    bready);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rstn;
-  input push;
-  input [7:0]sw;
-  output [3:0]awaddr;
-  output awvalid;
-  input awready;
-  output [31:0]wdata;
-  output wvalid;
-  input wready;
-  output bready;
-
-  wire \<const0> ;
-  wire \<const1> ;
-  wire [2:2]\^awaddr ;
-  wire awready;
-  wire awvalid;
-  wire clk;
-  wire push;
-  wire rstn;
-  wire [7:0]sw;
-  wire [7:0]\^wdata ;
-  wire wready;
-
-  assign awaddr[3] = \<const0> ;
-  assign awaddr[2] = \^awaddr [2];
-  assign awaddr[1] = \<const0> ;
-  assign awaddr[0] = \<const0> ;
-  assign bready = \<const1> ;
-  assign wdata[31] = \<const0> ;
-  assign wdata[30] = \<const0> ;
-  assign wdata[29] = \<const0> ;
-  assign wdata[28] = \<const0> ;
-  assign wdata[27] = \<const0> ;
-  assign wdata[26] = \<const0> ;
-  assign wdata[25] = \<const0> ;
-  assign wdata[24] = \<const0> ;
-  assign wdata[23] = \<const0> ;
-  assign wdata[22] = \<const0> ;
-  assign wdata[21] = \<const0> ;
-  assign wdata[20] = \<const0> ;
-  assign wdata[19] = \<const0> ;
-  assign wdata[18] = \<const0> ;
-  assign wdata[17] = \<const0> ;
-  assign wdata[16] = \<const0> ;
-  assign wdata[15] = \<const0> ;
-  assign wdata[14] = \<const0> ;
-  assign wdata[13] = \<const0> ;
-  assign wdata[12] = \<const0> ;
-  assign wdata[11] = \<const0> ;
-  assign wdata[10] = \<const0> ;
-  assign wdata[9] = \<const0> ;
-  assign wdata[8] = \<const0> ;
-  assign wdata[7:0] = \^wdata [7:0];
-  assign wvalid = awvalid;
-  GND GND
-       (.G(\<const0> ));
-  VCC VCC
-       (.P(\<const1> ));
-  uart_led_design_tx_ctrl_0_0_tx_ctrl inst
-       (.awaddr(\^awaddr ),
-        .awready(awready),
-        .clk(clk),
-        .push(push),
-        .rstn(rstn),
-        .state_reg_0(awvalid),
-        .sw(sw),
-        .wdata(\^wdata ),
-        .wready(wready));
-endmodule
-
-(* ORIG_REF_NAME = "tx_ctrl" *) 
 module uart_led_design_tx_ctrl_0_0_tx_ctrl
    (state_reg_0,
     wdata,
@@ -230,6 +143,92 @@ module uart_led_design_tx_ctrl_0_0_tx_ctrl
         .D(sw[7]),
         .Q(wdata[7]),
         .R(\wdata[7]_i_1_n_0 ));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "uart_led_design_tx_ctrl_0_0,tx_ctrl,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "tx_ctrl,Vivado 2023.1.1" *) 
+(* NotValidForBitStream *)
+module uart_led_design_tx_ctrl_0_0
+   (clk,
+    rstn,
+    push,
+    sw,
+    awaddr,
+    awvalid,
+    awready,
+    wdata,
+    wvalid,
+    wready,
+    bready);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rstn;
+  input push;
+  input [7:0]sw;
+  output [3:0]awaddr;
+  output awvalid;
+  input awready;
+  output [31:0]wdata;
+  output wvalid;
+  input wready;
+  output bready;
+
+  wire \<const0> ;
+  wire \<const1> ;
+  wire [2:2]\^awaddr ;
+  wire awready;
+  wire awvalid;
+  wire clk;
+  wire push;
+  wire rstn;
+  wire [7:0]sw;
+  wire [7:0]\^wdata ;
+  wire wready;
+
+  assign awaddr[3] = \<const0> ;
+  assign awaddr[2] = \^awaddr [2];
+  assign awaddr[1] = \<const0> ;
+  assign awaddr[0] = \<const0> ;
+  assign bready = \<const1> ;
+  assign wdata[31] = \<const0> ;
+  assign wdata[30] = \<const0> ;
+  assign wdata[29] = \<const0> ;
+  assign wdata[28] = \<const0> ;
+  assign wdata[27] = \<const0> ;
+  assign wdata[26] = \<const0> ;
+  assign wdata[25] = \<const0> ;
+  assign wdata[24] = \<const0> ;
+  assign wdata[23] = \<const0> ;
+  assign wdata[22] = \<const0> ;
+  assign wdata[21] = \<const0> ;
+  assign wdata[20] = \<const0> ;
+  assign wdata[19] = \<const0> ;
+  assign wdata[18] = \<const0> ;
+  assign wdata[17] = \<const0> ;
+  assign wdata[16] = \<const0> ;
+  assign wdata[15] = \<const0> ;
+  assign wdata[14] = \<const0> ;
+  assign wdata[13] = \<const0> ;
+  assign wdata[12] = \<const0> ;
+  assign wdata[11] = \<const0> ;
+  assign wdata[10] = \<const0> ;
+  assign wdata[9] = \<const0> ;
+  assign wdata[8] = \<const0> ;
+  assign wdata[7:0] = \^wdata [7:0];
+  assign wvalid = awvalid;
+  GND GND
+       (.G(\<const0> ));
+  VCC VCC
+       (.P(\<const1> ));
+  uart_led_design_tx_ctrl_0_0_tx_ctrl inst
+       (.awaddr(\^awaddr ),
+        .awready(awready),
+        .clk(clk),
+        .push(push),
+        .rstn(rstn),
+        .state_reg_0(awvalid),
+        .sw(sw),
+        .wdata(\^wdata ),
+        .wready(wready));
 endmodule
 `ifndef GLBL
 `define GLBL

@@ -1,9 +1,9 @@
 //Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
-//Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-//Date        : Sun Mar 10 14:02:07 2024
-//Host        : Jupiter running 64-bit major release  (build 9200)
+//Tool Version: Vivado v.2023.1.1 (lin64) Build 3900603 Fri Jun 16 19:30:25 MDT 2023
+//Date        : Mon Mar 11 17:44:35 2024
+//Host        : Hephaestion running 64-bit Ubuntu 23.10
 //Command     : generate_target uart_led_design.bd
 //Design      : uart_led_design
 //Purpose     : IP block netlist
@@ -86,8 +86,7 @@ module uart_led_design
         .tx(axi_uartlite_1_tx));
   uart_led_design_clk_wiz_0_0 clk_gen
        (.clk(clk_wiz_0_clk),
-        .clk_in1(CLK_1),
-        .resetn(rst_inverter_rstn));
+        .clk_in1(CLK_1));
   uart_led_design_rst_inv_0_0 rst_inverter
        (.rst(RST_1),
         .rstn(rst_inverter_rstn));

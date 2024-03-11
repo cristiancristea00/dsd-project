@@ -2,10 +2,10 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
--- Date        : Sun Mar 10 14:04:20 2024
+-- Date        : Sun Mar 10 14:04:19 2024
 -- Host        : Jupiter running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               w:/dsd-project/UART-LED-Boolean/UART-LED.srcs/sources_1/bd/uart_led_design/ip/uart_led_design_rst_inv_0_0/uart_led_design_rst_inv_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top uart_led_design_rst_inv_0_0 -prefix
+--               uart_led_design_rst_inv_0_0_ uart_led_design_rst_inv_0_0_sim_netlist.vhdl
 -- Design      : uart_led_design_rst_inv_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.

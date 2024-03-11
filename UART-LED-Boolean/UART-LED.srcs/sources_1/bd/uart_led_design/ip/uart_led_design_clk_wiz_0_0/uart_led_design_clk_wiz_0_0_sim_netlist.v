@@ -1,11 +1,11 @@
 // Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-// Date        : Sun Mar 10 14:05:15 2024
-// Host        : Jupiter running 64-bit major release  (build 9200)
+// Tool Version: Vivado v.2023.1.1 (lin64) Build 3900603 Fri Jun 16 19:30:25 MDT 2023
+// Date        : Mon Mar 11 17:45:53 2024
+// Host        : Hephaestion running 64-bit Ubuntu 23.10
 // Command     : write_verilog -force -mode funcsim
-//               w:/dsd-project/UART-LED-Boolean/UART-LED.srcs/sources_1/bd/uart_led_design/ip/uart_led_design_clk_wiz_0_0/uart_led_design_clk_wiz_0_0_sim_netlist.v
+//               /home/cristian/Documents/ACES/DSD/UART-LED-Boolean/UART-LED.srcs/sources_1/bd/uart_led_design/ip/uart_led_design_clk_wiz_0_0/uart_led_design_clk_wiz_0_0_sim_netlist.v
 // Design      : uart_led_design_clk_wiz_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -16,28 +16,22 @@
 (* NotValidForBitStream *)
 module uart_led_design_clk_wiz_0_0
    (clk,
-    resetn,
     clk_in1);
   output clk;
-  input resetn;
   input clk_in1;
 
   wire clk;
   (* IBUF_LOW_PWR *) wire clk_in1;
-  wire resetn;
 
   uart_led_design_clk_wiz_0_0_clk_wiz inst
        (.clk(clk),
-        .clk_in1(clk_in1),
-        .resetn(resetn));
+        .clk_in1(clk_in1));
 endmodule
 
 module uart_led_design_clk_wiz_0_0_clk_wiz
    (clk,
-    resetn,
     clk_in1);
   output clk;
-  input resetn;
   input clk_in1;
 
   wire clk;
@@ -48,8 +42,6 @@ module uart_led_design_clk_wiz_0_0_clk_wiz
   wire clkfbout_buf_uart_led_design_clk_wiz_0_0;
   wire clkfbout_uart_led_design_clk_wiz_0_0;
   wire locked_int;
-  wire reset_high;
-  wire resetn;
   (* RTL_KEEP = "true" *) (* async_reg = "true" *) wire [7:0]seq_reg1;
   wire NLW_mmcm_adv_inst_CLKFBOUTB_UNCONNECTED;
   wire NLW_mmcm_adv_inst_CLKFBSTOPPED_UNCONNECTED;
@@ -186,92 +178,87 @@ module uart_led_design_clk_wiz_0_0_clk_wiz
         .PSEN(1'b0),
         .PSINCDEC(1'b0),
         .PWRDWN(1'b0),
-        .RST(reset_high));
-  LUT1 #(
-    .INIT(2'h1)) 
-    mmcm_adv_inst_i_1
-       (.I0(resetn),
-        .O(reset_high));
+        .RST(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[0] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(locked_int),
-        .Q(seq_reg1[0]));
+        .Q(seq_reg1[0]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[1] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(seq_reg1[0]),
-        .Q(seq_reg1[1]));
+        .Q(seq_reg1[1]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[2] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(seq_reg1[1]),
-        .Q(seq_reg1[2]));
+        .Q(seq_reg1[2]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[3] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(seq_reg1[2]),
-        .Q(seq_reg1[3]));
+        .Q(seq_reg1[3]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[4] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(seq_reg1[3]),
-        .Q(seq_reg1[4]));
+        .Q(seq_reg1[4]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[5] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(seq_reg1[4]),
-        .Q(seq_reg1[5]));
+        .Q(seq_reg1[5]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[6] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(seq_reg1[5]),
-        .Q(seq_reg1[6]));
+        .Q(seq_reg1[6]),
+        .R(1'b0));
   (* ASYNC_REG *) 
   (* KEEP = "yes" *) 
-  FDCE #(
+  FDRE #(
     .INIT(1'b0)) 
     \seq_reg1_reg[7] 
        (.C(clk_uart_led_design_clk_wiz_0_0_en_clk),
         .CE(1'b1),
-        .CLR(reset_high),
         .D(seq_reg1[6]),
-        .Q(seq_reg1[7]));
+        .Q(seq_reg1[7]),
+        .R(1'b0));
 endmodule
 `ifndef GLBL
 `define GLBL

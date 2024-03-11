@@ -161,6 +161,9 @@
           "USE_LOCKED": {
             "value": "false"
           },
+          "USE_RESET": {
+            "value": "false"
+          },
           "USE_SAFE_CLOCK_STARTUP": {
             "value": "true"
           }
@@ -431,7 +434,6 @@
           "rst_inverter/rstn",
           "axi_uartlite_rx/s_axi_aresetn",
           "axi_uartlite_tx/s_axi_aresetn",
-          "clk_gen/resetn",
           "rx_controller/rstn",
           "tx_controller/rstn"
         ]

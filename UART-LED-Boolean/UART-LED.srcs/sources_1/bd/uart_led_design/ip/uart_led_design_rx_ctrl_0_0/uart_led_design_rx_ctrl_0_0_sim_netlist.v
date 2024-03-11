@@ -2,10 +2,10 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-// Date        : Sun Mar 10 14:04:14 2024
+// Date        : Sun Mar 10 14:04:13 2024
 // Host        : Jupiter running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               w:/dsd-project/UART-LED-Boolean/UART-LED.srcs/sources_1/bd/uart_led_design/ip/uart_led_design_rx_ctrl_0_0/uart_led_design_rx_ctrl_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top uart_led_design_rx_ctrl_0_0 -prefix
+//               uart_led_design_rx_ctrl_0_0_ uart_led_design_rx_ctrl_0_0_sim_netlist.v
 // Design      : uart_led_design_rx_ctrl_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -13,59 +13,6 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "uart_led_design_rx_ctrl_0_0,rx_ctrl,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "rx_ctrl,Vivado 2023.1.1" *) 
-(* NotValidForBitStream *)
-module uart_led_design_rx_ctrl_0_0
-   (clk,
-    rstn,
-    araddr,
-    arvalid,
-    arready,
-    rdata,
-    rvalid,
-    rready,
-    led);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, INSERT_VIP 0" *) input clk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rstn;
-  output [3:0]araddr;
-  output arvalid;
-  input arready;
-  input [31:0]rdata;
-  input rvalid;
-  output rready;
-  output [7:0]led;
-
-  wire \<const0> ;
-  wire [3:3]\^araddr ;
-  wire arready;
-  wire arvalid;
-  wire clk;
-  wire [7:0]led;
-  wire [31:0]rdata;
-  wire rready;
-  wire rstn;
-  wire rvalid;
-
-  assign araddr[3] = \^araddr [3];
-  assign araddr[2] = \<const0> ;
-  assign araddr[1] = \<const0> ;
-  assign araddr[0] = \<const0> ;
-  GND GND
-       (.G(\<const0> ));
-  uart_led_design_rx_ctrl_0_0_rx_ctrl inst
-       (.araddr(\^araddr ),
-        .arready(arready),
-        .arvalid(arvalid),
-        .clk(clk),
-        .led(led),
-        .rdata(rdata[7:0]),
-        .rready(rready),
-        .rstn(rstn),
-        .rvalid(rvalid));
-endmodule
-
-(* ORIG_REF_NAME = "rx_ctrl" *) 
 module uart_led_design_rx_ctrl_0_0_rx_ctrl
    (led,
     araddr,
@@ -310,6 +257,58 @@ module uart_led_design_rx_ctrl_0_0_rx_ctrl
         .D(rready_i_1_n_0),
         .Q(rready),
         .R(1'b0));
+endmodule
+
+(* CHECK_LICENSE_TYPE = "uart_led_design_rx_ctrl_0_0,rx_ctrl,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "rx_ctrl,Vivado 2023.1.1" *) 
+(* NotValidForBitStream *)
+module uart_led_design_rx_ctrl_0_0
+   (clk,
+    rstn,
+    araddr,
+    arvalid,
+    arready,
+    rdata,
+    rvalid,
+    rready,
+    led);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 clk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME clk, ASSOCIATED_RESET rstn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, INSERT_VIP 0" *) input clk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rstn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rstn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rstn;
+  output [3:0]araddr;
+  output arvalid;
+  input arready;
+  input [31:0]rdata;
+  input rvalid;
+  output rready;
+  output [7:0]led;
+
+  wire \<const0> ;
+  wire [3:3]\^araddr ;
+  wire arready;
+  wire arvalid;
+  wire clk;
+  wire [7:0]led;
+  wire [31:0]rdata;
+  wire rready;
+  wire rstn;
+  wire rvalid;
+
+  assign araddr[3] = \^araddr [3];
+  assign araddr[2] = \<const0> ;
+  assign araddr[1] = \<const0> ;
+  assign araddr[0] = \<const0> ;
+  GND GND
+       (.G(\<const0> ));
+  uart_led_design_rx_ctrl_0_0_rx_ctrl inst
+       (.araddr(\^araddr ),
+        .arready(arready),
+        .arvalid(arvalid),
+        .clk(clk),
+        .led(led),
+        .rdata(rdata[7:0]),
+        .rready(rready),
+        .rstn(rstn),
+        .rvalid(rvalid));
 endmodule
 `ifndef GLBL
 `define GLBL

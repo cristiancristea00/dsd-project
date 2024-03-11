@@ -1,11 +1,11 @@
 -- Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
--- Date        : Sun Mar 10 14:05:15 2024
--- Host        : Jupiter running 64-bit major release  (build 9200)
+-- Tool Version: Vivado v.2023.1.1 (lin64) Build 3900603 Fri Jun 16 19:30:25 MDT 2023
+-- Date        : Mon Mar 11 17:45:53 2024
+-- Host        : Hephaestion running 64-bit Ubuntu 23.10
 -- Command     : write_vhdl -force -mode funcsim
---               w:/dsd-project/UART-LED-Boolean/UART-LED.srcs/sources_1/bd/uart_led_design/ip/uart_led_design_clk_wiz_0_0/uart_led_design_clk_wiz_0_0_sim_netlist.vhdl
+--               /home/cristian/Documents/ACES/DSD/UART-LED-Boolean/UART-LED.srcs/sources_1/bd/uart_led_design/ip/uart_led_design_clk_wiz_0_0/uart_led_design_clk_wiz_0_0_sim_netlist.vhdl
 -- Design      : uart_led_design_clk_wiz_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -18,7 +18,6 @@ use UNISIM.VCOMPONENTS.ALL;
 entity uart_led_design_clk_wiz_0_0_clk_wiz is
   port (
     clk : out STD_LOGIC;
-    resetn : in STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
 end uart_led_design_clk_wiz_0_0_clk_wiz;
@@ -30,7 +29,6 @@ architecture STRUCTURE of uart_led_design_clk_wiz_0_0_clk_wiz is
   signal clkfbout_buf_uart_led_design_clk_wiz_0_0 : STD_LOGIC;
   signal clkfbout_uart_led_design_clk_wiz_0_0 : STD_LOGIC;
   signal locked_int : STD_LOGIC;
-  signal reset_high : STD_LOGIC;
   signal seq_reg1 : STD_LOGIC_VECTOR ( 7 downto 0 );
   attribute RTL_KEEP : string;
   attribute RTL_KEEP of seq_reg1 : signal is "true";
@@ -207,103 +205,95 @@ mmcm_adv_inst: unisim.vcomponents.MMCME2_ADV
       PSEN => '0',
       PSINCDEC => '0',
       PWRDWN => '0',
-      RST => reset_high
+      RST => '0'
     );
-mmcm_adv_inst_i_1: unisim.vcomponents.LUT1
-    generic map(
-      INIT => X"1"
-    )
-        port map (
-      I0 => resetn,
-      O => reset_high
-    );
-\seq_reg1_reg[0]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[0]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => locked_int,
-      Q => seq_reg1(0)
+      Q => seq_reg1(0),
+      R => '0'
     );
-\seq_reg1_reg[1]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[1]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => seq_reg1(0),
-      Q => seq_reg1(1)
+      Q => seq_reg1(1),
+      R => '0'
     );
-\seq_reg1_reg[2]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[2]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => seq_reg1(1),
-      Q => seq_reg1(2)
+      Q => seq_reg1(2),
+      R => '0'
     );
-\seq_reg1_reg[3]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[3]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => seq_reg1(2),
-      Q => seq_reg1(3)
+      Q => seq_reg1(3),
+      R => '0'
     );
-\seq_reg1_reg[4]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[4]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => seq_reg1(3),
-      Q => seq_reg1(4)
+      Q => seq_reg1(4),
+      R => '0'
     );
-\seq_reg1_reg[5]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[5]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => seq_reg1(4),
-      Q => seq_reg1(5)
+      Q => seq_reg1(5),
+      R => '0'
     );
-\seq_reg1_reg[6]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[6]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => seq_reg1(5),
-      Q => seq_reg1(6)
+      Q => seq_reg1(6),
+      R => '0'
     );
-\seq_reg1_reg[7]\: unisim.vcomponents.FDCE
+\seq_reg1_reg[7]\: unisim.vcomponents.FDRE
     generic map(
       INIT => '0'
     )
         port map (
       C => clk_uart_led_design_clk_wiz_0_0_en_clk,
       CE => '1',
-      CLR => reset_high,
       D => seq_reg1(6),
-      Q => seq_reg1(7)
+      Q => seq_reg1(7),
+      R => '0'
     );
 end STRUCTURE;
 library IEEE;
@@ -313,7 +303,6 @@ use UNISIM.VCOMPONENTS.ALL;
 entity uart_led_design_clk_wiz_0_0 is
   port (
     clk : out STD_LOGIC;
-    resetn : in STD_LOGIC;
     clk_in1 : in STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
@@ -325,7 +314,6 @@ begin
 inst: entity work.uart_led_design_clk_wiz_0_0_clk_wiz
      port map (
       clk => clk,
-      clk_in1 => clk_in1,
-      resetn => resetn
+      clk_in1 => clk_in1
     );
 end STRUCTURE;
