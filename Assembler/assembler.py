@@ -117,7 +117,6 @@ class Assembler:
         operand2: Final[Register] = Register.from_string(operands[2])
 
         instruction: Final[str] = F'{opcode}{operand0}{operand1}{operand2}'.zfill(16)
-        print(F'{opcode.name} {operands} -> {instruction})')
         return cls._bytes_from_instruction(instruction)
 
     @classmethod
@@ -127,7 +126,6 @@ class Assembler:
         operand2: Final[Register] = Register.from_string(operands[2])
 
         instruction: Final[str] = F'{opcode}{operand0}{operand1}{operand2}'
-        print(F'{opcode.name} {operands} -> {instruction})')
         return cls._bytes_from_instruction(instruction)
 
     @classmethod
@@ -136,7 +134,6 @@ class Assembler:
         value: Final[str] = cls._process_number(operands[1], no_of_bits=6, only_positive=True)
 
         instruction: Final[str] = F'{opcode}{operand0}{value}'
-        print(F'{opcode.name} {operands} -> {instruction})')
         return cls._bytes_from_instruction(instruction)
 
     @classmethod
@@ -151,19 +148,17 @@ class Assembler:
         operand0: Final[Register] = Register.from_string(operands[0])
         constant: Final[str] = cls._process_number(operands[1], no_of_bits=8)
         instruction: Final[str] = F'{opcode}{operand0}{constant}'
-        print(F'{opcode.name} {operands} -> {instruction})')
         return cls._bytes_from_instruction(instruction)
 
     @classmethod
     def _process_jump(cls, opcode: JumpInstructionOpcode, operands: tuple[str, ...]) -> bytes:
         if opcode is JumpInstructionOpcode.JMP:
-            operand0: Final[Register] = Register.from_string(operands[0]);
+            operand0: Final[Register] = Register.from_string(operands[0])
 
             instruction: Final[str] = F'{opcode}{'000000000'}{operand0}'
-            print(F'{opcode.name} {operands} -> {instruction})')
             return cls._bytes_from_instruction(instruction)
 
-        offset: Final[str] = cls._process_number(operands[0], no_of_bits=6)
+        offset: Final[str] = cls._process_number(operands[0], no_of_bits=6, complement=True)
         instruction: Final[str] = F'{opcode}{'000000'}{offset}'
         return cls._bytes_from_instruction(instruction)
 
@@ -174,11 +169,10 @@ class Assembler:
             operand1: Final[Register] = Register.from_string(operands[1])
 
             instruction: Final[str] = F'{opcode}{operand0}{'000'}{operand1}'
-            print(F'{opcode.name} {operands} -> {instruction})')
             return cls._bytes_from_instruction(instruction)
 
         operand0: Final[Register] = Register.from_string(operands[0])
-        offset: Final[str] = cls._process_number(operands[0], no_of_bits=6)
+        offset: Final[str] = cls._process_number(operands[1], no_of_bits=6, complement=True)
         instruction: Final[str] = F'{opcode}{operand0}{offset}'
         return cls._bytes_from_instruction(instruction)
 
@@ -188,23 +182,27 @@ class Assembler:
         return bytes.fromhex(in_hex)
 
     @classmethod
-    def _process_number(cls, number_str: str, no_of_bits: int, only_positive: bool = False):
+    def _process_number(cls, number_str: str, no_of_bits: int, *, only_positive: bool = False, complement: bool = False) -> str:
         number: Final[int] = int(number_str, 16) if number_str.startswith('0x') else int(number_str)
+        print(number)
 
         if number < 0:
             if only_positive:
                 raise ValueError(F'Expected positive number but got: {number_str}')
 
-            min_value: Final[int] = -2 ** (no_of_bits - 1)
+            min_value: Final[int] = -2 ** (no_of_bits - 1) - 1
 
             if number < min_value:
                 raise ValueError(F'Expected number larger than {min_value} but got: {number_str}')
 
-            return bin(number)[2:].zfill(no_of_bits)
+            # Get the two's complement
+            twos_complement: Final[int] = number + 2 ** no_of_bits
+            return bin(twos_complement)[2:].zfill(no_of_bits)
 
-        max_value: Final[int] = 2 ** no_of_bits - 1
+        max_value: Final[int] = 2 ** (no_of_bits - 1) + 1 if complement else 2 ** no_of_bits
 
         if number > max_value:
             raise ValueError(F'Expected number smaller than {max_value} but got: {number_str}')
 
         return bin(number)[2:].zfill(no_of_bits)
+   
