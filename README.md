@@ -1,15 +1,16 @@
 # Digital System Design Project – Control Language Specification
 
-1. **Reset the CPU state**
+1. **Reset the CPU**
 
     ```custom
     RESET
     ```
 
-    Opcode: `0x00`
+    Opcode: `0x01`
 
     ```verilog
-    8'h00
+    8'h01
+    8'b0000_0001
     ```
 
 2. **Start the CPU**
@@ -18,10 +19,11 @@
     START
     ```
 
-    Opcode: `0x01`
+    Opcode: `0x02`
 
     ```verilog
-    8'h01
+    8'h02
+    8'b0000_0010
     ```
 
 3. **Stop the CPU**
@@ -30,104 +32,48 @@
     STOP
     ```
 
-    Opcode: `0x02`
-
-    ```verilog
-    8'h02
-    ```
-
-4. **Read a single Program Memory location**
-
-    ```custom
-    READPRGMEM <ADDRESS>
-    ```
-
-    Opcode: `0x03`
-
-    ```verilog
-    8'h03
-    ```
-
-5. **Write a single Program Memory location**
-
-    ```custom
-    WRITEPRGMEM <ADDRESS> <VALUE>
-    ```
-
     Opcode: `0x04`
 
     ```verilog
     8'h04
+    8'b0000_0100
     ```
 
-6. **Read a single Data Memory location**
+4. **Write Program Memory**
 
     ```custom
-    READDATMEM <ADDRESS>
-    ```
-
-    Opcode: `0x05`
-
-    ```verilog
-    8'h05
-    ```
-
-7. **Write a single Data Memory location**
-
-    ```custom
-    WRITEDATMEM <ADDRESS> <VALUE>
-    ```
-
-    Opcode: `0x06`
-
-    ```verilog
-    8'h06
-    ```
-
-8. **Read multiple Program Memory locations**
-
-    ```custom
-    READMPRGMEM <ADDRESS> <LENGTH>
-    ```
-
-    Opcode: `0x07`
-
-    ```verilog
-    8'h07
-    ```
-
-9. **Write multiple Program Memory locations**
-
-    ```custom
-    WRITEMPRGMEM <ADDRESS> <LENGTH> <VALUE1> <VALUE2> ... <VALUE_N>
+    WRITE_PROG <ADDRESS> <LENGTH> <WORD_1> <WORD_2> ... <WORD_N>
     ```
 
     Opcode: `0x08`
 
     ```verilog
     8'h08
+    8'b0000_1000
     ```
 
-10. **Read multiple Data Memory locations**
+5. **Write Data Memory**
 
     ```custom
-    READMDATMEM <ADDRESS> <LENGTH>
+    WRITE_DATA <ADDRESS> <LENGTH> <DOUBLE_WORD_1> <DOUBLE_WORD_2> ... <DOUBLE_WORD_N>
     ```
 
-    Opcode: `0x09`
+    Opcode: `0x10`
 
     ```verilog
-    8'h09
+    8'h10
+    8'b0001_0000
     ```
 
-11. **Write multiple Data Memory locations**
+6. **Read Data Memory**
 
     ```custom
-    WRITEMDATMEM <ADDRESS> <LENGTH> <VALUE1> <VALUE2> ... <VALUE_N>
+    READ_DATA <ADDRESS> <LENGTH>
     ```
 
-    Opcode: `0x0A`
+    Opcode: `0x20`
 
     ```verilog
-    8'h0A
+    8'h20
+    8'b0010_0000
     ```
