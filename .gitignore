@@ -105,3 +105,4 @@ ipshared
 *.sim/
 *.runs/
 .vscode/
+**/.idea/

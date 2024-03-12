@@ -11,7 +11,14 @@ type OpcodeMemoryAccessType = Literal['LOAD', 'LOADC', 'STORE']
 type OpcodeJumpType = Literal['JMP', 'JMPR']
 type OpcodeJumpCondType = Literal['JMPN', 'JMPNN', 'JMPZ', 'JMPNZ', 'JMPRN', 'JMPRNN', 'JMPRZ', 'JMPRNZ']
 
-type OpcodeType = OpcodeNopType | OpcodeHaltType | OpcodeArithmeticType | OpcodeLogicType | OpcodeShiftType | OpcodeMemoryAccessType | OpcodeJumpType | OpcodeJumpCondType
+type OpcodeType = (OpcodeNopType |
+                   OpcodeHaltType |
+                   OpcodeArithmeticType |
+                   OpcodeLogicType |
+                   OpcodeShiftType |
+                   OpcodeMemoryAccessType |
+                   OpcodeJumpType |
+                   OpcodeJumpCondType)
 
 
 @unique
@@ -170,11 +177,3 @@ class OpcodeFactory:
                 return JumpCondInstructionOpcode.from_string(assembly)
             case _:
                 raise ValueError(f'Invalid assembly instruction opcode: {assembly}')
-
-
-def main() -> None:
-    pass
-
-
-if __name__ == '__main__':
-    main()
