@@ -155,9 +155,19 @@ class JumpCondInstructionOpcode(InstructionOpcode):
         return OpcodeCategory.JUMP_COND
 
 
+type InstructionOpcodeType = (NopInstructionOpcode |
+                              HaltInstructionOpcode |
+                              ArithmeticInstructionOpcode |
+                              LogicInstructionOpcode |
+                              ShiftInstructionOpcode |
+                              MemoryAccessInstructionOpcode |
+                              JumpInstructionOpcode |
+                              JumpCondInstructionOpcode)
+
+
 class OpcodeFactory:
     @classmethod
-    def get_opcode(cls, assembly: OpcodeType) -> InstructionOpcode:
+    def create(cls, assembly: OpcodeType) -> InstructionOpcodeType:
         match assembly:
             case 'NOP':
                 return NopInstructionOpcode.from_string(assembly)

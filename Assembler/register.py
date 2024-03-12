@@ -15,6 +15,9 @@ class Register(Enum):
     R6 = '110'
     R7 = '111'
 
+    def __str__(self):
+        return self.value
+
     @classmethod
     def from_string(cls, assembly: RegisterType) -> Self:
         return cls[assembly]
