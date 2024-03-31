@@ -1,19 +1,19 @@
 module uart_controller
 (
     /* AXI Lite Interface */
-    axi_lite.master     master,
+    axi_lite.master    master,
 
     /* UART RX Controller Interface */
-    output logic        start_read,
-    input  logic  [7:0] read_data,
-    input  logic        read_data_valid,
-    input  logic        read_data_ready,
+    input  logic       start_read,
+    output logic [7:0] read_data,
+    output logic       read_data_valid,
+    output logic       read_data_ready,
 
     /* UART TX Controller Interface */
-    output logic        start_write,
-    output logic [7:0]  write_data,
-    output logic        write_data_valid,
-    input  logic        write_data_ready
+    input  logic       start_write,
+    input  logic [7:0] write_data,
+    input  logic       write_data_valid,
+    output logic       write_data_ready
 );
 
 

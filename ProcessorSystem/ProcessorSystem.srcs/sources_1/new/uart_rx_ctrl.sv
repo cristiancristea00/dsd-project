@@ -23,10 +23,10 @@ module uart_rx_ctrl
 
 
     /* UART RX Controller Interface */
-    output logic                        start_read,
-    input  logic  [7:0]                 read_data,
-    input  logic                        read_data_valid,
-    input  logic                        read_data_ready
+    input  logic                        start_read,
+    output logic [7:0]                  read_data,
+    output logic                        read_data_valid,
+    output logic                        read_data_ready
 );
 
 endmodule
