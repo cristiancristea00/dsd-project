@@ -41,8 +41,8 @@ localparam [AXI_ADDR_WIDTH - 1:0] TX_REG_ADDR = 4;
 
 localparam [1:0] RESP_OKAY = 2'b00;
 
-localparam INVALID = 1'b0;
-localparam VALID = 1'b1;
+localparam CLEAR = 0;
+localparam SET   = 1;
 
 
 // FSM States
@@ -63,16 +63,21 @@ fsm_state_t state;
 always_ff @ (posedge axi_aclk) begin
     if (!axi_aresetn) begin
         state       <= IDLE;
-        axi_awaddr  <= 0;
-        axi_awvalid <= INVALID;
-        axi_wdata   <= 0;
-        axi_wvalid  <= INVALID;
+
+        axi_awaddr  <= CLEAR;
+        axi_awvalid <= CLEAR;
+        axi_wdata   <= CLEAR;
+        axi_wvalid  <= CLEAR;
+
+        write_data_ready <= CLEAR;
     end
     else begin
         case (state)
             IDLE : begin
                 if (start_write) begin
                     state <= START;
+
+                    write_data_ready <= CLEAR;
                 end
             end
 
@@ -81,9 +86,9 @@ always_ff @ (posedge axi_aclk) begin
                     state <= SEND;
 
                     axi_awaddr  <= TX_REG_ADDR;
-                    axi_awvalid <= VALID;
+                    axi_awvalid <= SET;
                     axi_wdata   <= {{(AXI_DATA_WIDTH - 8){1'b0}}, write_data};
-                    axi_wvalid  <= VALID;
+                    axi_wvalid  <= SET;
                 end
             end
 
@@ -91,10 +96,10 @@ always_ff @ (posedge axi_aclk) begin
                 if (axi_awready & axi_wready) begin
                     state <= CHECK;
 
-                    axi_awaddr  <= 0;
-                    axi_awvalid <= INVALID;
-                    axi_wdata   <= 0;
-                    axi_wvalid  <= INVALID;
+                    axi_awaddr  <= CLEAR;
+                    axi_awvalid <= CLEAR;
+                    axi_wdata   <= CLEAR;
+                    axi_wvalid  <= CLEAR;
                 end
             end
 
@@ -105,17 +110,33 @@ always_ff @ (posedge axi_aclk) begin
                     end
                     else begin
                         state <= START;
+
+                        write_data_ready <= SET;
                     end
                 end
+            end
+
+            default : begin
+                state <= IDLE;
+
+                axi_awaddr  <= CLEAR;
+                axi_awvalid <= CLEAR;
+                axi_wdata   <= CLEAR;
+                axi_wvalid  <= CLEAR;
+
+                write_data_ready <= CLEAR;
             end
         endcase
     end
 end
 
 
-assign write_data_ready = (state == IDLE);
-
 assign axi_bready = 1'b1;
+
+
+// Unused signals
+assign axi_awprot = 3'b001;
+assign axi_wstrb  = {AXI_STRB_WIDTH{1'b1}};
 
 
 endmodule
