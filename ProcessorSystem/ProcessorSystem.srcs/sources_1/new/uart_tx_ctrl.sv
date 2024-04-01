@@ -31,7 +31,6 @@ module uart_tx_ctrl
     /* UART TX Controller Interface */
     input  logic                        start_write,
     input  logic [7:0]                  write_data,
-    input  logic                        write_data_valid,
     output logic                        write_data_ready
 );
 
@@ -82,14 +81,12 @@ always_ff @ (posedge axi_aclk) begin
             end
 
             START : begin
-                if (write_data_valid) begin
-                    state <= SEND;
+                state <= SEND;
 
-                    axi_awaddr  <= TX_REG_ADDR;
-                    axi_awvalid <= SET;
-                    axi_wdata   <= {{(AXI_DATA_WIDTH - 8){1'b0}}, write_data};
-                    axi_wvalid  <= SET;
-                end
+                axi_awaddr  <= TX_REG_ADDR;
+                axi_awvalid <= SET;
+                axi_wdata   <= {{(AXI_DATA_WIDTH - 8){1'b0}}, write_data};
+                axi_wvalid  <= SET;
             end
 
             SEND : begin

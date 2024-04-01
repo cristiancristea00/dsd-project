@@ -25,8 +25,7 @@ module uart_rx_ctrl
     /* UART RX Controller Interface */
     input  logic                        start_read,
     output logic [7:0]                  read_data,
-    output logic                        read_data_valid,
-    output logic                        read_data_ready
+    output logic                        read_data_valid
 );
 
 
@@ -67,7 +66,6 @@ always_ff @ (posedge axi_aclk) begin
 
         read_data       <= CLEAR;
         read_data_valid <= CLEAR;
-        read_data_ready <= CLEAR;
     end
     else begin
         case (state)
@@ -77,7 +75,6 @@ always_ff @ (posedge axi_aclk) begin
 
                     read_data       <= CLEAR;
                     read_data_valid <= CLEAR;
-                    read_data_ready <= CLEAR;
                 end
             end
 
@@ -131,7 +128,6 @@ always_ff @ (posedge axi_aclk) begin
 
                     read_data       <= axi_rdata[7:0];
                     read_data_valid <= SET;
-                    read_data_ready <= SET;
                 end
             end
 
@@ -144,7 +140,6 @@ always_ff @ (posedge axi_aclk) begin
 
                 read_data       <= CLEAR;
                 read_data_valid <= CLEAR;
-                read_data_ready <= CLEAR;
             end
         endcase
     end
