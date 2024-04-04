@@ -27,9 +27,12 @@ localparam SET   = 1;
 typedef enum logic [1:0] 
 {
     IDLE = 2'b01,
-    WAIT = 2'b10,
+    WAIT = 2'b10
 } 
 fsm_state_t;
+
+// Registers
+fsm_state_t state;
 
 
 always_ff @ (posedge clock) begin
@@ -56,7 +59,7 @@ always_ff @ (posedge clock) begin
                 start_write <= CLEAR;
 
                 if (write_data_ready) begin
-                    state <= DONE;
+                    state <= IDLE;
 
                     transfer_ready <= SET;
                 end

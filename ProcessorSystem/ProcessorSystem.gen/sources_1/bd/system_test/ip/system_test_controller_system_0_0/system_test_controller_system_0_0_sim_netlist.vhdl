@@ -2,10 +2,10 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
--- Date        : Thu Apr  4 22:36:53 2024
+-- Date        : Thu Apr  4 22:36:52 2024
 -- Host        : Jupiter running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode funcsim
---               w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/system_controller_system_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_test_controller_system_0_0 -prefix
+--               system_test_controller_system_0_0_ system_controller_system_0_0_sim_netlist.vhdl
 -- Design      : system_controller_system_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -15,7 +15,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_controller_system_0_0_master_controller is
+entity system_test_controller_system_0_0_master_controller is
   port (
     start_read : out STD_LOGIC;
     start_transfer : out STD_LOGIC;
@@ -26,11 +26,9 @@ entity system_controller_system_0_0_master_controller is
     read_data_valid : in STD_LOGIC;
     \data_reg[7]_0\ : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_controller_system_0_0_master_controller : entity is "master_controller";
-end system_controller_system_0_0_master_controller;
+end system_test_controller_system_0_0_master_controller;
 
-architecture STRUCTURE of system_controller_system_0_0_master_controller is
+architecture STRUCTURE of system_test_controller_system_0_0_master_controller is
   signal data_n_0 : STD_LOGIC;
   signal \^start_read\ : STD_LOGIC;
   signal start_read_i_1_n_0 : STD_LOGIC;
@@ -227,7 +225,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_controller_system_0_0_read_controller is
+entity system_test_controller_system_0_0_read_controller is
   port (
     transfer_ready : out STD_LOGIC;
     start_write : out STD_LOGIC;
@@ -238,11 +236,9 @@ entity system_controller_system_0_0_read_controller is
     write_data_ready : in STD_LOGIC;
     D : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_controller_system_0_0_read_controller : entity is "read_controller";
-end system_controller_system_0_0_read_controller;
+end system_test_controller_system_0_0_read_controller;
 
-architecture STRUCTURE of system_controller_system_0_0_read_controller is
+architecture STRUCTURE of system_test_controller_system_0_0_read_controller is
   signal \^start_write\ : STD_LOGIC;
   signal start_write_i_1_n_0 : STD_LOGIC;
   signal state : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -417,7 +413,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_controller_system_0_0_uart_rx_ctrl is
+entity system_test_controller_system_0_0_uart_rx_ctrl is
   port (
     read_data_valid : out STD_LOGIC;
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -432,11 +428,9 @@ entity system_controller_system_0_0_uart_rx_ctrl is
     axi_arready : in STD_LOGIC;
     axi_rdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_controller_system_0_0_uart_rx_ctrl : entity is "uart_rx_ctrl";
-end system_controller_system_0_0_uart_rx_ctrl;
+end system_test_controller_system_0_0_uart_rx_ctrl;
 
-architecture STRUCTURE of system_controller_system_0_0_uart_rx_ctrl is
+architecture STRUCTURE of system_test_controller_system_0_0_uart_rx_ctrl is
   signal \^sr\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \^axi_araddr\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \axi_araddr[3]_i_1_n_0\ : STD_LOGIC;
@@ -1056,7 +1050,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_controller_system_0_0_uart_tx_ctrl is
+entity system_test_controller_system_0_0_uart_tx_ctrl is
   port (
     axi_awaddr : out STD_LOGIC_VECTOR ( 0 to 0 );
     axi_wvalid : out STD_LOGIC;
@@ -1071,11 +1065,9 @@ entity system_controller_system_0_0_uart_tx_ctrl is
     axi_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \axi_wdata_reg[7]_0\ : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_controller_system_0_0_uart_tx_ctrl : entity is "uart_tx_ctrl";
-end system_controller_system_0_0_uart_tx_ctrl;
+end system_test_controller_system_0_0_uart_tx_ctrl;
 
-architecture STRUCTURE of system_controller_system_0_0_uart_tx_ctrl is
+architecture STRUCTURE of system_test_controller_system_0_0_uart_tx_ctrl is
   signal axi_awaddr1_in : STD_LOGIC_VECTOR ( 2 to 2 );
   signal \axi_awaddr[2]_i_2_n_0\ : STD_LOGIC;
   signal axi_awvalid_i_1_n_0 : STD_LOGIC;
@@ -1474,7 +1466,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_controller_system_0_0_uart_controller is
+entity system_test_controller_system_0_0_uart_controller is
   port (
     axi_awaddr : out STD_LOGIC_VECTOR ( 0 to 0 );
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -1499,15 +1491,13 @@ entity system_controller_system_0_0_uart_controller is
     axi_arready : in STD_LOGIC;
     axi_rdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_controller_system_0_0_uart_controller : entity is "uart_controller";
-end system_controller_system_0_0_uart_controller;
+end system_test_controller_system_0_0_uart_controller;
 
-architecture STRUCTURE of system_controller_system_0_0_uart_controller is
+architecture STRUCTURE of system_test_controller_system_0_0_uart_controller is
   signal \^sr\ : STD_LOGIC_VECTOR ( 0 to 0 );
 begin
   SR(0) <= \^sr\(0);
-uart_rx_controller: entity work.system_controller_system_0_0_uart_rx_ctrl
+uart_rx_controller: entity work.system_test_controller_system_0_0_uart_rx_ctrl
      port map (
       Q(7 downto 0) => Q(7 downto 0),
       SR(0) => \^sr\(0),
@@ -1522,7 +1512,7 @@ uart_rx_controller: entity work.system_controller_system_0_0_uart_rx_ctrl
       read_data_valid => read_data_valid,
       start_read => start_read
     );
-uart_tx_controller: entity work.system_controller_system_0_0_uart_tx_ctrl
+uart_tx_controller: entity work.system_test_controller_system_0_0_uart_tx_ctrl
      port map (
       SS(0) => \^sr\(0),
       axi_aclk => axi_aclk,
@@ -1542,7 +1532,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_controller_system_0_0_controller_system is
+entity system_test_controller_system_0_0_controller_system is
   port (
     axi_awaddr : out STD_LOGIC_VECTOR ( 0 to 0 );
     axi_wdata : out STD_LOGIC_VECTOR ( 7 downto 0 );
@@ -1560,11 +1550,9 @@ entity system_controller_system_0_0_controller_system is
     axi_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     axi_aresetn : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_controller_system_0_0_controller_system : entity is "controller_system";
-end system_controller_system_0_0_controller_system;
+end system_test_controller_system_0_0_controller_system;
 
-architecture STRUCTURE of system_controller_system_0_0_controller_system is
+architecture STRUCTURE of system_test_controller_system_0_0_controller_system is
   signal data : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal read_data : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal read_data_valid : STD_LOGIC;
@@ -1576,7 +1564,7 @@ architecture STRUCTURE of system_controller_system_0_0_controller_system is
   signal write_data : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal write_data_ready : STD_LOGIC;
 begin
-master_ctrl: entity work.system_controller_system_0_0_master_controller
+master_ctrl: entity work.system_test_controller_system_0_0_master_controller
      port map (
       Q(7 downto 0) => data(7 downto 0),
       SR(0) => uart_ctrl_n_1,
@@ -1587,7 +1575,7 @@ master_ctrl: entity work.system_controller_system_0_0_master_controller
       start_transfer => start_transfer,
       transfer_ready => transfer_ready
     );
-read_ctrl: entity work.system_controller_system_0_0_read_controller
+read_ctrl: entity work.system_test_controller_system_0_0_read_controller
      port map (
       D(7 downto 0) => data(7 downto 0),
       Q(7 downto 0) => write_data(7 downto 0),
@@ -1598,7 +1586,7 @@ read_ctrl: entity work.system_controller_system_0_0_read_controller
       transfer_ready => transfer_ready,
       write_data_ready => write_data_ready
     );
-uart_ctrl: entity work.system_controller_system_0_0_uart_controller
+uart_ctrl: entity work.system_test_controller_system_0_0_uart_controller
      port map (
       Q(7 downto 0) => read_data(7 downto 0),
       SR(0) => uart_ctrl_n_1,
@@ -1628,7 +1616,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity system_controller_system_0_0 is
+entity system_test_controller_system_0_0 is
   port (
     axi_aclk : in STD_LOGIC;
     axi_aresetn : in STD_LOGIC;
@@ -1653,18 +1641,18 @@ entity system_controller_system_0_0 is
     axi_rready : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
-  attribute NotValidForBitStream of system_controller_system_0_0 : entity is true;
+  attribute NotValidForBitStream of system_test_controller_system_0_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of system_controller_system_0_0 : entity is "system_controller_system_0_0,controller_system,{}";
+  attribute CHECK_LICENSE_TYPE of system_test_controller_system_0_0 : entity is "system_controller_system_0_0,controller_system,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
-  attribute DowngradeIPIdentifiedWarnings of system_controller_system_0_0 : entity is "yes";
+  attribute DowngradeIPIdentifiedWarnings of system_test_controller_system_0_0 : entity is "yes";
   attribute IP_DEFINITION_SOURCE : string;
-  attribute IP_DEFINITION_SOURCE of system_controller_system_0_0 : entity is "module_ref";
+  attribute IP_DEFINITION_SOURCE of system_test_controller_system_0_0 : entity is "module_ref";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of system_controller_system_0_0 : entity is "controller_system,Vivado 2023.1.1";
-end system_controller_system_0_0;
+  attribute X_CORE_INFO of system_test_controller_system_0_0 : entity is "controller_system,Vivado 2023.1.1";
+end system_test_controller_system_0_0;
 
-architecture STRUCTURE of system_controller_system_0_0 is
+architecture STRUCTURE of system_test_controller_system_0_0 is
   signal \<const0>\ : STD_LOGIC;
   signal \<const1>\ : STD_LOGIC;
   signal \^axi_araddr\ : STD_LOGIC_VECTOR ( 3 to 3 );
@@ -1808,7 +1796,7 @@ VCC: unisim.vcomponents.VCC
      port map (
       P => \<const1>\
     );
-inst: entity work.system_controller_system_0_0_controller_system
+inst: entity work.system_test_controller_system_0_0_controller_system
      port map (
       axi_aclk => axi_aclk,
       axi_araddr(0) => \^axi_araddr\(3),

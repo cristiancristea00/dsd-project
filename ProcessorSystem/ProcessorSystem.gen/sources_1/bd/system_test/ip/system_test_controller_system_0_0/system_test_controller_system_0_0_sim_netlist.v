@@ -2,10 +2,10 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-// Date        : Thu Apr  4 22:36:53 2024
+// Date        : Thu Apr  4 22:36:52 2024
 // Host        : Jupiter running 64-bit major release  (build 9200)
-// Command     : write_verilog -force -mode funcsim
-//               w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/system_controller_system_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top system_test_controller_system_0_0 -prefix
+//               system_test_controller_system_0_0_ system_controller_system_0_0_sim_netlist.v
 // Design      : system_controller_system_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -13,196 +13,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "system_controller_system_0_0,controller_system,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
-(* X_CORE_INFO = "controller_system,Vivado 2023.1.1" *) 
-(* NotValidForBitStream *)
-module system_controller_system_0_0
-   (axi_aclk,
-    axi_aresetn,
-    axi_awaddr,
-    axi_awprot,
-    axi_awvalid,
-    axi_awready,
-    axi_wdata,
-    axi_wstrb,
-    axi_wvalid,
-    axi_wready,
-    axi_bresp,
-    axi_bvalid,
-    axi_bready,
-    axi_araddr,
-    axi_arprot,
-    axi_arvalid,
-    axi_arready,
-    axi_rdata,
-    axi_rresp,
-    axi_rvalid,
-    axi_rready);
-  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 axi_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aclk, ASSOCIATED_BUSIF axi, ASSOCIATED_RESET axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, INSERT_VIP 0" *) input axi_aclk;
-  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input axi_aresetn;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWADDR" *) output [31:0]axi_awaddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWPROT" *) output [2:0]axi_awprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWVALID" *) output axi_awvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWREADY" *) input axi_awready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WDATA" *) output [31:0]axi_wdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WSTRB" *) output [3:0]axi_wstrb;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WVALID" *) output axi_wvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WREADY" *) input axi_wready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi BRESP" *) input [1:0]axi_bresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi BVALID" *) input axi_bvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi BREADY" *) output axi_bready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARADDR" *) output [31:0]axi_araddr;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARPROT" *) output [2:0]axi_arprot;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARVALID" *) output axi_arvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARREADY" *) input axi_arready;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RDATA" *) input [31:0]axi_rdata;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RRESP" *) input [1:0]axi_rresp;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RVALID" *) input axi_rvalid;
-  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output axi_rready;
-
-  wire \<const0> ;
-  wire \<const1> ;
-  wire axi_aclk;
-  wire [3:3]\^axi_araddr ;
-  wire axi_aresetn;
-  wire axi_arready;
-  wire axi_arvalid;
-  wire [2:2]\^axi_awaddr ;
-  wire axi_awready;
-  wire [1:0]axi_bresp;
-  wire axi_bvalid;
-  wire [31:0]axi_rdata;
-  wire axi_rready;
-  wire axi_rvalid;
-  wire [7:0]\^axi_wdata ;
-  wire axi_wready;
-  wire axi_wvalid;
-
-  assign axi_araddr[31] = \<const0> ;
-  assign axi_araddr[30] = \<const0> ;
-  assign axi_araddr[29] = \<const0> ;
-  assign axi_araddr[28] = \<const0> ;
-  assign axi_araddr[27] = \<const0> ;
-  assign axi_araddr[26] = \<const0> ;
-  assign axi_araddr[25] = \<const0> ;
-  assign axi_araddr[24] = \<const0> ;
-  assign axi_araddr[23] = \<const0> ;
-  assign axi_araddr[22] = \<const0> ;
-  assign axi_araddr[21] = \<const0> ;
-  assign axi_araddr[20] = \<const0> ;
-  assign axi_araddr[19] = \<const0> ;
-  assign axi_araddr[18] = \<const0> ;
-  assign axi_araddr[17] = \<const0> ;
-  assign axi_araddr[16] = \<const0> ;
-  assign axi_araddr[15] = \<const0> ;
-  assign axi_araddr[14] = \<const0> ;
-  assign axi_araddr[13] = \<const0> ;
-  assign axi_araddr[12] = \<const0> ;
-  assign axi_araddr[11] = \<const0> ;
-  assign axi_araddr[10] = \<const0> ;
-  assign axi_araddr[9] = \<const0> ;
-  assign axi_araddr[8] = \<const0> ;
-  assign axi_araddr[7] = \<const0> ;
-  assign axi_araddr[6] = \<const0> ;
-  assign axi_araddr[5] = \<const0> ;
-  assign axi_araddr[4] = \<const0> ;
-  assign axi_araddr[3] = \^axi_araddr [3];
-  assign axi_araddr[2] = \<const0> ;
-  assign axi_araddr[1] = \<const0> ;
-  assign axi_araddr[0] = \<const0> ;
-  assign axi_arprot[2] = \<const0> ;
-  assign axi_arprot[1] = \<const0> ;
-  assign axi_arprot[0] = \<const0> ;
-  assign axi_awaddr[31] = \<const0> ;
-  assign axi_awaddr[30] = \<const0> ;
-  assign axi_awaddr[29] = \<const0> ;
-  assign axi_awaddr[28] = \<const0> ;
-  assign axi_awaddr[27] = \<const0> ;
-  assign axi_awaddr[26] = \<const0> ;
-  assign axi_awaddr[25] = \<const0> ;
-  assign axi_awaddr[24] = \<const0> ;
-  assign axi_awaddr[23] = \<const0> ;
-  assign axi_awaddr[22] = \<const0> ;
-  assign axi_awaddr[21] = \<const0> ;
-  assign axi_awaddr[20] = \<const0> ;
-  assign axi_awaddr[19] = \<const0> ;
-  assign axi_awaddr[18] = \<const0> ;
-  assign axi_awaddr[17] = \<const0> ;
-  assign axi_awaddr[16] = \<const0> ;
-  assign axi_awaddr[15] = \<const0> ;
-  assign axi_awaddr[14] = \<const0> ;
-  assign axi_awaddr[13] = \<const0> ;
-  assign axi_awaddr[12] = \<const0> ;
-  assign axi_awaddr[11] = \<const0> ;
-  assign axi_awaddr[10] = \<const0> ;
-  assign axi_awaddr[9] = \<const0> ;
-  assign axi_awaddr[8] = \<const0> ;
-  assign axi_awaddr[7] = \<const0> ;
-  assign axi_awaddr[6] = \<const0> ;
-  assign axi_awaddr[5] = \<const0> ;
-  assign axi_awaddr[4] = \<const0> ;
-  assign axi_awaddr[3] = \<const0> ;
-  assign axi_awaddr[2] = \^axi_awaddr [2];
-  assign axi_awaddr[1] = \<const0> ;
-  assign axi_awaddr[0] = \<const0> ;
-  assign axi_awprot[2] = \<const0> ;
-  assign axi_awprot[1] = \<const0> ;
-  assign axi_awprot[0] = \<const1> ;
-  assign axi_awvalid = axi_wvalid;
-  assign axi_bready = \<const1> ;
-  assign axi_wdata[31] = \<const0> ;
-  assign axi_wdata[30] = \<const0> ;
-  assign axi_wdata[29] = \<const0> ;
-  assign axi_wdata[28] = \<const0> ;
-  assign axi_wdata[27] = \<const0> ;
-  assign axi_wdata[26] = \<const0> ;
-  assign axi_wdata[25] = \<const0> ;
-  assign axi_wdata[24] = \<const0> ;
-  assign axi_wdata[23] = \<const0> ;
-  assign axi_wdata[22] = \<const0> ;
-  assign axi_wdata[21] = \<const0> ;
-  assign axi_wdata[20] = \<const0> ;
-  assign axi_wdata[19] = \<const0> ;
-  assign axi_wdata[18] = \<const0> ;
-  assign axi_wdata[17] = \<const0> ;
-  assign axi_wdata[16] = \<const0> ;
-  assign axi_wdata[15] = \<const0> ;
-  assign axi_wdata[14] = \<const0> ;
-  assign axi_wdata[13] = \<const0> ;
-  assign axi_wdata[12] = \<const0> ;
-  assign axi_wdata[11] = \<const0> ;
-  assign axi_wdata[10] = \<const0> ;
-  assign axi_wdata[9] = \<const0> ;
-  assign axi_wdata[8] = \<const0> ;
-  assign axi_wdata[7:0] = \^axi_wdata [7:0];
-  assign axi_wstrb[3] = \<const1> ;
-  assign axi_wstrb[2] = \<const1> ;
-  assign axi_wstrb[1] = \<const1> ;
-  assign axi_wstrb[0] = \<const1> ;
-  GND GND
-       (.G(\<const0> ));
-  VCC VCC
-       (.P(\<const1> ));
-  system_controller_system_0_0_controller_system inst
-       (.axi_aclk(axi_aclk),
-        .axi_araddr(\^axi_araddr ),
-        .axi_aresetn(axi_aresetn),
-        .axi_arready(axi_arready),
-        .axi_arvalid(axi_arvalid),
-        .axi_awaddr(\^axi_awaddr ),
-        .axi_awready(axi_awready),
-        .axi_bresp(axi_bresp),
-        .axi_bvalid(axi_bvalid),
-        .axi_rdata(axi_rdata[7:0]),
-        .axi_rready(axi_rready),
-        .axi_rvalid(axi_rvalid),
-        .axi_wdata(\^axi_wdata ),
-        .axi_wready(axi_wready),
-        .axi_wvalid(axi_wvalid));
-endmodule
-
-(* ORIG_REF_NAME = "controller_system" *) 
-module system_controller_system_0_0_controller_system
+module system_test_controller_system_0_0_controller_system
    (axi_awaddr,
     axi_wdata,
     axi_wvalid,
@@ -260,7 +71,7 @@ module system_controller_system_0_0_controller_system
   wire [7:0]write_data;
   wire write_data_ready;
 
-  system_controller_system_0_0_master_controller master_ctrl
+  system_test_controller_system_0_0_master_controller master_ctrl
        (.Q(data),
         .SR(uart_ctrl_n_1),
         .axi_aclk(axi_aclk),
@@ -269,7 +80,7 @@ module system_controller_system_0_0_controller_system
         .start_read(start_read),
         .start_transfer(start_transfer),
         .transfer_ready(transfer_ready));
-  system_controller_system_0_0_read_controller read_ctrl
+  system_test_controller_system_0_0_read_controller read_ctrl
        (.D(data),
         .Q(write_data),
         .SR(uart_ctrl_n_1),
@@ -278,7 +89,7 @@ module system_controller_system_0_0_controller_system
         .start_write(start_write),
         .transfer_ready(transfer_ready),
         .write_data_ready(write_data_ready));
-  system_controller_system_0_0_uart_controller uart_ctrl
+  system_test_controller_system_0_0_uart_controller uart_ctrl
        (.Q(read_data),
         .SR(uart_ctrl_n_1),
         .axi_aclk(axi_aclk),
@@ -303,8 +114,7 @@ module system_controller_system_0_0_controller_system
         .write_data_ready(write_data_ready));
 endmodule
 
-(* ORIG_REF_NAME = "master_controller" *) 
-module system_controller_system_0_0_master_controller
+module system_test_controller_system_0_0_master_controller
    (start_read,
     start_transfer,
     Q,
@@ -473,8 +283,7 @@ module system_controller_system_0_0_master_controller
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "read_controller" *) 
-module system_controller_system_0_0_read_controller
+module system_test_controller_system_0_0_read_controller
    (transfer_ready,
     start_write,
     Q,
@@ -626,8 +435,195 @@ module system_controller_system_0_0_read_controller
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "uart_controller" *) 
-module system_controller_system_0_0_uart_controller
+(* CHECK_LICENSE_TYPE = "system_controller_system_0_0,controller_system,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* IP_DEFINITION_SOURCE = "module_ref" *) 
+(* X_CORE_INFO = "controller_system,Vivado 2023.1.1" *) 
+(* NotValidForBitStream *)
+module system_test_controller_system_0_0
+   (axi_aclk,
+    axi_aresetn,
+    axi_awaddr,
+    axi_awprot,
+    axi_awvalid,
+    axi_awready,
+    axi_wdata,
+    axi_wstrb,
+    axi_wvalid,
+    axi_wready,
+    axi_bresp,
+    axi_bvalid,
+    axi_bready,
+    axi_araddr,
+    axi_arprot,
+    axi_arvalid,
+    axi_arready,
+    axi_rdata,
+    axi_rresp,
+    axi_rvalid,
+    axi_rready);
+  (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 axi_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aclk, ASSOCIATED_BUSIF axi, ASSOCIATED_RESET axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, INSERT_VIP 0" *) input axi_aclk;
+  (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input axi_aresetn;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWADDR" *) output [31:0]axi_awaddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWPROT" *) output [2:0]axi_awprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWVALID" *) output axi_awvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWREADY" *) input axi_awready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WDATA" *) output [31:0]axi_wdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WSTRB" *) output [3:0]axi_wstrb;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WVALID" *) output axi_wvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi WREADY" *) input axi_wready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi BRESP" *) input [1:0]axi_bresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi BVALID" *) input axi_bvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi BREADY" *) output axi_bready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARADDR" *) output [31:0]axi_araddr;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARPROT" *) output [2:0]axi_arprot;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARVALID" *) output axi_arvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi ARREADY" *) input axi_arready;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RDATA" *) input [31:0]axi_rdata;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RRESP" *) input [1:0]axi_rresp;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RVALID" *) input axi_rvalid;
+  (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output axi_rready;
+
+  wire \<const0> ;
+  wire \<const1> ;
+  wire axi_aclk;
+  wire [3:3]\^axi_araddr ;
+  wire axi_aresetn;
+  wire axi_arready;
+  wire axi_arvalid;
+  wire [2:2]\^axi_awaddr ;
+  wire axi_awready;
+  wire [1:0]axi_bresp;
+  wire axi_bvalid;
+  wire [31:0]axi_rdata;
+  wire axi_rready;
+  wire axi_rvalid;
+  wire [7:0]\^axi_wdata ;
+  wire axi_wready;
+  wire axi_wvalid;
+
+  assign axi_araddr[31] = \<const0> ;
+  assign axi_araddr[30] = \<const0> ;
+  assign axi_araddr[29] = \<const0> ;
+  assign axi_araddr[28] = \<const0> ;
+  assign axi_araddr[27] = \<const0> ;
+  assign axi_araddr[26] = \<const0> ;
+  assign axi_araddr[25] = \<const0> ;
+  assign axi_araddr[24] = \<const0> ;
+  assign axi_araddr[23] = \<const0> ;
+  assign axi_araddr[22] = \<const0> ;
+  assign axi_araddr[21] = \<const0> ;
+  assign axi_araddr[20] = \<const0> ;
+  assign axi_araddr[19] = \<const0> ;
+  assign axi_araddr[18] = \<const0> ;
+  assign axi_araddr[17] = \<const0> ;
+  assign axi_araddr[16] = \<const0> ;
+  assign axi_araddr[15] = \<const0> ;
+  assign axi_araddr[14] = \<const0> ;
+  assign axi_araddr[13] = \<const0> ;
+  assign axi_araddr[12] = \<const0> ;
+  assign axi_araddr[11] = \<const0> ;
+  assign axi_araddr[10] = \<const0> ;
+  assign axi_araddr[9] = \<const0> ;
+  assign axi_araddr[8] = \<const0> ;
+  assign axi_araddr[7] = \<const0> ;
+  assign axi_araddr[6] = \<const0> ;
+  assign axi_araddr[5] = \<const0> ;
+  assign axi_araddr[4] = \<const0> ;
+  assign axi_araddr[3] = \^axi_araddr [3];
+  assign axi_araddr[2] = \<const0> ;
+  assign axi_araddr[1] = \<const0> ;
+  assign axi_araddr[0] = \<const0> ;
+  assign axi_arprot[2] = \<const0> ;
+  assign axi_arprot[1] = \<const0> ;
+  assign axi_arprot[0] = \<const0> ;
+  assign axi_awaddr[31] = \<const0> ;
+  assign axi_awaddr[30] = \<const0> ;
+  assign axi_awaddr[29] = \<const0> ;
+  assign axi_awaddr[28] = \<const0> ;
+  assign axi_awaddr[27] = \<const0> ;
+  assign axi_awaddr[26] = \<const0> ;
+  assign axi_awaddr[25] = \<const0> ;
+  assign axi_awaddr[24] = \<const0> ;
+  assign axi_awaddr[23] = \<const0> ;
+  assign axi_awaddr[22] = \<const0> ;
+  assign axi_awaddr[21] = \<const0> ;
+  assign axi_awaddr[20] = \<const0> ;
+  assign axi_awaddr[19] = \<const0> ;
+  assign axi_awaddr[18] = \<const0> ;
+  assign axi_awaddr[17] = \<const0> ;
+  assign axi_awaddr[16] = \<const0> ;
+  assign axi_awaddr[15] = \<const0> ;
+  assign axi_awaddr[14] = \<const0> ;
+  assign axi_awaddr[13] = \<const0> ;
+  assign axi_awaddr[12] = \<const0> ;
+  assign axi_awaddr[11] = \<const0> ;
+  assign axi_awaddr[10] = \<const0> ;
+  assign axi_awaddr[9] = \<const0> ;
+  assign axi_awaddr[8] = \<const0> ;
+  assign axi_awaddr[7] = \<const0> ;
+  assign axi_awaddr[6] = \<const0> ;
+  assign axi_awaddr[5] = \<const0> ;
+  assign axi_awaddr[4] = \<const0> ;
+  assign axi_awaddr[3] = \<const0> ;
+  assign axi_awaddr[2] = \^axi_awaddr [2];
+  assign axi_awaddr[1] = \<const0> ;
+  assign axi_awaddr[0] = \<const0> ;
+  assign axi_awprot[2] = \<const0> ;
+  assign axi_awprot[1] = \<const0> ;
+  assign axi_awprot[0] = \<const1> ;
+  assign axi_awvalid = axi_wvalid;
+  assign axi_bready = \<const1> ;
+  assign axi_wdata[31] = \<const0> ;
+  assign axi_wdata[30] = \<const0> ;
+  assign axi_wdata[29] = \<const0> ;
+  assign axi_wdata[28] = \<const0> ;
+  assign axi_wdata[27] = \<const0> ;
+  assign axi_wdata[26] = \<const0> ;
+  assign axi_wdata[25] = \<const0> ;
+  assign axi_wdata[24] = \<const0> ;
+  assign axi_wdata[23] = \<const0> ;
+  assign axi_wdata[22] = \<const0> ;
+  assign axi_wdata[21] = \<const0> ;
+  assign axi_wdata[20] = \<const0> ;
+  assign axi_wdata[19] = \<const0> ;
+  assign axi_wdata[18] = \<const0> ;
+  assign axi_wdata[17] = \<const0> ;
+  assign axi_wdata[16] = \<const0> ;
+  assign axi_wdata[15] = \<const0> ;
+  assign axi_wdata[14] = \<const0> ;
+  assign axi_wdata[13] = \<const0> ;
+  assign axi_wdata[12] = \<const0> ;
+  assign axi_wdata[11] = \<const0> ;
+  assign axi_wdata[10] = \<const0> ;
+  assign axi_wdata[9] = \<const0> ;
+  assign axi_wdata[8] = \<const0> ;
+  assign axi_wdata[7:0] = \^axi_wdata [7:0];
+  assign axi_wstrb[3] = \<const1> ;
+  assign axi_wstrb[2] = \<const1> ;
+  assign axi_wstrb[1] = \<const1> ;
+  assign axi_wstrb[0] = \<const1> ;
+  GND GND
+       (.G(\<const0> ));
+  VCC VCC
+       (.P(\<const1> ));
+  system_test_controller_system_0_0_controller_system inst
+       (.axi_aclk(axi_aclk),
+        .axi_araddr(\^axi_araddr ),
+        .axi_aresetn(axi_aresetn),
+        .axi_arready(axi_arready),
+        .axi_arvalid(axi_arvalid),
+        .axi_awaddr(\^axi_awaddr ),
+        .axi_awready(axi_awready),
+        .axi_bresp(axi_bresp),
+        .axi_bvalid(axi_bvalid),
+        .axi_rdata(axi_rdata[7:0]),
+        .axi_rready(axi_rready),
+        .axi_rvalid(axi_rvalid),
+        .axi_wdata(\^axi_wdata ),
+        .axi_wready(axi_wready),
+        .axi_wvalid(axi_wvalid));
+endmodule
+
+module system_test_controller_system_0_0_uart_controller
    (axi_awaddr,
     SR,
     read_data_valid,
@@ -696,7 +692,7 @@ module system_controller_system_0_0_uart_controller
   wire start_write;
   wire write_data_ready;
 
-  system_controller_system_0_0_uart_rx_ctrl uart_rx_controller
+  system_test_controller_system_0_0_uart_rx_ctrl uart_rx_controller
        (.Q(Q),
         .SR(SR),
         .axi_aclk(axi_aclk),
@@ -709,7 +705,7 @@ module system_controller_system_0_0_uart_controller
         .axi_rvalid(axi_rvalid),
         .read_data_valid(read_data_valid),
         .start_read(start_read));
-  system_controller_system_0_0_uart_tx_ctrl uart_tx_controller
+  system_test_controller_system_0_0_uart_tx_ctrl uart_tx_controller
        (.SS(SR),
         .axi_aclk(axi_aclk),
         .axi_awaddr(axi_awaddr),
@@ -724,8 +720,7 @@ module system_controller_system_0_0_uart_controller
         .write_data_ready(write_data_ready));
 endmodule
 
-(* ORIG_REF_NAME = "uart_rx_ctrl" *) 
-module system_controller_system_0_0_uart_rx_ctrl
+module system_test_controller_system_0_0_uart_rx_ctrl
    (read_data_valid,
     SR,
     axi_araddr,
@@ -1225,8 +1220,7 @@ module system_controller_system_0_0_uart_rx_ctrl
         .R(SR));
 endmodule
 
-(* ORIG_REF_NAME = "uart_tx_ctrl" *) 
-module system_controller_system_0_0_uart_tx_ctrl
+module system_test_controller_system_0_0_uart_tx_ctrl
    (axi_awaddr,
     axi_wvalid,
     write_data_ready,

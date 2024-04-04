@@ -70,11 +70,10 @@ always_ff @ (posedge axi_aclk) begin
     else begin
         case (state)
             IDLE : begin
+                read_data_valid <= CLEAR;
+
                 if (start_read) begin
                     state <= START_READ_STATUS;
-
-                    read_data       <= CLEAR;
-                    read_data_valid <= CLEAR;
                 end
             end
 
@@ -104,7 +103,7 @@ always_ff @ (posedge axi_aclk) begin
                         axi_rready  <= CLEAR;
                     end
                     else begin
-                        state <= IDLE;
+                        state <= START_READ_STATUS;
 
                         axi_rready <= CLEAR;
                     end

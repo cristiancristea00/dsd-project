@@ -51,6 +51,8 @@ always_ff @ (posedge clock) begin
                 state <= WAIT;
 
                 start_read <= SET;
+
+                start_transfer <= CLEAR;
             end
 
             WAIT : begin
