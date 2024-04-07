@@ -10,10 +10,15 @@ module master_controller
     input  logic [7:0] read_data,
     input  logic       read_data_valid,
 
+
     /* Read Controller Interface */
     output logic [7:0] data,
     output logic       start_transfer,
-    input  logic       transfer_ready
+    input  logic       transfer_ready,
+    
+    
+    /* CPU Controller Interface */
+    input  logic [1:0] command
 );
 
 
@@ -61,7 +66,6 @@ always_ff @ (posedge clock) begin
                 if (read_data_valid) begin
                     state <= DONE;
 
-                    $display("Read Data: %d", read_data); // TODO: Remove this line
                     data <= read_data;
                 end
             end

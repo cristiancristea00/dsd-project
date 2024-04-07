@@ -287,6 +287,20 @@
                 "value_src": "constant"
               }
             }
+          },
+          "cpu_clock": {
+            "type": "clk",
+            "direction": "O",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "cpu_reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "cpu_reset": {
+            "type": "rst",
+            "direction": "O"
           }
         },
         "addressing": {

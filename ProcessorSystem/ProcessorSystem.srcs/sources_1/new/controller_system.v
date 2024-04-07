@@ -37,7 +37,12 @@ module controller_system
     input  wire [AXI_DATA_WIDTH - 1:0] axi_rdata,
     input  wire [1:0]                  axi_rresp,
     input  wire                        axi_rvalid,
-    output wire                        axi_rready
+    output wire                        axi_rready,
+    
+    
+    /* CPU Interface */
+    output wire                        cpu_clock,
+    output wire                        cpu_reset
 );
 
 
@@ -53,6 +58,8 @@ wire [7:0] data;
 wire       start_transfer;
 wire       transfer_ready;
 
+wire [1:0] command;
+
 
 master_controller master_ctrl(
     .clock            (axi_aclk),
@@ -62,7 +69,8 @@ master_controller master_ctrl(
     .read_data_valid  (read_data_valid),
     .data             (data),
     .start_transfer   (start_transfer),
-    .transfer_ready   (transfer_ready)
+    .transfer_ready   (transfer_ready),
+    .command          (command)
 );
 
 read_controller read_ctrl(
@@ -74,6 +82,14 @@ read_controller read_ctrl(
     .data             (data),
     .start_transfer   (start_transfer),
     .transfer_ready   (transfer_ready)
+);
+
+cpu_controller cpu_ctrl(
+    .clock            (axi_aclk),
+    .resetn           (axi_aresetn),
+    .command          (command),
+    .cpu_clock        (cpu_clock),
+    .cpu_reset        (cpu_reset)
 );
 
 uart_controller uart_ctrl(

@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-//Date        : Sun Apr  7 15:38:19 2024
+//Date        : Sun Apr  7 18:54:32 2024
 //Host        : Jupiter running 64-bit major release  (build 9200)
 //Command     : generate_target system.bd
 //Design      : system
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=4,numReposBlks=4,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "system.hwdef" *) 
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "system.hwdef" *) 
 module system
    (CLK100MHZ,
     RST,
@@ -43,6 +43,15 @@ module system
   wire controller_system_axi_WREADY;
   wire [3:0]controller_system_axi_WSTRB;
   wire controller_system_axi_WVALID;
+  wire controller_system_cpu_clock;
+  wire controller_system_cpu_reset;
+  wire [9:0]cpu_core_address;
+  wire [31:0]cpu_core_data_out;
+  wire [9:0]cpu_core_pc;
+  wire cpu_core_read;
+  wire cpu_core_write;
+  wire [31:0]data_memory_douta;
+  wire [15:0]program_memory_douta;
   wire rst_inv_rstn;
 
   assign CLK100MHZ_1 = CLK100MHZ;
@@ -93,7 +102,40 @@ module system
         .axi_wdata(controller_system_axi_WDATA),
         .axi_wready(controller_system_axi_WREADY),
         .axi_wstrb(controller_system_axi_WSTRB),
-        .axi_wvalid(controller_system_axi_WVALID));
+        .axi_wvalid(controller_system_axi_WVALID),
+        .cpu_clock(controller_system_cpu_clock),
+        .cpu_reset(controller_system_cpu_reset));
+  system_core_0_0 cpu_core
+       (.address(cpu_core_address),
+        .clock(controller_system_cpu_clock),
+        .data_in(data_memory_douta),
+        .data_out(cpu_core_data_out),
+        .instruction(program_memory_douta),
+        .pc(cpu_core_pc),
+        .read(cpu_core_read),
+        .reset(controller_system_cpu_reset),
+        .write(cpu_core_write));
+  system_blk_mem_gen_0_1 data_memory
+       (.addra(cpu_core_address),
+        .addrb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .clka(controller_system_cpu_clock),
+        .clkb(controller_system_cpu_clock),
+        .dina(cpu_core_data_out),
+        .dinb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0}),
+        .douta(data_memory_douta),
+        .ena(cpu_core_read),
+        .wea(cpu_core_write),
+        .web(1'b0));
+  system_blk_mem_gen_0_2 program_memory
+       (.addra(cpu_core_pc),
+        .addrb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .clka(controller_system_cpu_clock),
+        .clkb(controller_system_cpu_clock),
+        .dina({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0}),
+        .dinb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0}),
+        .douta(program_memory_douta),
+        .wea(1'b0),
+        .web(1'b0));
   system_rst_inv_0_0 rst_inv
        (.rst(RST_1),
         .rstn(rst_inv_rstn));

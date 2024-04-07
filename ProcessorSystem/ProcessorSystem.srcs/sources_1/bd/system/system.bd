@@ -14,7 +14,10 @@
       "axi_uart": "",
       "clk_gen": "",
       "rst_inv": "",
-      "controller_system": ""
+      "controller_system": "",
+      "cpu_core": "",
+      "data_memory": "",
+      "program_memory": ""
     },
     "ports": {
       "TX": {
@@ -454,6 +457,20 @@
                 "value_src": "constant"
               }
             }
+          },
+          "cpu_clock": {
+            "type": "clk",
+            "direction": "O",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "cpu_reset",
+                "value_src": "constant"
+              }
+            }
+          },
+          "cpu_reset": {
+            "type": "rst",
+            "direction": "O"
           }
         },
         "addressing": {
@@ -462,6 +479,174 @@
               "range": "4G",
               "width": "32"
             }
+          }
+        }
+      },
+      "cpu_core": {
+        "vlnv": "xilinx.com:module_ref:core:1.0",
+        "xci_name": "system_core_0_0",
+        "xci_path": "ip\\system_core_0_0\\system_core_0_0.xci",
+        "inst_hier_path": "cpu_core",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "core",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clock": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "system_controller_system_0_0_cpu_clock",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "instruction": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pc": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "read": {
+            "direction": "O"
+          },
+          "write": {
+            "direction": "O"
+          },
+          "address": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "data_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "data_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "data_memory": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "system_blk_mem_gen_0_1",
+        "xci_path": "ip\\system_blk_mem_gen_0_1\\system_blk_mem_gen_0_1.xci",
+        "inst_hier_path": "data_memory",
+        "parameters": {
+          "Additional_Inputs_for_Power_Estimation": {
+            "value": "false"
+          },
+          "Algorithm": {
+            "value": "Minimum_Area"
+          },
+          "Assume_Synchronous_Clk": {
+            "value": "true"
+          },
+          "Enable_A": {
+            "value": "Use_ENA_Pin"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Load_Init_File": {
+            "value": "false"
+          },
+          "Memory_Type": {
+            "value": "True_Dual_Port_RAM"
+          },
+          "Operating_Mode_A": {
+            "value": "NO_CHANGE"
+          },
+          "Operating_Mode_B": {
+            "value": "NO_CHANGE"
+          },
+          "Register_PortA_Output_of_Memory_Core": {
+            "value": "false"
+          },
+          "Register_PortA_Output_of_Memory_Primitives": {
+            "value": "true"
+          },
+          "Register_PortB_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Remaining_Memory_Locations": {
+            "value": "69"
+          },
+          "Use_RSTA_Pin": {
+            "value": "false"
+          },
+          "Write_Depth_A": {
+            "value": "1024"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "program_memory": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "system_blk_mem_gen_0_2",
+        "xci_path": "ip\\system_blk_mem_gen_0_2\\system_blk_mem_gen_0_2.xci",
+        "inst_hier_path": "program_memory",
+        "parameters": {
+          "Assume_Synchronous_Clk": {
+            "value": "true"
+          },
+          "Enable_A": {
+            "value": "Always_Enabled"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Memory_Type": {
+            "value": "True_Dual_Port_RAM"
+          },
+          "Operating_Mode_A": {
+            "value": "READ_FIRST"
+          },
+          "Operating_Mode_B": {
+            "value": "WRITE_FIRST"
+          },
+          "Register_PortA_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Register_PortB_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Remaining_Memory_Locations": {
+            "value": "FF"
+          },
+          "Write_Depth_A": {
+            "value": "1024"
+          },
+          "Write_Width_A": {
+            "value": "16"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
           }
         }
       }
@@ -504,6 +689,64 @@
           "clk_gen/sys_clk",
           "axi_uart/s_axi_aclk",
           "controller_system/axi_aclk"
+        ]
+      },
+      "controller_system_cpu_clock": {
+        "ports": [
+          "controller_system/cpu_clock",
+          "cpu_core/clock",
+          "data_memory/clka",
+          "data_memory/clkb",
+          "program_memory/clkb",
+          "program_memory/clka"
+        ]
+      },
+      "controller_system_cpu_reset": {
+        "ports": [
+          "controller_system/cpu_reset",
+          "cpu_core/reset"
+        ]
+      },
+      "cpu_core_address": {
+        "ports": [
+          "cpu_core/address",
+          "data_memory/addra"
+        ]
+      },
+      "cpu_core_data_out": {
+        "ports": [
+          "cpu_core/data_out",
+          "data_memory/dina"
+        ]
+      },
+      "cpu_core_pc": {
+        "ports": [
+          "cpu_core/pc",
+          "program_memory/addra"
+        ]
+      },
+      "cpu_core_read": {
+        "ports": [
+          "cpu_core/read",
+          "data_memory/ena"
+        ]
+      },
+      "cpu_core_write": {
+        "ports": [
+          "cpu_core/write",
+          "data_memory/wea"
+        ]
+      },
+      "data_memory_douta": {
+        "ports": [
+          "data_memory/douta",
+          "cpu_core/data_in"
+        ]
+      },
+      "program_memory_douta": {
+        "ports": [
+          "program_memory/douta",
+          "cpu_core/instruction"
         ]
       },
       "rst_inv_rstn": {

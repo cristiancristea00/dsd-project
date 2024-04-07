@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
--- Date        : Sun Apr  7 15:39:20 2024
+-- Date        : Sun Apr  7 18:08:24 2024
 -- Host        : Jupiter running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/system_controller_system_0_0_sim_netlist.vhdl
@@ -1638,7 +1638,9 @@ entity system_controller_system_0_0 is
     axi_rdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     axi_rresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     axi_rvalid : in STD_LOGIC;
-    axi_rready : out STD_LOGIC
+    axi_rready : out STD_LOGIC;
+    cpu_clock : out STD_LOGIC;
+    cpu_reset : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of system_controller_system_0_0 : entity is true;
@@ -1676,6 +1678,10 @@ architecture STRUCTURE of system_controller_system_0_0 is
   attribute X_INTERFACE_INFO of axi_rvalid : signal is "xilinx.com:interface:aximm:1.0 axi RVALID";
   attribute X_INTERFACE_INFO of axi_wready : signal is "xilinx.com:interface:aximm:1.0 axi WREADY";
   attribute X_INTERFACE_INFO of axi_wvalid : signal is "xilinx.com:interface:aximm:1.0 axi WVALID";
+  attribute X_INTERFACE_INFO of cpu_clock : signal is "xilinx.com:signal:clock:1.0 cpu_clock CLK";
+  attribute X_INTERFACE_PARAMETER of cpu_clock : signal is "XIL_INTERFACENAME cpu_clock, ASSOCIATED_RESET cpu_reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN system_controller_system_0_0_cpu_clock, INSERT_VIP 0";
+  attribute X_INTERFACE_INFO of cpu_reset : signal is "xilinx.com:signal:reset:1.0 cpu_reset RST";
+  attribute X_INTERFACE_PARAMETER of cpu_reset : signal is "XIL_INTERFACENAME cpu_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of axi_araddr : signal is "xilinx.com:interface:aximm:1.0 axi ARADDR";
   attribute X_INTERFACE_INFO of axi_arprot : signal is "xilinx.com:interface:aximm:1.0 axi ARPROT";
   attribute X_INTERFACE_INFO of axi_awaddr : signal is "xilinx.com:interface:aximm:1.0 axi AWADDR";
@@ -1788,6 +1794,8 @@ begin
   axi_wstrb(1) <= \<const1>\;
   axi_wstrb(0) <= \<const1>\;
   axi_wvalid <= \^axi_wvalid\;
+  cpu_clock <= \<const0>\;
+  cpu_reset <= \<const1>\;
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
