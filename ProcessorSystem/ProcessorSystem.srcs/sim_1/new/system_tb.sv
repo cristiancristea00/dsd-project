@@ -61,8 +61,8 @@ endtask
 task send_byte(input bit [7:0] value);
     tx = 0;
     wait_clock(868);
-    foreach (value[i]) begin
-        tx = value[i];
+    for (int idx = 0; idx < 8; idx = idx + 1) begin
+        tx = value[idx];
         wait_clock(868);
     end
 
@@ -81,7 +81,8 @@ initial begin
     reset_dut();
     wait_clock(100);
     send_byte(8'hAA);
-    wait_clock(1000);
+    send_byte(8'h55);
+    wait_clock(20000);
     $stop;
 end
 

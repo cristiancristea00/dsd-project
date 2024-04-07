@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-// Date        : Thu Apr  4 22:36:53 2024
+// Date        : Sun Apr  7 15:39:20 2024
 // Host        : Jupiter running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/system_controller_system_0_0_sim_netlist.v
@@ -409,12 +409,12 @@ module system_controller_system_0_0_master_controller
         .Q(start_read),
         .R(SR));
   LUT5 #(
-    .INIT(32'hFFFF1000)) 
+    .INIT(32'hFAFF0040)) 
     start_transfer_i_1
-       (.I0(state[0]),
-        .I1(state[1]),
-        .I2(transfer_ready),
-        .I3(state[2]),
+       (.I0(state[1]),
+        .I1(transfer_ready),
+        .I2(state[2]),
+        .I3(state[0]),
         .I4(start_transfer),
         .O(start_transfer_i_1_n_0));
   FDRE start_transfer_reg
@@ -475,16 +475,16 @@ endmodule
 
 (* ORIG_REF_NAME = "read_controller" *) 
 module system_controller_system_0_0_read_controller
-   (transfer_ready,
-    start_write,
+   (start_write,
+    transfer_ready,
     Q,
     SR,
     axi_aclk,
     start_transfer,
     write_data_ready,
     D);
-  output transfer_ready;
   output start_write;
+  output transfer_ready;
   output [7:0]Q;
   input [0:0]SR;
   input axi_aclk;
@@ -630,47 +630,47 @@ endmodule
 module system_controller_system_0_0_uart_controller
    (axi_awaddr,
     SR,
-    read_data_valid,
     axi_wvalid,
     write_data_ready,
     axi_araddr,
     axi_arvalid,
     axi_rready,
+    read_data_valid,
     Q,
     axi_wdata,
     axi_bvalid,
     axi_aclk,
     axi_aresetn,
+    axi_arready,
+    axi_rvalid,
     axi_awready,
     axi_wready,
     start_write,
     axi_bresp,
     \axi_wdata_reg[7] ,
-    axi_rvalid,
     start_read,
-    axi_arready,
     axi_rdata);
   output [0:0]axi_awaddr;
   output [0:0]SR;
-  output read_data_valid;
   output axi_wvalid;
   output write_data_ready;
   output [0:0]axi_araddr;
   output axi_arvalid;
   output axi_rready;
+  output read_data_valid;
   output [7:0]Q;
   output [7:0]axi_wdata;
   input axi_bvalid;
   input axi_aclk;
   input axi_aresetn;
+  input axi_arready;
+  input axi_rvalid;
   input axi_awready;
   input axi_wready;
   input start_write;
   input [1:0]axi_bresp;
   input [7:0]\axi_wdata_reg[7] ;
-  input axi_rvalid;
   input start_read;
-  input axi_arready;
   input [7:0]axi_rdata;
 
   wire [7:0]Q;
@@ -726,35 +726,36 @@ endmodule
 
 (* ORIG_REF_NAME = "uart_rx_ctrl" *) 
 module system_controller_system_0_0_uart_rx_ctrl
-   (read_data_valid,
+   (axi_araddr,
     SR,
-    axi_araddr,
     axi_arvalid,
     axi_rready,
+    read_data_valid,
     Q,
     axi_aclk,
     axi_aresetn,
+    axi_arready,
     axi_rvalid,
     start_read,
-    axi_arready,
     axi_rdata);
-  output read_data_valid;
-  output [0:0]SR;
   output [0:0]axi_araddr;
+  output [0:0]SR;
   output axi_arvalid;
   output axi_rready;
+  output read_data_valid;
   output [7:0]Q;
   input axi_aclk;
   input axi_aresetn;
+  input axi_arready;
   input axi_rvalid;
   input start_read;
-  input axi_arready;
   input [7:0]axi_rdata;
 
   wire [7:0]Q;
   wire [0:0]SR;
   wire axi_aclk;
   wire [0:0]axi_araddr;
+  wire [3:3]axi_araddr1_in;
   wire \axi_araddr[3]_i_1_n_0 ;
   wire \axi_araddr[3]_i_2_n_0 ;
   wire \axi_araddr[3]_i_3_n_0 ;
@@ -765,57 +766,55 @@ module system_controller_system_0_0_uart_rx_ctrl
   wire axi_arvalid_i_2_n_0;
   wire axi_arvalid_i_3_n_0;
   wire axi_arvalid_i_4_n_0;
-  wire axi_arvalid_i_5_n_0;
   wire [7:0]axi_rdata;
   wire axi_rready;
   wire axi_rready_i_1_n_0;
   wire axi_rready_i_2_n_0;
   wire axi_rready_i_3_n_0;
+  wire axi_rready_i_4_n_0;
+  wire axi_rready_i_5_n_0;
+  wire axi_rready_i_6_n_0;
   wire axi_rvalid;
   wire [5:0]p_1_in;
   wire [7:0]read_data;
   wire \read_data[7]_i_1_n_0 ;
   wire \read_data[7]_i_3_n_0 ;
-  wire \read_data[7]_i_4_n_0 ;
   wire read_data_valid;
   wire read_data_valid_i_1_n_0;
+  wire read_data_valid_i_2_n_0;
   wire start_read;
   wire [5:0]\^state ;
-  wire \state[0]_i_2_n_0 ;
-  wire \state[0]_i_3_n_0 ;
-  wire \state[4]_i_2_n_0 ;
   wire \state[5]_i_1_n_0 ;
   wire \state[5]_i_3_n_0 ;
   wire state_n_0;
 
   LUT6 #(
-    .INIT(64'hAAAAABFBAAAAA808)) 
+    .INIT(64'h0002111600020002)) 
     \axi_araddr[3]_i_1 
-       (.I0(p_1_in[2]),
-        .I1(\axi_araddr[3]_i_2_n_0 ),
+       (.I0(\^state [1]),
+        .I1(\^state [0]),
         .I2(\^state [5]),
-        .I3(\axi_araddr[3]_i_3_n_0 ),
-        .I4(\^state [1]),
+        .I3(\axi_araddr[3]_i_2_n_0 ),
+        .I4(\axi_araddr[3]_i_3_n_0 ),
         .I5(axi_araddr),
         .O(\axi_araddr[3]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFFFFFFF0FFF0F08F)) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT3 #(
+    .INIT(8'hFE)) 
     \axi_araddr[3]_i_2 
-       (.I0(axi_rvalid),
-        .I1(axi_rdata[0]),
+       (.I0(\^state [4]),
+        .I1(\^state [2]),
         .I2(\^state [3]),
-        .I3(\^state [0]),
-        .I4(\^state [4]),
-        .I5(\^state [2]),
         .O(\axi_araddr[3]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT4 #(
-    .INIT(16'hFFFE)) 
+  LUT6 #(
+    .INIT(64'hFEEAFEE8FEE8FEE8)) 
     \axi_araddr[3]_i_3 
-       (.I0(\^state [0]),
+       (.I0(\^state [3]),
         .I1(\^state [2]),
         .I2(\^state [4]),
-        .I3(\^state [3]),
+        .I3(\^state [5]),
+        .I4(axi_rdata[0]),
+        .I5(axi_rvalid),
         .O(\axi_araddr[3]_i_3_n_0 ));
   FDRE \axi_araddr_reg[3] 
        (.C(axi_aclk),
@@ -823,54 +822,43 @@ module system_controller_system_0_0_uart_rx_ctrl
         .D(\axi_araddr[3]_i_1_n_0 ),
         .Q(axi_araddr),
         .R(SR));
-  LUT5 #(
-    .INIT(32'hAACFAAC0)) 
+  LUT6 #(
+    .INIT(64'hAAAAAABFAAAAAA80)) 
     axi_arvalid_i_1
        (.I0(axi_arvalid_i_2_n_0),
         .I1(axi_arvalid_i_3_n_0),
-        .I2(axi_arvalid_i_4_n_0),
-        .I3(\^state [1]),
-        .I4(axi_arvalid),
+        .I2(axi_arready),
+        .I3(axi_arvalid_i_4_n_0),
+        .I4(\axi_araddr[3]_i_3_n_0 ),
+        .I5(axi_arvalid),
         .O(axi_arvalid_i_1_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT5 #(
-    .INIT(32'h00000001)) 
+  LUT6 #(
+    .INIT(64'h0000000001001010)) 
     axi_arvalid_i_2
+       (.I0(\^state [5]),
+        .I1(\^state [0]),
+        .I2(\^state [1]),
+        .I3(axi_rdata[0]),
+        .I4(\^state [3]),
+        .I5(axi_arvalid_i_3_n_0),
+        .O(axi_arvalid_i_2_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT2 #(
+    .INIT(4'hE)) 
+    axi_arvalid_i_3
+       (.I0(\^state [2]),
+        .I1(\^state [4]),
+        .O(axi_arvalid_i_3_n_0));
+  LUT6 #(
+    .INIT(64'hFFFFFFFFFFFE0001)) 
+    axi_arvalid_i_4
        (.I0(\^state [3]),
         .I1(\^state [2]),
         .I2(\^state [4]),
-        .I3(\^state [0]),
-        .I4(\^state [5]),
-        .O(axi_arvalid_i_2_n_0));
-  LUT6 #(
-    .INIT(64'h0000000000020000)) 
-    axi_arvalid_i_3
-       (.I0(\^state [3]),
-        .I1(\^state [0]),
-        .I2(\^state [4]),
-        .I3(\^state [2]),
-        .I4(axi_rdata[0]),
-        .I5(\^state [5]),
-        .O(axi_arvalid_i_3_n_0));
-  LUT6 #(
-    .INIT(64'hFFEAFF55FFEAAA00)) 
-    axi_arvalid_i_4
-       (.I0(\^state [5]),
-        .I1(axi_rvalid),
-        .I2(axi_rdata[0]),
-        .I3(\state[0]_i_3_n_0 ),
-        .I4(\^state [3]),
-        .I5(axi_arvalid_i_5_n_0),
+        .I3(\^state [5]),
+        .I4(\^state [0]),
+        .I5(\^state [1]),
         .O(axi_arvalid_i_4_n_0));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT4 #(
-    .INIT(16'hFEE3)) 
-    axi_arvalid_i_5
-       (.I0(axi_arready),
-        .I1(\^state [0]),
-        .I2(\^state [4]),
-        .I3(\^state [2]),
-        .O(axi_arvalid_i_5_n_0));
   FDRE axi_arvalid_reg
        (.C(axi_aclk),
         .CE(1'b1),
@@ -882,128 +870,142 @@ module system_controller_system_0_0_uart_rx_ctrl
     \axi_awaddr[2]_i_1 
        (.I0(axi_aresetn),
         .O(SR));
-  LUT4 #(
-    .INIT(16'h2F20)) 
+  LUT6 #(
+    .INIT(64'h8888888F88888880)) 
     axi_rready_i_1
        (.I0(axi_rready_i_2_n_0),
-        .I1(\^state [1]),
-        .I2(axi_rready_i_3_n_0),
-        .I3(axi_rready),
+        .I1(axi_rready_i_3_n_0),
+        .I2(axi_rready_i_4_n_0),
+        .I3(axi_rready_i_5_n_0),
+        .I4(axi_rready_i_6_n_0),
+        .I5(axi_rready),
         .O(axi_rready_i_1_n_0));
-  LUT6 #(
-    .INIT(64'h0000000001100000)) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT4 #(
+    .INIT(16'h0440)) 
     axi_rready_i_2
        (.I0(\^state [3]),
-        .I1(\^state [0]),
+        .I1(axi_arready),
         .I2(\^state [4]),
         .I3(\^state [2]),
-        .I4(axi_arready),
-        .I5(\^state [5]),
         .O(axi_rready_i_2_n_0));
-  LUT6 #(
-    .INIT(64'hFFFEFDF9FFFEECE8)) 
+  LUT3 #(
+    .INIT(8'h01)) 
     axi_rready_i_3
-       (.I0(\^state [1]),
+       (.I0(\^state [5]),
+        .I1(\^state [0]),
+        .I2(\^state [1]),
+        .O(axi_rready_i_3_n_0));
+  LUT6 #(
+    .INIT(64'hFFFFFFFEEEEEEEE9)) 
+    axi_rready_i_4
+       (.I0(\^state [0]),
+        .I1(\^state [1]),
+        .I2(\^state [4]),
+        .I3(\^state [2]),
+        .I4(\^state [3]),
+        .I5(\^state [5]),
+        .O(axi_rready_i_4_n_0));
+  LUT5 #(
+    .INIT(32'hFFF8F888)) 
+    axi_rready_i_5
+       (.I0(axi_rvalid),
         .I1(\^state [5]),
-        .I2(\state[0]_i_3_n_0 ),
+        .I2(\^state [2]),
+        .I3(\^state [4]),
+        .I4(\^state [3]),
+        .O(axi_rready_i_5_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  LUT5 #(
+    .INIT(32'hFFA8A8A8)) 
+    axi_rready_i_6
+       (.I0(axi_arready),
+        .I1(\^state [2]),
+        .I2(\^state [4]),
         .I3(axi_rvalid),
         .I4(\^state [3]),
-        .I5(axi_arvalid_i_5_n_0),
-        .O(axi_rready_i_3_n_0));
+        .O(axi_rready_i_6_n_0));
   FDRE axi_rready_reg
        (.C(axi_aclk),
         .CE(1'b1),
         .D(axi_rready_i_1_n_0),
         .Q(axi_rready),
         .R(SR));
-  LUT6 #(
-    .INIT(64'h0000000000000008)) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  LUT2 #(
+    .INIT(4'h8)) 
     \read_data[0]_i_1 
-       (.I0(\^state [5]),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[0]),
-        .I2(\state[4]_i_2_n_0 ),
-        .I3(\^state [0]),
-        .I4(\^state [3]),
-        .I5(\^state [1]),
         .O(read_data[0]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \read_data[1]_i_1 
-       (.I0(\read_data[7]_i_4_n_0 ),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[1]),
         .O(read_data[1]));
   (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \read_data[2]_i_1 
-       (.I0(\read_data[7]_i_4_n_0 ),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[2]),
         .O(read_data[2]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \read_data[3]_i_1 
-       (.I0(\read_data[7]_i_4_n_0 ),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[3]),
         .O(read_data[3]));
   (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \read_data[4]_i_1 
-       (.I0(\read_data[7]_i_4_n_0 ),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[4]),
         .O(read_data[4]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \read_data[5]_i_1 
-       (.I0(\read_data[7]_i_4_n_0 ),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[5]),
         .O(read_data[5]));
   (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \read_data[6]_i_1 
-       (.I0(\read_data[7]_i_4_n_0 ),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[6]),
         .O(read_data[6]));
-  LUT6 #(
-    .INIT(64'hFFFEFFF5FFFEAAA0)) 
+  LUT5 #(
+    .INIT(32'hFFFEFEEB)) 
     \read_data[7]_i_1 
-       (.I0(\^state [1]),
-        .I1(axi_rvalid),
-        .I2(\state[0]_i_3_n_0 ),
-        .I3(\^state [3]),
+       (.I0(axi_rready_i_5_n_0),
+        .I1(\^state [0]),
+        .I2(\^state [1]),
+        .I3(\axi_araddr[3]_i_2_n_0 ),
         .I4(\^state [5]),
-        .I5(\read_data[7]_i_3_n_0 ),
         .O(\read_data[7]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT2 #(
     .INIT(4'h8)) 
     \read_data[7]_i_2 
-       (.I0(\read_data[7]_i_4_n_0 ),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rdata[7]),
         .O(read_data[7]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT5 #(
-    .INIT(32'hFFFAFAE5)) 
+  LUT6 #(
+    .INIT(64'h0000000000000004)) 
     \read_data[7]_i_3 
-       (.I0(\^state [3]),
-        .I1(start_read),
-        .I2(\^state [0]),
+       (.I0(\^state [0]),
+        .I1(\^state [5]),
+        .I2(\^state [1]),
         .I3(\^state [4]),
         .I4(\^state [2]),
+        .I5(\^state [3]),
         .O(\read_data[7]_i_3_n_0 ));
-  LUT6 #(
-    .INIT(64'h0000000000000002)) 
-    \read_data[7]_i_4 
-       (.I0(\^state [5]),
-        .I1(\^state [0]),
-        .I2(\^state [4]),
-        .I3(\^state [2]),
-        .I4(\^state [3]),
-        .I5(\^state [1]),
-        .O(\read_data[7]_i_4_n_0 ));
   FDRE \read_data_reg[0] 
        (.C(axi_aclk),
         .CE(\read_data[7]_i_1_n_0 ),
@@ -1053,18 +1055,28 @@ module system_controller_system_0_0_uart_rx_ctrl
         .Q(Q[7]),
         .R(SR));
   LUT6 #(
-    .INIT(64'h0000000000000008)) 
+    .INIT(64'h8888888F88888880)) 
     read_data_valid_i_1
-       (.I0(\^state [5]),
+       (.I0(\read_data[7]_i_3_n_0 ),
         .I1(axi_rvalid),
-        .I2(\state[4]_i_2_n_0 ),
-        .I3(\^state [0]),
-        .I4(\^state [3]),
-        .I5(\^state [1]),
+        .I2(read_data_valid_i_2_n_0),
+        .I3(axi_rready_i_5_n_0),
+        .I4(\^state [0]),
+        .I5(read_data_valid),
         .O(read_data_valid_i_1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  LUT5 #(
+    .INIT(32'hFFFEFE01)) 
+    read_data_valid_i_2
+       (.I0(\^state [3]),
+        .I1(\^state [2]),
+        .I2(\^state [4]),
+        .I3(\^state [5]),
+        .I4(\^state [1]),
+        .O(read_data_valid_i_2_n_0));
   FDRE read_data_valid_reg
        (.C(axi_aclk),
-        .CE(\read_data[7]_i_1_n_0 ),
+        .CE(1'b1),
         .D(read_data_valid_i_1_n_0),
         .Q(read_data_valid),
         .R(SR));
@@ -1079,144 +1091,121 @@ module system_controller_system_0_0_uart_rx_ctrl
         .I5(\^state [5]),
         .O(state_n_0));
   LUT6 #(
-    .INIT(64'hFFFFFFFFFEFEA4F4)) 
+    .INIT(64'hFFFFFFFEFFFEFEEB)) 
     \state[0]_i_1__1 
-       (.I0(\^state [1]),
-        .I1(\state[0]_i_2_n_0 ),
-        .I2(\^state [3]),
-        .I3(axi_rdata[0]),
-        .I4(\state[0]_i_3_n_0 ),
-        .I5(\^state [5]),
+       (.I0(\^state [5]),
+        .I1(\^state [0]),
+        .I2(\^state [1]),
+        .I3(\^state [4]),
+        .I4(\^state [2]),
+        .I5(\^state [3]),
         .O(p_1_in[0]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
-  LUT3 #(
-    .INIT(8'hE9)) 
-    \state[0]_i_2 
-       (.I0(\^state [0]),
-        .I1(\^state [4]),
-        .I2(\^state [2]),
-        .O(\state[0]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT3 #(
-    .INIT(8'hFE)) 
-    \state[0]_i_3 
-       (.I0(\^state [4]),
-        .I1(\^state [2]),
-        .I2(\^state [0]),
-        .O(\state[0]_i_3_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000004)) 
+    .INIT(64'h0000000000010404)) 
     \state[1]_i_1__1 
        (.I0(\^state [5]),
         .I1(\^state [0]),
-        .I2(\^state [4]),
-        .I3(\^state [2]),
+        .I2(\^state [1]),
+        .I3(axi_rdata[0]),
         .I4(\^state [3]),
-        .I5(\^state [1]),
+        .I5(axi_arvalid_i_3_n_0),
         .O(p_1_in[1]));
   LUT6 #(
-    .INIT(64'h0000000100000000)) 
+    .INIT(64'h0000000000000002)) 
     \state[2]_i_1__0 
-       (.I0(\^state [5]),
+       (.I0(\^state [1]),
         .I1(\^state [0]),
-        .I2(\^state [4]),
-        .I3(\^state [2]),
-        .I4(\^state [3]),
-        .I5(\^state [1]),
-        .O(p_1_in[2]));
+        .I2(\^state [5]),
+        .I3(\^state [3]),
+        .I4(\^state [2]),
+        .I5(\^state [4]),
+        .O(axi_araddr1_in));
   LUT6 #(
-    .INIT(64'h0000000000000010)) 
+    .INIT(64'h0000000000000002)) 
     \state[3]_i_1 
-       (.I0(\^state [5]),
-        .I1(\^state [0]),
-        .I2(\^state [2]),
-        .I3(\^state [4]),
-        .I4(\^state [3]),
-        .I5(\^state [1]),
+       (.I0(\^state [2]),
+        .I1(\^state [3]),
+        .I2(\^state [4]),
+        .I3(\^state [1]),
+        .I4(\^state [0]),
+        .I5(\^state [5]),
         .O(p_1_in[3]));
-  LUT6 #(
-    .INIT(64'h0000000000040000)) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  LUT5 #(
+    .INIT(32'h10000000)) 
     \state[4]_i_1 
-       (.I0(\^state [5]),
-        .I1(axi_rdata[0]),
-        .I2(\state[4]_i_2_n_0 ),
-        .I3(\^state [0]),
-        .I4(\^state [3]),
-        .I5(\^state [1]),
-        .O(p_1_in[4]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
-  LUT2 #(
-    .INIT(4'hE)) 
-    \state[4]_i_2 
        (.I0(\^state [2]),
         .I1(\^state [4]),
-        .O(\state[4]_i_2_n_0 ));
+        .I2(\^state [3]),
+        .I3(axi_rdata[0]),
+        .I4(axi_rready_i_3_n_0),
+        .O(p_1_in[4]));
   LUT6 #(
-    .INIT(64'hFFFFFAEAFFFFFFFF)) 
+    .INIT(64'hFFEAEAEAFFFFFFFF)) 
     \state[5]_i_1 
-       (.I0(\^state [1]),
-        .I1(\^state [5]),
-        .I2(axi_rvalid),
-        .I3(\^state [3]),
-        .I4(\state[5]_i_3_n_0 ),
+       (.I0(\state[5]_i_3_n_0 ),
+        .I1(start_read),
+        .I2(\^state [0]),
+        .I3(axi_rvalid),
+        .I4(\^state [5]),
         .I5(state_n_0),
         .O(\state[5]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0000000000000010)) 
+    .INIT(64'h0000000000000004)) 
     \state[5]_i_2 
-       (.I0(\^state [5]),
-        .I1(\^state [0]),
-        .I2(\^state [4]),
-        .I3(\^state [2]),
-        .I4(\^state [3]),
-        .I5(\^state [1]),
-        .O(p_1_in[5]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
-  LUT5 #(
-    .INIT(32'hFFE0E0E0)) 
-    \state[5]_i_3 
        (.I0(\^state [2]),
         .I1(\^state [4]),
-        .I2(axi_arready),
-        .I3(start_read),
+        .I2(\^state [3]),
+        .I3(\^state [1]),
         .I4(\^state [0]),
+        .I5(\^state [5]),
+        .O(p_1_in[5]));
+  LUT6 #(
+    .INIT(64'hFFFFFFEAEAEAEAEA)) 
+    \state[5]_i_3 
+       (.I0(\^state [1]),
+        .I1(\^state [3]),
+        .I2(axi_rvalid),
+        .I3(\^state [4]),
+        .I4(\^state [2]),
+        .I5(axi_arready),
         .O(\state[5]_i_3_n_0 ));
-  (* FSM_ENCODED_STATES = "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000" *) 
+  (* FSM_ENCODED_STATES = "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000" *) 
   FDSE \state_reg[0] 
        (.C(axi_aclk),
         .CE(\state[5]_i_1_n_0 ),
         .D(p_1_in[0]),
         .Q(\^state [0]),
         .S(SR));
-  (* FSM_ENCODED_STATES = "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000" *) 
+  (* FSM_ENCODED_STATES = "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000" *) 
   FDRE \state_reg[1] 
        (.C(axi_aclk),
         .CE(\state[5]_i_1_n_0 ),
         .D(p_1_in[1]),
         .Q(\^state [1]),
         .R(SR));
-  (* FSM_ENCODED_STATES = "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000" *) 
+  (* FSM_ENCODED_STATES = "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000" *) 
   FDRE \state_reg[2] 
        (.C(axi_aclk),
         .CE(\state[5]_i_1_n_0 ),
-        .D(p_1_in[2]),
+        .D(axi_araddr1_in),
         .Q(\^state [2]),
         .R(SR));
-  (* FSM_ENCODED_STATES = "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000" *) 
+  (* FSM_ENCODED_STATES = "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000" *) 
   FDRE \state_reg[3] 
        (.C(axi_aclk),
         .CE(\state[5]_i_1_n_0 ),
         .D(p_1_in[3]),
         .Q(\^state [3]),
         .R(SR));
-  (* FSM_ENCODED_STATES = "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000" *) 
+  (* FSM_ENCODED_STATES = "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000" *) 
   FDRE \state_reg[4] 
        (.C(axi_aclk),
         .CE(\state[5]_i_1_n_0 ),
         .D(p_1_in[4]),
         .Q(\^state [4]),
         .R(SR));
-  (* FSM_ENCODED_STATES = "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000" *) 
+  (* FSM_ENCODED_STATES = "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000" *) 
   FDRE \state_reg[5] 
        (.C(axi_aclk),
         .CE(\state[5]_i_1_n_0 ),
@@ -1549,7 +1538,7 @@ module system_controller_system_0_0_uart_tx_ctrl
         .I5(\^state [0]),
         .O(write_data_ready_i_3_n_0));
   LUT5 #(
-    .INIT(32'hFEFEFEEE)) 
+    .INIT(32'hEEEEEEFE)) 
     write_data_ready_i_4
        (.I0(\^state [2]),
         .I1(\^state [1]),
@@ -1557,12 +1546,12 @@ module system_controller_system_0_0_uart_tx_ctrl
         .I3(axi_bresp[1]),
         .I4(axi_bresp[0]),
         .O(write_data_ready_i_4_n_0));
-  FDRE write_data_ready_reg
+  FDSE write_data_ready_reg
        (.C(axi_aclk),
         .CE(1'b1),
         .D(write_data_ready_i_1_n_0),
         .Q(write_data_ready),
-        .R(SS));
+        .S(SS));
 endmodule
 `ifndef GLBL
 `define GLBL

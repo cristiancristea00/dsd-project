@@ -68,7 +68,7 @@ always_ff @ (posedge axi_aclk) begin
         axi_wdata   <= CLEAR;
         axi_wvalid  <= CLEAR;
 
-        write_data_ready <= CLEAR;
+        write_data_ready <= SET;
     end
     else begin
         case (state)
@@ -104,11 +104,11 @@ always_ff @ (posedge axi_aclk) begin
                 if (axi_bvalid) begin
                     if (axi_bresp == RESP_OKAY) begin
                         state <= IDLE;
+                        
+                        write_data_ready <= SET;
                     end
                     else begin
                         state <= START;
-
-                        write_data_ready <= SET;
                     end
                 end
             end

@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
--- Date        : Thu Apr  4 22:36:53 2024
+-- Date        : Sun Apr  7 15:39:20 2024
 -- Host        : Jupiter running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/system_controller_system_0_0_sim_netlist.vhdl
@@ -146,13 +146,13 @@ start_read_reg: unisim.vcomponents.FDRE
     );
 start_transfer_i_1: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFF1000"
+      INIT => X"FAFF0040"
     )
         port map (
-      I0 => state(0),
-      I1 => state(1),
-      I2 => transfer_ready,
-      I3 => state(2),
+      I0 => state(1),
+      I1 => transfer_ready,
+      I2 => state(2),
+      I3 => state(0),
       I4 => \^start_transfer\,
       O => start_transfer_i_1_n_0
     );
@@ -229,8 +229,8 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity system_controller_system_0_0_read_controller is
   port (
-    transfer_ready : out STD_LOGIC;
     start_write : out STD_LOGIC;
+    transfer_ready : out STD_LOGIC;
     Q : out STD_LOGIC_VECTOR ( 7 downto 0 );
     SR : in STD_LOGIC_VECTOR ( 0 to 0 );
     axi_aclk : in STD_LOGIC;
@@ -419,17 +419,17 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity system_controller_system_0_0_uart_rx_ctrl is
   port (
-    read_data_valid : out STD_LOGIC;
-    SR : out STD_LOGIC_VECTOR ( 0 to 0 );
     axi_araddr : out STD_LOGIC_VECTOR ( 0 to 0 );
+    SR : out STD_LOGIC_VECTOR ( 0 to 0 );
     axi_arvalid : out STD_LOGIC;
     axi_rready : out STD_LOGIC;
+    read_data_valid : out STD_LOGIC;
     Q : out STD_LOGIC_VECTOR ( 7 downto 0 );
     axi_aclk : in STD_LOGIC;
     axi_aresetn : in STD_LOGIC;
+    axi_arready : in STD_LOGIC;
     axi_rvalid : in STD_LOGIC;
     start_read : in STD_LOGIC;
-    axi_arready : in STD_LOGIC;
     axi_rdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
@@ -439,6 +439,7 @@ end system_controller_system_0_0_uart_rx_ctrl;
 architecture STRUCTURE of system_controller_system_0_0_uart_rx_ctrl is
   signal \^sr\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \^axi_araddr\ : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal axi_araddr1_in : STD_LOGIC_VECTOR ( 3 to 3 );
   signal \axi_araddr[3]_i_1_n_0\ : STD_LOGIC;
   signal \axi_araddr[3]_i_2_n_0\ : STD_LOGIC;
   signal \axi_araddr[3]_i_3_n_0\ : STD_LOGIC;
@@ -447,86 +448,86 @@ architecture STRUCTURE of system_controller_system_0_0_uart_rx_ctrl is
   signal axi_arvalid_i_2_n_0 : STD_LOGIC;
   signal axi_arvalid_i_3_n_0 : STD_LOGIC;
   signal axi_arvalid_i_4_n_0 : STD_LOGIC;
-  signal axi_arvalid_i_5_n_0 : STD_LOGIC;
   signal \^axi_rready\ : STD_LOGIC;
   signal axi_rready_i_1_n_0 : STD_LOGIC;
   signal axi_rready_i_2_n_0 : STD_LOGIC;
   signal axi_rready_i_3_n_0 : STD_LOGIC;
+  signal axi_rready_i_4_n_0 : STD_LOGIC;
+  signal axi_rready_i_5_n_0 : STD_LOGIC;
+  signal axi_rready_i_6_n_0 : STD_LOGIC;
   signal p_1_in : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal read_data : STD_LOGIC_VECTOR ( 7 downto 0 );
   signal \read_data[7]_i_1_n_0\ : STD_LOGIC;
   signal \read_data[7]_i_3_n_0\ : STD_LOGIC;
-  signal \read_data[7]_i_4_n_0\ : STD_LOGIC;
+  signal \^read_data_valid\ : STD_LOGIC;
   signal read_data_valid_i_1_n_0 : STD_LOGIC;
+  signal read_data_valid_i_2_n_0 : STD_LOGIC;
   signal \^state\ : STD_LOGIC_VECTOR ( 5 downto 0 );
-  signal \state[0]_i_2_n_0\ : STD_LOGIC;
-  signal \state[0]_i_3_n_0\ : STD_LOGIC;
-  signal \state[4]_i_2_n_0\ : STD_LOGIC;
   signal \state[5]_i_1_n_0\ : STD_LOGIC;
   signal \state[5]_i_3_n_0\ : STD_LOGIC;
   signal state_n_0 : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \axi_araddr[3]_i_3\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of axi_arvalid_i_2 : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of axi_arvalid_i_5 : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \read_data[1]_i_1\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \axi_araddr[3]_i_2\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of axi_arvalid_i_3 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of axi_rready_i_2 : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of axi_rready_i_6 : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \read_data[0]_i_1\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \read_data[1]_i_1\ : label is "soft_lutpair6";
   attribute SOFT_HLUTNM of \read_data[2]_i_1\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \read_data[3]_i_1\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \read_data[3]_i_1\ : label is "soft_lutpair7";
   attribute SOFT_HLUTNM of \read_data[4]_i_1\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \read_data[5]_i_1\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \read_data[5]_i_1\ : label is "soft_lutpair8";
   attribute SOFT_HLUTNM of \read_data[6]_i_1\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \read_data[7]_i_3\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \state[0]_i_2\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \state[0]_i_3\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \state[4]_i_2\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \state[5]_i_3\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \read_data[7]_i_2\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of read_data_valid_i_2 : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \state[4]_i_1\ : label is "soft_lutpair4";
   attribute FSM_ENCODED_STATES : string;
-  attribute FSM_ENCODED_STATES of \state_reg[0]\ : label is "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000";
-  attribute FSM_ENCODED_STATES of \state_reg[1]\ : label is "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000";
-  attribute FSM_ENCODED_STATES of \state_reg[2]\ : label is "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000";
-  attribute FSM_ENCODED_STATES of \state_reg[3]\ : label is "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000";
-  attribute FSM_ENCODED_STATES of \state_reg[4]\ : label is "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000";
-  attribute FSM_ENCODED_STATES of \state_reg[5]\ : label is "START_READ_STATUS:000010,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,IDLE:000001,START_READ_DATA:010000";
+  attribute FSM_ENCODED_STATES of \state_reg[0]\ : label is "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000";
+  attribute FSM_ENCODED_STATES of \state_reg[1]\ : label is "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000";
+  attribute FSM_ENCODED_STATES of \state_reg[2]\ : label is "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000";
+  attribute FSM_ENCODED_STATES of \state_reg[3]\ : label is "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000";
+  attribute FSM_ENCODED_STATES of \state_reg[4]\ : label is "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000";
+  attribute FSM_ENCODED_STATES of \state_reg[5]\ : label is "IDLE:000001,WAIT_READ_STATUS:000100,READ_STATUS:001000,READ_DATA:100000,START_READ_STATUS:000010,START_READ_DATA:010000";
 begin
   SR(0) <= \^sr\(0);
   axi_araddr(0) <= \^axi_araddr\(0);
   axi_arvalid <= \^axi_arvalid\;
   axi_rready <= \^axi_rready\;
+  read_data_valid <= \^read_data_valid\;
 \axi_araddr[3]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AAAAABFBAAAAA808"
+      INIT => X"0002111600020002"
     )
         port map (
-      I0 => p_1_in(2),
-      I1 => \axi_araddr[3]_i_2_n_0\,
+      I0 => \^state\(1),
+      I1 => \^state\(0),
       I2 => \^state\(5),
-      I3 => \axi_araddr[3]_i_3_n_0\,
-      I4 => \^state\(1),
+      I3 => \axi_araddr[3]_i_2_n_0\,
+      I4 => \axi_araddr[3]_i_3_n_0\,
       I5 => \^axi_araddr\(0),
       O => \axi_araddr[3]_i_1_n_0\
     );
-\axi_araddr[3]_i_2\: unisim.vcomponents.LUT6
+\axi_araddr[3]_i_2\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"FFFFFFF0FFF0F08F"
+      INIT => X"FE"
     )
         port map (
-      I0 => axi_rvalid,
-      I1 => axi_rdata(0),
+      I0 => \^state\(4),
+      I1 => \^state\(2),
       I2 => \^state\(3),
-      I3 => \^state\(0),
-      I4 => \^state\(4),
-      I5 => \^state\(2),
       O => \axi_araddr[3]_i_2_n_0\
     );
-\axi_araddr[3]_i_3\: unisim.vcomponents.LUT4
+\axi_araddr[3]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFE"
+      INIT => X"FEEAFEE8FEE8FEE8"
     )
         port map (
-      I0 => \^state\(0),
+      I0 => \^state\(3),
       I1 => \^state\(2),
       I2 => \^state\(4),
-      I3 => \^state\(3),
+      I3 => \^state\(5),
+      I4 => axi_rdata(0),
+      I5 => axi_rvalid,
       O => \axi_araddr[3]_i_3_n_0\
     );
 \axi_araddr_reg[3]\: unisim.vcomponents.FDRE
@@ -537,66 +538,53 @@ begin
       Q => \^axi_araddr\(0),
       R => \^sr\(0)
     );
-axi_arvalid_i_1: unisim.vcomponents.LUT5
+axi_arvalid_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"AACFAAC0"
+      INIT => X"AAAAAABFAAAAAA80"
     )
         port map (
       I0 => axi_arvalid_i_2_n_0,
       I1 => axi_arvalid_i_3_n_0,
-      I2 => axi_arvalid_i_4_n_0,
-      I3 => \^state\(1),
-      I4 => \^axi_arvalid\,
+      I2 => axi_arready,
+      I3 => axi_arvalid_i_4_n_0,
+      I4 => \axi_araddr[3]_i_3_n_0\,
+      I5 => \^axi_arvalid\,
       O => axi_arvalid_i_1_n_0
     );
-axi_arvalid_i_2: unisim.vcomponents.LUT5
+axi_arvalid_i_2: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"00000001"
+      INIT => X"0000000001001010"
+    )
+        port map (
+      I0 => \^state\(5),
+      I1 => \^state\(0),
+      I2 => \^state\(1),
+      I3 => axi_rdata(0),
+      I4 => \^state\(3),
+      I5 => axi_arvalid_i_3_n_0,
+      O => axi_arvalid_i_2_n_0
+    );
+axi_arvalid_i_3: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => \^state\(2),
+      I1 => \^state\(4),
+      O => axi_arvalid_i_3_n_0
+    );
+axi_arvalid_i_4: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFFFFFE0001"
     )
         port map (
       I0 => \^state\(3),
       I1 => \^state\(2),
       I2 => \^state\(4),
-      I3 => \^state\(0),
-      I4 => \^state\(5),
-      O => axi_arvalid_i_2_n_0
-    );
-axi_arvalid_i_3: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000020000"
-    )
-        port map (
-      I0 => \^state\(3),
-      I1 => \^state\(0),
-      I2 => \^state\(4),
-      I3 => \^state\(2),
-      I4 => axi_rdata(0),
-      I5 => \^state\(5),
-      O => axi_arvalid_i_3_n_0
-    );
-axi_arvalid_i_4: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FFEAFF55FFEAAA00"
-    )
-        port map (
-      I0 => \^state\(5),
-      I1 => axi_rvalid,
-      I2 => axi_rdata(0),
-      I3 => \state[0]_i_3_n_0\,
-      I4 => \^state\(3),
-      I5 => axi_arvalid_i_5_n_0,
+      I3 => \^state\(5),
+      I4 => \^state\(0),
+      I5 => \^state\(1),
       O => axi_arvalid_i_4_n_0
-    );
-axi_arvalid_i_5: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FEE3"
-    )
-        port map (
-      I0 => axi_arready,
-      I1 => \^state\(0),
-      I2 => \^state\(4),
-      I3 => \^state\(2),
-      O => axi_arvalid_i_5_n_0
     );
 axi_arvalid_reg: unisim.vcomponents.FDRE
      port map (
@@ -614,42 +602,76 @@ axi_arvalid_reg: unisim.vcomponents.FDRE
       I0 => axi_aresetn,
       O => \^sr\(0)
     );
-axi_rready_i_1: unisim.vcomponents.LUT4
+axi_rready_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"2F20"
+      INIT => X"8888888F88888880"
     )
         port map (
       I0 => axi_rready_i_2_n_0,
-      I1 => \^state\(1),
-      I2 => axi_rready_i_3_n_0,
-      I3 => \^axi_rready\,
+      I1 => axi_rready_i_3_n_0,
+      I2 => axi_rready_i_4_n_0,
+      I3 => axi_rready_i_5_n_0,
+      I4 => axi_rready_i_6_n_0,
+      I5 => \^axi_rready\,
       O => axi_rready_i_1_n_0
     );
-axi_rready_i_2: unisim.vcomponents.LUT6
+axi_rready_i_2: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"0000000001100000"
+      INIT => X"0440"
     )
         port map (
       I0 => \^state\(3),
-      I1 => \^state\(0),
+      I1 => axi_arready,
       I2 => \^state\(4),
       I3 => \^state\(2),
-      I4 => axi_arready,
-      I5 => \^state\(5),
       O => axi_rready_i_2_n_0
     );
-axi_rready_i_3: unisim.vcomponents.LUT6
+axi_rready_i_3: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"FFFEFDF9FFFEECE8"
+      INIT => X"01"
     )
         port map (
-      I0 => \^state\(1),
+      I0 => \^state\(5),
+      I1 => \^state\(0),
+      I2 => \^state\(1),
+      O => axi_rready_i_3_n_0
+    );
+axi_rready_i_4: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFFEEEEEEEE9"
+    )
+        port map (
+      I0 => \^state\(0),
+      I1 => \^state\(1),
+      I2 => \^state\(4),
+      I3 => \^state\(2),
+      I4 => \^state\(3),
+      I5 => \^state\(5),
+      O => axi_rready_i_4_n_0
+    );
+axi_rready_i_5: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFF8F888"
+    )
+        port map (
+      I0 => axi_rvalid,
       I1 => \^state\(5),
-      I2 => \state[0]_i_3_n_0\,
+      I2 => \^state\(2),
+      I3 => \^state\(4),
+      I4 => \^state\(3),
+      O => axi_rready_i_5_n_0
+    );
+axi_rready_i_6: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFA8A8A8"
+    )
+        port map (
+      I0 => axi_arready,
+      I1 => \^state\(2),
+      I2 => \^state\(4),
       I3 => axi_rvalid,
       I4 => \^state\(3),
-      I5 => axi_arvalid_i_5_n_0,
-      O => axi_rready_i_3_n_0
+      O => axi_rready_i_6_n_0
     );
 axi_rready_reg: unisim.vcomponents.FDRE
      port map (
@@ -659,17 +681,13 @@ axi_rready_reg: unisim.vcomponents.FDRE
       Q => \^axi_rready\,
       R => \^sr\(0)
     );
-\read_data[0]_i_1\: unisim.vcomponents.LUT6
+\read_data[0]_i_1\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"0000000000000008"
+      INIT => X"8"
     )
         port map (
-      I0 => \^state\(5),
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(0),
-      I2 => \state[4]_i_2_n_0\,
-      I3 => \^state\(0),
-      I4 => \^state\(3),
-      I5 => \^state\(1),
       O => read_data(0)
     );
 \read_data[1]_i_1\: unisim.vcomponents.LUT2
@@ -677,7 +695,7 @@ axi_rready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => \read_data[7]_i_4_n_0\,
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(1),
       O => read_data(1)
     );
@@ -686,7 +704,7 @@ axi_rready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => \read_data[7]_i_4_n_0\,
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(2),
       O => read_data(2)
     );
@@ -695,7 +713,7 @@ axi_rready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => \read_data[7]_i_4_n_0\,
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(3),
       O => read_data(3)
     );
@@ -704,7 +722,7 @@ axi_rready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => \read_data[7]_i_4_n_0\,
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(4),
       O => read_data(4)
     );
@@ -713,7 +731,7 @@ axi_rready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => \read_data[7]_i_4_n_0\,
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(5),
       O => read_data(5)
     );
@@ -722,21 +740,20 @@ axi_rready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => \read_data[7]_i_4_n_0\,
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(6),
       O => read_data(6)
     );
-\read_data[7]_i_1\: unisim.vcomponents.LUT6
+\read_data[7]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FFFEFFF5FFFEAAA0"
+      INIT => X"FFFEFEEB"
     )
         port map (
-      I0 => \^state\(1),
-      I1 => axi_rvalid,
-      I2 => \state[0]_i_3_n_0\,
-      I3 => \^state\(3),
+      I0 => axi_rready_i_5_n_0,
+      I1 => \^state\(0),
+      I2 => \^state\(1),
+      I3 => \axi_araddr[3]_i_2_n_0\,
       I4 => \^state\(5),
-      I5 => \read_data[7]_i_3_n_0\,
       O => \read_data[7]_i_1_n_0\
     );
 \read_data[7]_i_2\: unisim.vcomponents.LUT2
@@ -744,34 +761,22 @@ axi_rready_reg: unisim.vcomponents.FDRE
       INIT => X"8"
     )
         port map (
-      I0 => \read_data[7]_i_4_n_0\,
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rdata(7),
       O => read_data(7)
     );
-\read_data[7]_i_3\: unisim.vcomponents.LUT5
+\read_data[7]_i_3\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFAFAE5"
+      INIT => X"0000000000000004"
     )
         port map (
-      I0 => \^state\(3),
-      I1 => start_read,
-      I2 => \^state\(0),
+      I0 => \^state\(0),
+      I1 => \^state\(5),
+      I2 => \^state\(1),
       I3 => \^state\(4),
       I4 => \^state\(2),
+      I5 => \^state\(3),
       O => \read_data[7]_i_3_n_0\
-    );
-\read_data[7]_i_4\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000002"
-    )
-        port map (
-      I0 => \^state\(5),
-      I1 => \^state\(0),
-      I2 => \^state\(4),
-      I3 => \^state\(2),
-      I4 => \^state\(3),
-      I5 => \^state\(1),
-      O => \read_data[7]_i_4_n_0\
     );
 \read_data_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -839,23 +844,35 @@ axi_rready_reg: unisim.vcomponents.FDRE
     );
 read_data_valid_i_1: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000000008"
+      INIT => X"8888888F88888880"
     )
         port map (
-      I0 => \^state\(5),
+      I0 => \read_data[7]_i_3_n_0\,
       I1 => axi_rvalid,
-      I2 => \state[4]_i_2_n_0\,
-      I3 => \^state\(0),
-      I4 => \^state\(3),
-      I5 => \^state\(1),
+      I2 => read_data_valid_i_2_n_0,
+      I3 => axi_rready_i_5_n_0,
+      I4 => \^state\(0),
+      I5 => \^read_data_valid\,
       O => read_data_valid_i_1_n_0
+    );
+read_data_valid_i_2: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"FFFEFE01"
+    )
+        port map (
+      I0 => \^state\(3),
+      I1 => \^state\(2),
+      I2 => \^state\(4),
+      I3 => \^state\(5),
+      I4 => \^state\(1),
+      O => read_data_valid_i_2_n_0
     );
 read_data_valid_reg: unisim.vcomponents.FDRE
      port map (
       C => axi_aclk,
-      CE => \read_data[7]_i_1_n_0\,
+      CE => '1',
       D => read_data_valid_i_1_n_0,
-      Q => read_data_valid,
+      Q => \^read_data_valid\,
       R => \^sr\(0)
     );
 state: unisim.vcomponents.LUT6
@@ -873,134 +890,105 @@ state: unisim.vcomponents.LUT6
     );
 \state[0]_i_1__1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFFFFFEFEA4F4"
-    )
-        port map (
-      I0 => \^state\(1),
-      I1 => \state[0]_i_2_n_0\,
-      I2 => \^state\(3),
-      I3 => axi_rdata(0),
-      I4 => \state[0]_i_3_n_0\,
-      I5 => \^state\(5),
-      O => p_1_in(0)
-    );
-\state[0]_i_2\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"E9"
-    )
-        port map (
-      I0 => \^state\(0),
-      I1 => \^state\(4),
-      I2 => \^state\(2),
-      O => \state[0]_i_2_n_0\
-    );
-\state[0]_i_3\: unisim.vcomponents.LUT3
-    generic map(
-      INIT => X"FE"
-    )
-        port map (
-      I0 => \^state\(4),
-      I1 => \^state\(2),
-      I2 => \^state\(0),
-      O => \state[0]_i_3_n_0\
-    );
-\state[1]_i_1__1\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"0000000000000004"
+      INIT => X"FFFFFFFEFFFEFEEB"
     )
         port map (
       I0 => \^state\(5),
       I1 => \^state\(0),
-      I2 => \^state\(4),
-      I3 => \^state\(2),
+      I2 => \^state\(1),
+      I3 => \^state\(4),
+      I4 => \^state\(2),
+      I5 => \^state\(3),
+      O => p_1_in(0)
+    );
+\state[1]_i_1__1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"0000000000010404"
+    )
+        port map (
+      I0 => \^state\(5),
+      I1 => \^state\(0),
+      I2 => \^state\(1),
+      I3 => axi_rdata(0),
       I4 => \^state\(3),
-      I5 => \^state\(1),
+      I5 => axi_arvalid_i_3_n_0,
       O => p_1_in(1)
     );
 \state[2]_i_1__0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000100000000"
+      INIT => X"0000000000000002"
     )
         port map (
-      I0 => \^state\(5),
+      I0 => \^state\(1),
       I1 => \^state\(0),
-      I2 => \^state\(4),
-      I3 => \^state\(2),
-      I4 => \^state\(3),
-      I5 => \^state\(1),
-      O => p_1_in(2)
+      I2 => \^state\(5),
+      I3 => \^state\(3),
+      I4 => \^state\(2),
+      I5 => \^state\(4),
+      O => axi_araddr1_in(3)
     );
 \state[3]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000000010"
+      INIT => X"0000000000000002"
     )
         port map (
-      I0 => \^state\(5),
-      I1 => \^state\(0),
-      I2 => \^state\(2),
-      I3 => \^state\(4),
-      I4 => \^state\(3),
-      I5 => \^state\(1),
+      I0 => \^state\(2),
+      I1 => \^state\(3),
+      I2 => \^state\(4),
+      I3 => \^state\(1),
+      I4 => \^state\(0),
+      I5 => \^state\(5),
       O => p_1_in(3)
     );
-\state[4]_i_1\: unisim.vcomponents.LUT6
+\state[4]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"0000000000040000"
-    )
-        port map (
-      I0 => \^state\(5),
-      I1 => axi_rdata(0),
-      I2 => \state[4]_i_2_n_0\,
-      I3 => \^state\(0),
-      I4 => \^state\(3),
-      I5 => \^state\(1),
-      O => p_1_in(4)
-    );
-\state[4]_i_2\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"E"
+      INIT => X"10000000"
     )
         port map (
       I0 => \^state\(2),
       I1 => \^state\(4),
-      O => \state[4]_i_2_n_0\
+      I2 => \^state\(3),
+      I3 => axi_rdata(0),
+      I4 => axi_rready_i_3_n_0,
+      O => p_1_in(4)
     );
 \state[5]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFFFAEAFFFFFFFF"
+      INIT => X"FFEAEAEAFFFFFFFF"
     )
         port map (
-      I0 => \^state\(1),
-      I1 => \^state\(5),
-      I2 => axi_rvalid,
-      I3 => \^state\(3),
-      I4 => \state[5]_i_3_n_0\,
+      I0 => \state[5]_i_3_n_0\,
+      I1 => start_read,
+      I2 => \^state\(0),
+      I3 => axi_rvalid,
+      I4 => \^state\(5),
       I5 => state_n_0,
       O => \state[5]_i_1_n_0\
     );
 \state[5]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0000000000000010"
-    )
-        port map (
-      I0 => \^state\(5),
-      I1 => \^state\(0),
-      I2 => \^state\(4),
-      I3 => \^state\(2),
-      I4 => \^state\(3),
-      I5 => \^state\(1),
-      O => p_1_in(5)
-    );
-\state[5]_i_3\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"FFE0E0E0"
+      INIT => X"0000000000000004"
     )
         port map (
       I0 => \^state\(2),
       I1 => \^state\(4),
-      I2 => axi_arready,
-      I3 => start_read,
+      I2 => \^state\(3),
+      I3 => \^state\(1),
       I4 => \^state\(0),
+      I5 => \^state\(5),
+      O => p_1_in(5)
+    );
+\state[5]_i_3\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"FFFFFFEAEAEAEAEA"
+    )
+        port map (
+      I0 => \^state\(1),
+      I1 => \^state\(3),
+      I2 => axi_rvalid,
+      I3 => \^state\(4),
+      I4 => \^state\(2),
+      I5 => axi_arready,
       O => \state[5]_i_3_n_0\
     );
 \state_reg[0]\: unisim.vcomponents.FDSE
@@ -1023,7 +1011,7 @@ state: unisim.vcomponents.LUT6
      port map (
       C => axi_aclk,
       CE => \state[5]_i_1_n_0\,
-      D => p_1_in(2),
+      D => axi_araddr1_in(3),
       Q => \^state\(2),
       R => \^sr\(0)
     );
@@ -1451,7 +1439,7 @@ write_data_ready_i_3: unisim.vcomponents.LUT6
     );
 write_data_ready_i_4: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"FEFEFEEE"
+      INIT => X"EEEEEEFE"
     )
         port map (
       I0 => \^state\(2),
@@ -1461,13 +1449,13 @@ write_data_ready_i_4: unisim.vcomponents.LUT5
       I4 => axi_bresp(0),
       O => write_data_ready_i_4_n_0
     );
-write_data_ready_reg: unisim.vcomponents.FDRE
+write_data_ready_reg: unisim.vcomponents.FDSE
      port map (
       C => axi_aclk,
       CE => '1',
       D => write_data_ready_i_1_n_0,
       Q => \^write_data_ready\,
-      R => SS(0)
+      S => SS(0)
     );
 end STRUCTURE;
 library IEEE;
@@ -1478,25 +1466,25 @@ entity system_controller_system_0_0_uart_controller is
   port (
     axi_awaddr : out STD_LOGIC_VECTOR ( 0 to 0 );
     SR : out STD_LOGIC_VECTOR ( 0 to 0 );
-    read_data_valid : out STD_LOGIC;
     axi_wvalid : out STD_LOGIC;
     write_data_ready : out STD_LOGIC;
     axi_araddr : out STD_LOGIC_VECTOR ( 0 to 0 );
     axi_arvalid : out STD_LOGIC;
     axi_rready : out STD_LOGIC;
+    read_data_valid : out STD_LOGIC;
     Q : out STD_LOGIC_VECTOR ( 7 downto 0 );
     axi_wdata : out STD_LOGIC_VECTOR ( 7 downto 0 );
     axi_bvalid : in STD_LOGIC;
     axi_aclk : in STD_LOGIC;
     axi_aresetn : in STD_LOGIC;
+    axi_arready : in STD_LOGIC;
+    axi_rvalid : in STD_LOGIC;
     axi_awready : in STD_LOGIC;
     axi_wready : in STD_LOGIC;
     start_write : in STD_LOGIC;
     axi_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
     \axi_wdata_reg[7]\ : in STD_LOGIC_VECTOR ( 7 downto 0 );
-    axi_rvalid : in STD_LOGIC;
     start_read : in STD_LOGIC;
-    axi_arready : in STD_LOGIC;
     axi_rdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
   attribute ORIG_REF_NAME : string;
