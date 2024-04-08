@@ -301,6 +301,27 @@
           "cpu_reset": {
             "type": "rst",
             "direction": "O"
+          },
+          "select": {
+            "direction": "O"
+          },
+          "address": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "memory_in": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "memory_out": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "write_enable": {
+            "direction": "O"
           }
         },
         "addressing": {

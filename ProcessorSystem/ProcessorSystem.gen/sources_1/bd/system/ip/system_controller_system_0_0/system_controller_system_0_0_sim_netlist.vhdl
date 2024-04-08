@@ -2,7 +2,7 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
--- Date        : Sun Apr  7 18:08:24 2024
+-- Date        : Mon Apr  8 23:03:49 2024
 -- Host        : Jupiter running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode funcsim
 --               w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/system_controller_system_0_0_sim_netlist.vhdl
@@ -1640,7 +1640,12 @@ entity system_controller_system_0_0 is
     axi_rvalid : in STD_LOGIC;
     axi_rready : out STD_LOGIC;
     cpu_clock : out STD_LOGIC;
-    cpu_reset : out STD_LOGIC
+    cpu_reset : out STD_LOGIC;
+    \select\ : out STD_LOGIC;
+    address : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    memory_in : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    memory_out : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    write_enable : out STD_LOGIC
   );
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of system_controller_system_0_0 : entity is true;
@@ -1692,6 +1697,16 @@ architecture STRUCTURE of system_controller_system_0_0 is
   attribute X_INTERFACE_INFO of axi_wdata : signal is "xilinx.com:interface:aximm:1.0 axi WDATA";
   attribute X_INTERFACE_INFO of axi_wstrb : signal is "xilinx.com:interface:aximm:1.0 axi WSTRB";
 begin
+  address(9) <= \<const0>\;
+  address(8) <= \<const0>\;
+  address(7) <= \<const0>\;
+  address(6) <= \<const0>\;
+  address(5) <= \<const0>\;
+  address(4) <= \<const0>\;
+  address(3) <= \<const0>\;
+  address(2) <= \<const0>\;
+  address(1) <= \<const0>\;
+  address(0) <= \<const0>\;
   axi_araddr(31) <= \<const0>\;
   axi_araddr(30) <= \<const0>\;
   axi_araddr(29) <= \<const0>\;
@@ -1726,7 +1741,7 @@ begin
   axi_araddr(0) <= \<const0>\;
   axi_arprot(2) <= \<const0>\;
   axi_arprot(1) <= \<const0>\;
-  axi_arprot(0) <= \<const0>\;
+  axi_arprot(0) <= \<const1>\;
   axi_awaddr(31) <= \<const0>\;
   axi_awaddr(30) <= \<const0>\;
   axi_awaddr(29) <= \<const0>\;
@@ -1796,6 +1811,40 @@ begin
   axi_wvalid <= \^axi_wvalid\;
   cpu_clock <= \<const0>\;
   cpu_reset <= \<const1>\;
+  memory_in(31) <= \<const0>\;
+  memory_in(30) <= \<const0>\;
+  memory_in(29) <= \<const0>\;
+  memory_in(28) <= \<const0>\;
+  memory_in(27) <= \<const0>\;
+  memory_in(26) <= \<const0>\;
+  memory_in(25) <= \<const0>\;
+  memory_in(24) <= \<const0>\;
+  memory_in(23) <= \<const0>\;
+  memory_in(22) <= \<const0>\;
+  memory_in(21) <= \<const0>\;
+  memory_in(20) <= \<const0>\;
+  memory_in(19) <= \<const0>\;
+  memory_in(18) <= \<const0>\;
+  memory_in(17) <= \<const0>\;
+  memory_in(16) <= \<const0>\;
+  memory_in(15) <= \<const0>\;
+  memory_in(14) <= \<const0>\;
+  memory_in(13) <= \<const0>\;
+  memory_in(12) <= \<const0>\;
+  memory_in(11) <= \<const0>\;
+  memory_in(10) <= \<const0>\;
+  memory_in(9) <= \<const0>\;
+  memory_in(8) <= \<const0>\;
+  memory_in(7) <= \<const0>\;
+  memory_in(6) <= \<const0>\;
+  memory_in(5) <= \<const0>\;
+  memory_in(4) <= \<const0>\;
+  memory_in(3) <= \<const0>\;
+  memory_in(2) <= \<const0>\;
+  memory_in(1) <= \<const0>\;
+  memory_in(0) <= \<const0>\;
+  \select\ <= \<const0>\;
+  write_enable <= \<const0>\;
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\

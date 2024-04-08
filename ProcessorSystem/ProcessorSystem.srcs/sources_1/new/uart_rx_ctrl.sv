@@ -146,7 +146,7 @@ end
 
 
 // Unused signals
-assign axi_awprot = 3'b001;
+assign axi_arprot = 3'b001;
 
 
 endmodule

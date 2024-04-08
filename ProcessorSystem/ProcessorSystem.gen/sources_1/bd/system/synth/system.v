@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-//Date        : Sun Apr  7 18:54:32 2024
+//Date        : Mon Apr  8 23:02:14 2024
 //Host        : Jupiter running 64-bit major release  (build 9200)
 //Command     : generate_target system.bd
 //Design      : system
@@ -10,7 +10,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=7,numReposBlks=7,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "system.hwdef" *) 
+(* CORE_GENERATION_INFO = "system,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=system,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=8,numReposBlks=8,numNonXlnxBlks=0,numHierBlks=0,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "system.hwdef" *) 
 module system
    (CLK100MHZ,
     RST,
@@ -26,6 +26,7 @@ module system
   wire TX_1;
   wire axi_uart_tx;
   wire clk_gen_sys_clk;
+  wire [9:0]controller_system_address;
   wire [31:0]controller_system_axi_ARADDR;
   wire controller_system_axi_ARREADY;
   wire controller_system_axi_ARVALID;
@@ -45,13 +46,25 @@ module system
   wire controller_system_axi_WVALID;
   wire controller_system_cpu_clock;
   wire controller_system_cpu_reset;
+  wire [31:0]controller_system_memory_in;
+  wire controller_system_select;
+  wire controller_system_write_enable;
   wire [9:0]cpu_core_address;
   wire [31:0]cpu_core_data_out;
   wire [9:0]cpu_core_pc;
   wire cpu_core_read;
   wire cpu_core_write;
   wire [31:0]data_memory_douta;
+  wire [31:0]data_memory_doutb;
+  wire [9:0]memory_selector_data_address;
+  wire [31:0]memory_selector_data_in;
+  wire memory_selector_data_write_enable;
+  wire [31:0]memory_selector_memory_out;
+  wire [9:0]memory_selector_program_address;
+  wire [15:0]memory_selector_program_in;
+  wire memory_selector_program_write_enable;
   wire [15:0]program_memory_douta;
+  wire [15:0]program_memory_doutb;
   wire rst_inv_rstn;
 
   assign CLK100MHZ_1 = CLK100MHZ;
@@ -84,7 +97,8 @@ module system
        (.clk_in1(CLK100MHZ_1),
         .sys_clk(clk_gen_sys_clk));
   system_controller_system_0_0 controller_system
-       (.axi_aclk(clk_gen_sys_clk),
+       (.address(controller_system_address),
+        .axi_aclk(clk_gen_sys_clk),
         .axi_araddr(controller_system_axi_ARADDR),
         .axi_aresetn(rst_inv_rstn),
         .axi_arready(controller_system_axi_ARREADY),
@@ -104,7 +118,11 @@ module system
         .axi_wstrb(controller_system_axi_WSTRB),
         .axi_wvalid(controller_system_axi_WVALID),
         .cpu_clock(controller_system_cpu_clock),
-        .cpu_reset(controller_system_cpu_reset));
+        .cpu_reset(controller_system_cpu_reset),
+        .memory_in(controller_system_memory_in),
+        .memory_out(memory_selector_memory_out),
+        .select(controller_system_select),
+        .write_enable(controller_system_write_enable));
   system_core_0_0 cpu_core
        (.address(cpu_core_address),
         .clock(controller_system_cpu_clock),
@@ -117,25 +135,41 @@ module system
         .write(cpu_core_write));
   system_blk_mem_gen_0_1 data_memory
        (.addra(cpu_core_address),
-        .addrb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .clka(controller_system_cpu_clock),
-        .clkb(controller_system_cpu_clock),
+        .addrb(memory_selector_data_address),
+        .clka(clk_gen_sys_clk),
+        .clkb(clk_gen_sys_clk),
         .dina(cpu_core_data_out),
-        .dinb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0}),
+        .dinb(memory_selector_data_in),
         .douta(data_memory_douta),
+        .doutb(data_memory_doutb),
         .ena(cpu_core_read),
         .wea(cpu_core_write),
-        .web(1'b0));
+        .web(memory_selector_data_write_enable));
+  system_memory_select_0_0 memory_selector
+       (.address(controller_system_address),
+        .data_address(memory_selector_data_address),
+        .data_in(memory_selector_data_in),
+        .data_out(data_memory_doutb),
+        .data_write_enable(memory_selector_data_write_enable),
+        .memory_in(controller_system_memory_in),
+        .memory_out(memory_selector_memory_out),
+        .program_address(memory_selector_program_address),
+        .program_in(memory_selector_program_in),
+        .program_out(program_memory_doutb),
+        .program_write_enable(memory_selector_program_write_enable),
+        .select(controller_system_select),
+        .write_enable(controller_system_write_enable));
   system_blk_mem_gen_0_2 program_memory
        (.addra(cpu_core_pc),
-        .addrb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .clka(controller_system_cpu_clock),
-        .clkb(controller_system_cpu_clock),
+        .addrb(memory_selector_program_address),
+        .clka(clk_gen_sys_clk),
+        .clkb(clk_gen_sys_clk),
         .dina({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0}),
-        .dinb({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b1,1'b0,1'b0,1'b0}),
+        .dinb(memory_selector_program_in),
         .douta(program_memory_douta),
+        .doutb(program_memory_doutb),
         .wea(1'b0),
-        .web(1'b0));
+        .web(memory_selector_program_write_enable));
   system_rst_inv_0_0 rst_inv
        (.rst(RST_1),
         .rstn(rst_inv_rstn));

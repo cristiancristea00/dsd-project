@@ -1,20 +1,25 @@
 module read_controller
 (
     /* Global */
-    input  logic       clock,
-    input  logic       resetn,
+    input  logic        clock,
+    input  logic        resetn,
 
 
     /* UART TX Controller Interface */
-    output logic       start_write,
-    output logic [7:0] write_data,
-    input  logic       write_data_ready,
+    output logic        start_write,
+    output logic [7:0]  write_data,
+    input  logic        write_data_ready,
 
 
     /* Read Controller Interface */
-    input  logic [7:0] data,
-    input  logic       start_transfer,
-    output logic       transfer_ready
+    input  logic [7:0]  data,
+    input  logic        start_transfer,
+    output logic        transfer_ready,
+
+
+    /* Memory Port */
+    output logic [9:0]  address,
+    input  logic [31:0] memory_out
 );
 
 

@@ -1,24 +1,34 @@
 module master_controller
 (
     /* Global */
-    input  logic       clock,
-    input  logic       resetn,
+    input  logic        clock,
+    input  logic        resetn,
 
 
     /* UART RX Controller Interface */
-    output logic       start_read,
-    input  logic [7:0] read_data,
-    input  logic       read_data_valid,
+    output logic        start_read,
+    input  logic [7:0]  read_data,
+    input  logic        read_data_valid,
 
 
     /* Read Controller Interface */
-    output logic [7:0] data,
-    output logic       start_transfer,
-    input  logic       transfer_ready,
+    output logic [7:0]  data,
+    output logic        start_transfer,
+    input  logic        transfer_ready,
     
     
     /* CPU Controller Interface */
-    input  logic [1:0] command
+    input  logic [1:0]  command,
+
+
+    /* Memory Port */
+    output logic        select,
+    output logic [9:0]  address,
+    output logic [31:0] memory_in,
+    output logic        write_enable,
+
+    /* Address Arbitration */
+    output logic        address_select
 );
 
 
@@ -49,6 +59,13 @@ always_ff @ (posedge clock) begin
 
         data           <= CLEAR;
         start_transfer <= CLEAR;
+
+        select       <= CLEAR;
+        address      <= CLEAR;
+        memory_in    <= CLEAR;
+        write_enable <= CLEAR;
+
+        address_select <= SET;
     end
     else begin
         case (state)

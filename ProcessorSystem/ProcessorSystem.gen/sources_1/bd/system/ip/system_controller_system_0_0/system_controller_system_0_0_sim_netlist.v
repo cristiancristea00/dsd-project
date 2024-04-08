@@ -2,7 +2,7 @@
 // Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-// Date        : Sun Apr  7 18:08:24 2024
+// Date        : Mon Apr  8 23:03:49 2024
 // Host        : Jupiter running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/system_controller_system_0_0_sim_netlist.v
@@ -39,7 +39,12 @@ module system_controller_system_0_0
     axi_rvalid,
     axi_rready,
     cpu_clock,
-    cpu_reset);
+    cpu_reset,
+    select,
+    address,
+    memory_in,
+    memory_out,
+    write_enable);
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 axi_aclk CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aclk, ASSOCIATED_BUSIF axi, ASSOCIATED_RESET axi_aresetn, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, INSERT_VIP 0" *) input axi_aclk;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 axi_aresetn RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi_aresetn, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input axi_aresetn;
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi AWADDR" *) output [31:0]axi_awaddr;
@@ -63,6 +68,11 @@ module system_controller_system_0_0
   (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 axi RREADY" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME axi, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 100000000, ID_WIDTH 0, ADDR_WIDTH 32, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 1, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 1, NUM_WRITE_OUTSTANDING 1, MAX_BURST_LENGTH 1, PHASE 0.0, CLK_DOMAIN /clk_gen_clk_out1, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_VIP 0" *) output axi_rready;
   (* X_INTERFACE_INFO = "xilinx.com:signal:clock:1.0 cpu_clock CLK" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cpu_clock, ASSOCIATED_RESET cpu_reset, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.0, CLK_DOMAIN system_controller_system_0_0_cpu_clock, INSERT_VIP 0" *) output cpu_clock;
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cpu_reset RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME cpu_reset, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) output cpu_reset;
+  output select;
+  output [9:0]address;
+  output [31:0]memory_in;
+  input [31:0]memory_out;
+  output write_enable;
 
   wire \<const0> ;
   wire \<const1> ;
@@ -82,6 +92,16 @@ module system_controller_system_0_0
   wire axi_wready;
   wire axi_wvalid;
 
+  assign address[9] = \<const0> ;
+  assign address[8] = \<const0> ;
+  assign address[7] = \<const0> ;
+  assign address[6] = \<const0> ;
+  assign address[5] = \<const0> ;
+  assign address[4] = \<const0> ;
+  assign address[3] = \<const0> ;
+  assign address[2] = \<const0> ;
+  assign address[1] = \<const0> ;
+  assign address[0] = \<const0> ;
   assign axi_araddr[31] = \<const0> ;
   assign axi_araddr[30] = \<const0> ;
   assign axi_araddr[29] = \<const0> ;
@@ -116,7 +136,7 @@ module system_controller_system_0_0
   assign axi_araddr[0] = \<const0> ;
   assign axi_arprot[2] = \<const0> ;
   assign axi_arprot[1] = \<const0> ;
-  assign axi_arprot[0] = \<const0> ;
+  assign axi_arprot[0] = \<const1> ;
   assign axi_awaddr[31] = \<const0> ;
   assign axi_awaddr[30] = \<const0> ;
   assign axi_awaddr[29] = \<const0> ;
@@ -185,6 +205,40 @@ module system_controller_system_0_0
   assign axi_wstrb[0] = \<const1> ;
   assign cpu_clock = \<const0> ;
   assign cpu_reset = \<const1> ;
+  assign memory_in[31] = \<const0> ;
+  assign memory_in[30] = \<const0> ;
+  assign memory_in[29] = \<const0> ;
+  assign memory_in[28] = \<const0> ;
+  assign memory_in[27] = \<const0> ;
+  assign memory_in[26] = \<const0> ;
+  assign memory_in[25] = \<const0> ;
+  assign memory_in[24] = \<const0> ;
+  assign memory_in[23] = \<const0> ;
+  assign memory_in[22] = \<const0> ;
+  assign memory_in[21] = \<const0> ;
+  assign memory_in[20] = \<const0> ;
+  assign memory_in[19] = \<const0> ;
+  assign memory_in[18] = \<const0> ;
+  assign memory_in[17] = \<const0> ;
+  assign memory_in[16] = \<const0> ;
+  assign memory_in[15] = \<const0> ;
+  assign memory_in[14] = \<const0> ;
+  assign memory_in[13] = \<const0> ;
+  assign memory_in[12] = \<const0> ;
+  assign memory_in[11] = \<const0> ;
+  assign memory_in[10] = \<const0> ;
+  assign memory_in[9] = \<const0> ;
+  assign memory_in[8] = \<const0> ;
+  assign memory_in[7] = \<const0> ;
+  assign memory_in[6] = \<const0> ;
+  assign memory_in[5] = \<const0> ;
+  assign memory_in[4] = \<const0> ;
+  assign memory_in[3] = \<const0> ;
+  assign memory_in[2] = \<const0> ;
+  assign memory_in[1] = \<const0> ;
+  assign memory_in[0] = \<const0> ;
+  assign select = \<const0> ;
+  assign write_enable = \<const0> ;
   GND GND
        (.G(\<const0> ));
   VCC VCC

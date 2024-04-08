@@ -1,25 +1,25 @@
 {
    "ActiveEmotionalView":"Default View",
    "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-693,-324",
+   "Default View_TopLeft":"-698,-298",
    "ExpandedHierarchyInLayout":"",
    "PinnedBlocks":"/uart_axilite|",
    "PinnedPorts":"clock|reset|tx|rx|",
-   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 threadsafe
 #  -string -flagsOSRD
-preplace port port-id_clock -pg 1 -lvl 0 -x -30 -y 40 -defaultsOSRD
-preplace port port-id_reset -pg 1 -lvl 0 -x -30 -y 110 -defaultsOSRD
-preplace port port-id_tx -pg 1 -lvl 0 -x -30 -y 20 -defaultsOSRD
-preplace port port-id_rx -pg 1 -lvl 3 -x 530 -y 130 -defaultsOSRD
-preplace inst uart_axilite -pg 1 -lvl 2 -x 390 -y 120 -defaultsOSRD
+preplace port port-id_clock -pg 1 -lvl 0 -x -70 -y 40 -defaultsOSRD
+preplace port port-id_reset -pg 1 -lvl 0 -x -70 -y 110 -defaultsOSRD
+preplace port port-id_tx -pg 1 -lvl 0 -x -70 -y 20 -defaultsOSRD
+preplace port port-id_rx -pg 1 -lvl 3 -x 560 -y 130 -defaultsOSRD
+preplace inst uart_axilite -pg 1 -lvl 2 -x 420 -y 120 -defaultsOSRD
 preplace inst controller_system -pg 1 -lvl 1 -x 130 -y 100 -defaultsOSRD
-preplace netloc clock_1 1 0 2 10 20 260J
-preplace netloc reset_1 1 0 2 0 180 250J
-preplace netloc tx_1 1 0 3 -10J 10 NJ 10 500
+preplace netloc clock_1 1 0 2 -40 220 290J
+preplace netloc reset_1 1 0 2 -30 230 300J
+preplace netloc tx_1 1 0 3 -50J 240 NJ 240 530
 preplace netloc uart_axilite_tx 1 2 1 N 130
-preplace netloc controller_system_0_axi 1 1 1 250 80n
-levelinfo -pg 1 -30 130 390 530
-pagesize -pg 1 -db -bbox -sgen -120 0 600 210
+preplace netloc controller_system_0_axi 1 1 1 290 40n
+levelinfo -pg 1 -70 130 420 560
+pagesize -pg 1 -db -bbox -sgen -160 -20 630 250
 "
 }
 0
