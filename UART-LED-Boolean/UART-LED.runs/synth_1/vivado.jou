@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1.1 (64-bit)
+# SW Build 3900603 on Fri Jun 16 19:30:25 MDT 2023
+# IP Build 3900379 on Sat Jun 17 05:28:05 MDT 2023
+# SharedData Build 3899622 on Fri Jun 16 03:34:24 MDT 2023
+# Start of session at: Mon Mar 11 17:46:04 2024
+# Process ID: 42282
+# Current directory: /home/cristian/Documents/ACES/DSD/UART-LED-Boolean/UART-LED.runs/synth_1
+# Command line: vivado -log uart_led_design.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source uart_led_design.tcl
+# Log file: /home/cristian/Documents/ACES/DSD/UART-LED-Boolean/UART-LED.runs/synth_1/uart_led_design.vds
+# Journal file: /home/cristian/Documents/ACES/DSD/UART-LED-Boolean/UART-LED.runs/synth_1/vivado.jou
+# Running On: Hephaestion, OS: Linux, CPU Frequency: 4294.838 MHz, CPU Physical cores: 6, Host memory: 16622 MB
+#-----------------------------------------------------------
+source uart_led_design.tcl -notrace

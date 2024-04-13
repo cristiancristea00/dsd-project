@@ -10,7 +10,11 @@
       "tool_version": "2023.1.1"
     },
     "design_tree": {
-      "uart_axilite": "",
+      "axilite_uart": "",
+      "data_memory": "",
+      "program_memory": "",
+      "cpu_core": "",
+      "memory_selector": "",
       "controller_system": ""
     },
     "ports": {
@@ -36,11 +40,11 @@
       }
     },
     "components": {
-      "uart_axilite": {
+      "axilite_uart": {
         "vlnv": "xilinx.com:ip:axi_uartlite:2.0",
         "xci_name": "system_test_axi_uartlite_0_0",
-        "xci_path": "ip\\system_test_axi_uartlite_0_0\\system_test_axi_uartlite_0_0.xci",
-        "inst_hier_path": "uart_axilite",
+        "xci_path": "ip/system_test_axi_uartlite_0_0/system_test_axi_uartlite_0_0.xci",
+        "inst_hier_path": "axilite_uart",
         "parameters": {
           "C_BAUDRATE": {
             "value": "115200"
@@ -50,10 +54,248 @@
           }
         }
       },
+      "data_memory": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "system_test_data_memory_0",
+        "xci_path": "ip/system_test_data_memory_0/system_test_data_memory_0.xci",
+        "inst_hier_path": "data_memory",
+        "parameters": {
+          "Additional_Inputs_for_Power_Estimation": {
+            "value": "false"
+          },
+          "Algorithm": {
+            "value": "Minimum_Area"
+          },
+          "Assume_Synchronous_Clk": {
+            "value": "true"
+          },
+          "Enable_A": {
+            "value": "Use_ENA_Pin"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Load_Init_File": {
+            "value": "false"
+          },
+          "Memory_Type": {
+            "value": "True_Dual_Port_RAM"
+          },
+          "Operating_Mode_A": {
+            "value": "NO_CHANGE"
+          },
+          "Operating_Mode_B": {
+            "value": "NO_CHANGE"
+          },
+          "Register_PortA_Output_of_Memory_Core": {
+            "value": "false"
+          },
+          "Register_PortA_Output_of_Memory_Primitives": {
+            "value": "true"
+          },
+          "Register_PortB_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Remaining_Memory_Locations": {
+            "value": "DEADBEEF"
+          },
+          "Use_RSTA_Pin": {
+            "value": "false"
+          },
+          "Write_Depth_A": {
+            "value": "1024"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "program_memory": {
+        "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
+        "xci_name": "system_test_program_memory_0",
+        "xci_path": "ip/system_test_program_memory_0/system_test_program_memory_0.xci",
+        "inst_hier_path": "program_memory",
+        "parameters": {
+          "Assume_Synchronous_Clk": {
+            "value": "true"
+          },
+          "Enable_A": {
+            "value": "Always_Enabled"
+          },
+          "Enable_B": {
+            "value": "Always_Enabled"
+          },
+          "Fill_Remaining_Memory_Locations": {
+            "value": "true"
+          },
+          "Memory_Type": {
+            "value": "True_Dual_Port_RAM"
+          },
+          "Operating_Mode_A": {
+            "value": "READ_FIRST"
+          },
+          "Operating_Mode_B": {
+            "value": "WRITE_FIRST"
+          },
+          "Register_PortA_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Register_PortB_Output_of_Memory_Primitives": {
+            "value": "false"
+          },
+          "Remaining_Memory_Locations": {
+            "value": "FF"
+          },
+          "Write_Depth_A": {
+            "value": "1024"
+          },
+          "Write_Width_A": {
+            "value": "16"
+          },
+          "use_bram_block": {
+            "value": "Stand_Alone"
+          }
+        }
+      },
+      "cpu_core": {
+        "vlnv": "xilinx.com:module_ref:core:1.0",
+        "xci_name": "system_test_cpu_core_0",
+        "xci_path": "ip/system_test_cpu_core_0/system_test_cpu_core_0.xci",
+        "inst_hier_path": "cpu_core",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "core",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clock": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "system_test_controller_system_0_0_cpu_clock",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "instruction": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pc": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "read": {
+            "direction": "O"
+          },
+          "write": {
+            "direction": "O"
+          },
+          "address": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "data_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "data_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "memory_selector": {
+        "vlnv": "xilinx.com:module_ref:memory_select:1.0",
+        "xci_name": "system_test_memory_selector_0",
+        "xci_path": "ip/system_test_memory_selector_0/system_test_memory_selector_0.xci",
+        "inst_hier_path": "memory_selector",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "memory_select",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "select": {
+            "direction": "I"
+          },
+          "address": {
+            "direction": "I",
+            "left": "9",
+            "right": "0"
+          },
+          "memory_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "memory_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "write_enable": {
+            "direction": "I"
+          },
+          "data_address": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "data_in": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "data_out": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "data_write_enable": {
+            "direction": "O"
+          },
+          "program_address": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "program_in": {
+            "direction": "O",
+            "left": "15",
+            "right": "0"
+          },
+          "program_out": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "program_write_enable": {
+            "direction": "O"
+          }
+        }
+      },
       "controller_system": {
         "vlnv": "xilinx.com:module_ref:controller_system:1.0",
         "xci_name": "system_test_controller_system_0_0",
-        "xci_path": "ip\\system_test_controller_system_0_0\\system_test_controller_system_0_0.xci",
+        "xci_path": "ip/system_test_controller_system_0_0/system_test_controller_system_0_0.xci",
         "inst_hier_path": "controller_system",
         "reference_info": {
           "ref_type": "hdl",
@@ -338,7 +580,7 @@
       "controller_system_0_axi": {
         "interface_ports": [
           "controller_system/axi",
-          "uart_axilite/S_AXI"
+          "axilite_uart/S_AXI"
         ]
       }
     },
@@ -346,28 +588,180 @@
       "clock_1": {
         "ports": [
           "clock",
-          "uart_axilite/s_axi_aclk",
+          "axilite_uart/s_axi_aclk",
+          "program_memory/clka",
+          "program_memory/clkb",
+          "data_memory/clka",
+          "data_memory/clkb",
           "controller_system/axi_aclk"
+        ]
+      },
+      "controller_system_address": {
+        "ports": [
+          "controller_system/address",
+          "memory_selector/address"
+        ]
+      },
+      "controller_system_cpu_clock": {
+        "ports": [
+          "controller_system/cpu_clock",
+          "cpu_core/clock"
+        ]
+      },
+      "controller_system_cpu_reset": {
+        "ports": [
+          "controller_system/cpu_reset",
+          "cpu_core/reset"
+        ]
+      },
+      "controller_system_memory_in": {
+        "ports": [
+          "controller_system/memory_in",
+          "memory_selector/memory_in"
+        ]
+      },
+      "controller_system_select": {
+        "ports": [
+          "controller_system/select",
+          "memory_selector/select"
+        ]
+      },
+      "controller_system_write_enable": {
+        "ports": [
+          "controller_system/write_enable",
+          "memory_selector/write_enable"
+        ]
+      },
+      "cpu_core_address": {
+        "ports": [
+          "cpu_core/address",
+          "data_memory/addra"
+        ]
+      },
+      "cpu_core_data_out": {
+        "ports": [
+          "cpu_core/data_out",
+          "data_memory/dina"
+        ]
+      },
+      "cpu_core_pc": {
+        "ports": [
+          "cpu_core/pc",
+          "program_memory/addra"
+        ]
+      },
+      "cpu_core_read": {
+        "ports": [
+          "cpu_core/read",
+          "data_memory/ena"
+        ]
+      },
+      "cpu_core_write": {
+        "ports": [
+          "cpu_core/write",
+          "data_memory/wea"
+        ]
+      },
+      "data_memory_douta": {
+        "ports": [
+          "data_memory/douta",
+          "cpu_core/data_in"
+        ]
+      },
+      "data_memory_doutb": {
+        "ports": [
+          "data_memory/doutb",
+          "memory_selector/data_out"
+        ]
+      },
+      "memory_selector_data_address": {
+        "ports": [
+          "memory_selector/data_address",
+          "data_memory/addrb"
+        ]
+      },
+      "memory_selector_data_in": {
+        "ports": [
+          "memory_selector/data_in",
+          "data_memory/dinb"
+        ]
+      },
+      "memory_selector_data_write_enable": {
+        "ports": [
+          "memory_selector/data_write_enable",
+          "data_memory/web"
+        ]
+      },
+      "memory_selector_memory_out": {
+        "ports": [
+          "memory_selector/memory_out",
+          "controller_system/memory_out"
+        ]
+      },
+      "memory_selector_program_address": {
+        "ports": [
+          "memory_selector/program_address",
+          "program_memory/addrb"
+        ]
+      },
+      "memory_selector_program_in": {
+        "ports": [
+          "memory_selector/program_in",
+          "program_memory/dinb"
+        ]
+      },
+      "memory_selector_program_write_enable": {
+        "ports": [
+          "memory_selector/program_write_enable",
+          "program_memory/web"
+        ]
+      },
+      "program_memory_douta": {
+        "ports": [
+          "program_memory/douta",
+          "cpu_core/instruction"
+        ]
+      },
+      "program_memory_doutb": {
+        "ports": [
+          "program_memory/doutb",
+          "memory_selector/program_out"
         ]
       },
       "reset_1": {
         "ports": [
           "reset",
-          "uart_axilite/s_axi_aresetn",
+          "axilite_uart/s_axi_aresetn",
           "controller_system/axi_aresetn"
         ]
       },
       "tx_1": {
         "ports": [
           "tx",
-          "uart_axilite/rx"
+          "axilite_uart/rx"
         ]
       },
       "uart_axilite_tx": {
         "ports": [
-          "uart_axilite/tx",
+          "axilite_uart/tx",
           "rx"
         ]
+      }
+    },
+    "addressing": {
+      "/controller_system": {
+        "address_spaces": {
+          "axi": {
+            "segments": {
+              "SEG_uart_axilite_Reg": {
+                "address_block": "/axilite_uart/S_AXI/Reg",
+                "offset": "0x40600000",
+                "range": "64K",
+                "is_excluded": "TRUE"
+              }
+            }
+          }
+        }
       }
     }
   }

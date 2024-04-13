@@ -1,0 +1,8 @@
+system_test_axi_uartlite_0_0_sim_netlist.v,verilog,xil_defaultlib,../../../bd/system_test/ip/system_test_axi_uartlite_0_0/system_test_axi_uartlite_0_0_sim_netlist.v,
+system_test_data_memory_0.v,verilog,xil_defaultlib,../../../bd/system_test/ip/system_test_data_memory_0/sim/system_test_data_memory_0.v,
+system_test_program_memory_0.v,verilog,xil_defaultlib,../../../bd/system_test/ip/system_test_program_memory_0/sim/system_test_program_memory_0.v,
+system_test_cpu_core_0.v,verilog,xil_defaultlib,../../../bd/system_test/ip/system_test_cpu_core_0/sim/system_test_cpu_core_0.v,
+system_test_memory_selector_0.v,verilog,xil_defaultlib,../../../bd/system_test/ip/system_test_memory_selector_0/sim/system_test_memory_selector_0.v,
+system_test_controller_system_0_0.v,verilog,xil_defaultlib,../../../bd/system_test/ip/system_test_controller_system_0_0/sim/system_test_controller_system_0_0.v,
+system_test.v,verilog,xil_defaultlib,../../../bd/system_test/sim/system_test.v,
+glbl.v,Verilog,xil_defaultlib,glbl.v

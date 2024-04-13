@@ -54,24 +54,25 @@ module controller_system
 );
 
 
-wire       start_read;
-wire [7:0] read_data;
-wire       read_data_valid;
+wire        start_read;
+wire [7:0]  read_data;
+wire        read_data_valid;
 
-wire       start_write;
-wire [7:0] write_data;
-wire       write_data_ready;
+wire        start_write;
+wire [7:0]  write_data;
+wire        write_data_ready;
 
-wire [7:0] data;
-wire       start_transfer;
-wire       transfer_ready;
+wire [15:0] start_address;
+wire [15:0] length;
+wire        start_transfer;
+wire        transfer_ready;
 
-wire [1:0] command;
+wire [1:0]  command;
 
-wire [9:0] master_ctrl_address;
-wire [9:0] read_ctrl_address;
+wire [9:0]  master_ctrl_address;
+wire [9:0]  read_ctrl_address;
 
-wire       address_select;
+wire        address_select;
 
 
 master_controller master_ctrl(
@@ -80,7 +81,8 @@ master_controller master_ctrl(
     .start_read          (start_read),
     .read_data           (read_data),
     .read_data_valid     (read_data_valid),
-    .data                (data),
+    .start_address       (start_address),
+    .length              (length),
     .start_transfer      (start_transfer),
     .transfer_ready      (transfer_ready),
     .command             (command),
@@ -97,7 +99,8 @@ read_controller read_ctrl(
     .start_write         (start_write),
     .write_data          (write_data),
     .write_data_ready    (write_data_ready),
-    .data                (data),
+    .start_address       (start_address),
+    .length              (length),
     .start_transfer      (start_transfer),
     .transfer_ready      (transfer_ready),
     .address             (read_ctrl_address),

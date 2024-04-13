@@ -187,6 +187,24 @@
                 "VH": "2",
                 "VT": "PM",
                 "TU": "active"
+            },
+            "V3": {
+                "VT": "ACE",
+                "BA": "0x40600000",
+                "HA": "0x4060FFFF",
+                "BP": "C_BASEADDR",
+                "HP": "C_HIGHADDR",
+                "MA": "axi",
+                "MX": "/controller_system",
+                "MI": "axi",
+                "MS": "SEG_axi_uart_Reg",
+                "MV": "xilinx.com:module_ref:controller_system:1.0",
+                "SX": "/axi_uart",
+                "SI": "S_AXI",
+                "SS": "Reg",
+                "SV": "xilinx.com:ip:axi_uartlite:2.0",
+                "TM": "both",
+                "TU": "register"
             }
         },
         "edges": [
@@ -197,6 +215,11 @@
             {
                 "src": "V1",
                 "trg": "V2"
+            },
+            {
+                "src": "V3",
+                "trg": "V2",
+                "EH": "2"
             }
         ]
     }

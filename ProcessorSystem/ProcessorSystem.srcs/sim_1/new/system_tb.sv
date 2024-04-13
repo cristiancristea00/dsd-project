@@ -25,8 +25,8 @@ bit rx;
 system_test_wrapper dut(
     .clock (clock),
     .reset (reset),
-    .tx (tx),
-    .rx (rx)
+    .tx    (tx),
+    .rx    (rx)
 );
 
 
@@ -80,9 +80,12 @@ endtask
 initial begin
     reset_dut();
     wait_clock(100);
-    send_byte(8'hAA);
-    send_byte(8'h55);
-    wait_clock(20000);
+    send_byte(8'h20);
+    send_byte(8'h01);
+    send_byte(8'h02);
+    send_byte(8'h00);
+    send_byte(8'h02);
+    wait_clock(50000);
     $stop;
 end
 

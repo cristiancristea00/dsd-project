@@ -1,25 +1,51 @@
 {
    "ActiveEmotionalView":"Default View",
-   "Default View_ScaleFactor":"1.0",
-   "Default View_TopLeft":"-698,-298",
+   "Default View_ScaleFactor":"0.945856",
+   "Default View_TopLeft":"-307,5",
    "ExpandedHierarchyInLayout":"",
-   "PinnedBlocks":"/uart_axilite|",
-   "PinnedPorts":"clock|reset|tx|rx|",
-   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 threadsafe
+   "PinnedBlocks":"",
+   "PinnedPorts":"",
+   "guistr":"# # String gsaved with Nlview 7.5.8 2022-09-21 7111 VDI=41 GEI=38 GUI=JA:10.0 TLS
 #  -string -flagsOSRD
-preplace port port-id_clock -pg 1 -lvl 0 -x -70 -y 40 -defaultsOSRD
-preplace port port-id_reset -pg 1 -lvl 0 -x -70 -y 110 -defaultsOSRD
-preplace port port-id_tx -pg 1 -lvl 0 -x -70 -y 20 -defaultsOSRD
-preplace port port-id_rx -pg 1 -lvl 3 -x 560 -y 130 -defaultsOSRD
-preplace inst uart_axilite -pg 1 -lvl 2 -x 420 -y 120 -defaultsOSRD
-preplace inst controller_system -pg 1 -lvl 1 -x 130 -y 100 -defaultsOSRD
-preplace netloc clock_1 1 0 2 -40 220 290J
-preplace netloc reset_1 1 0 2 -30 230 300J
-preplace netloc tx_1 1 0 3 -50J 240 NJ 240 530
-preplace netloc uart_axilite_tx 1 2 1 N 130
-preplace netloc controller_system_0_axi 1 1 1 290 40n
-levelinfo -pg 1 -70 130 420 560
-pagesize -pg 1 -db -bbox -sgen -160 -20 630 250
+preplace port port-id_clock -pg 1 -lvl 0 -x 0 -y 490 -defaultsOSRD
+preplace port port-id_reset -pg 1 -lvl 0 -x 0 -y 520 -defaultsOSRD
+preplace port port-id_tx -pg 1 -lvl 0 -x 0 -y 550 -defaultsOSRD
+preplace port port-id_rx -pg 1 -lvl 5 -x 1570 -y 590 -defaultsOSRD
+preplace inst axilite_uart -pg 1 -lvl 3 -x 1060 -y 580 -defaultsOSRD
+preplace inst data_memory -pg 1 -lvl 4 -x 1440 -y 250 -defaultsOSRD
+preplace inst program_memory -pg 1 -lvl 4 -x 1440 -y 760 -defaultsOSRD
+preplace inst cpu_core -pg 1 -lvl 3 -x 1060 -y 250 -defaultsOSRD
+preplace inst memory_selector -pg 1 -lvl 1 -x 240 -y 390 -defaultsOSRD
+preplace inst controller_system -pg 1 -lvl 2 -x 660 -y 120 -defaultsOSRD
+preplace netloc clock_1 1 0 4 30J 510 450 490 890 490 1320
+preplace netloc controller_system_address 1 0 3 30 240 NJ 240 850
+preplace netloc controller_system_cpu_clock 1 2 1 890 80n
+preplace netloc controller_system_cpu_reset 1 2 1 870 100n
+preplace netloc controller_system_memory_in 1 0 3 40 250 NJ 250 830
+preplace netloc controller_system_select 1 0 3 50 260 NJ 260 860
+preplace netloc controller_system_write_enable 1 0 3 60 270 NJ 270 840
+preplace netloc cpu_core_address 1 3 1 1270 150n
+preplace netloc cpu_core_data_out 1 3 1 1280 190n
+preplace netloc cpu_core_pc 1 3 1 1250 210n
+preplace netloc cpu_core_read 1 3 1 N 230
+preplace netloc cpu_core_write 1 3 1 N 250
+preplace netloc data_memory_douta 1 2 2 900 150 1260
+preplace netloc data_memory_doutb 1 0 4 20 230 470J 350 NJ 350 N
+preplace netloc memory_selector_data_address 1 1 3 460 360 NJ 360 1290J
+preplace netloc memory_selector_data_in 1 1 3 N 370 NJ 370 1300J
+preplace netloc memory_selector_data_write_enable 1 1 3 N 390 NJ 390 1330J
+preplace netloc memory_selector_memory_out 1 1 1 460 140n
+preplace netloc memory_selector_program_address 1 1 3 NJ 410 NJ 410 1240
+preplace netloc memory_selector_program_in 1 1 3 NJ 430 NJ 430 1230
+preplace netloc memory_selector_program_write_enable 1 1 3 NJ 450 NJ 450 1220
+preplace netloc program_memory_douta 1 2 2 910 730 NJ
+preplace netloc program_memory_doutb 1 0 4 60 830 NJ 830 NJ 830 NJ
+preplace netloc reset_1 1 0 3 NJ 520 480 600 NJ
+preplace netloc tx_1 1 0 4 NJ 550 490J 480 NJ 480 1210
+preplace netloc uart_axilite_tx 1 3 2 NJ 590 NJ
+preplace netloc controller_system_0_axi 1 2 1 880 60n
+levelinfo -pg 1 0 240 660 1060 1440 1570
+pagesize -pg 1 -db -bbox -sgen -90 0 1640 930
 "
 }
 0

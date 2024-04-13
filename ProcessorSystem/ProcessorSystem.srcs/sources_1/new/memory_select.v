@@ -1,6 +1,6 @@
 module memory_select(
     /* Memory Port */
-    input  wire        select, // 0 => Memory -> Data Memory, 1 => Memory -> Program Memory
+    input  wire        select, // 0 -> Data Memory, 1 -> Program Memory
     input  wire [9:0]  address,
     input  wire [31:0] memory_in,
     output reg  [31:0] memory_out,

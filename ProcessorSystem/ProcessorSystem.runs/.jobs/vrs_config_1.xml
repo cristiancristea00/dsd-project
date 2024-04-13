@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<Runs Version="1" Minor="0">
+	<Run Id="system_axi_uartlite_0_0_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_axi_uartlite_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_clk_wiz_0_0_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_clk_wiz_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_rst_inv_0_0_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_rst_inv_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_core_0_0_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_core_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_blk_mem_gen_0_1_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_blk_mem_gen_0_1_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_blk_mem_gen_0_2_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_blk_mem_gen_0_2_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_memory_select_0_0_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_memory_select_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="system_controller_system_0_0_synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/system_controller_system_0_0_synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado"/>
+	<Run Id="synth_1" LaunchDir="/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.runs/synth_1" FlowId="Vivado_Synthesis" FromStepId="vivado" ToStepId="vivado">
+		<Parent Id="system_axi_uartlite_0_0_synth_1"/>
+		<Parent Id="system_clk_wiz_0_0_synth_1"/>
+		<Parent Id="system_rst_inv_0_0_synth_1"/>
+		<Parent Id="system_core_0_0_synth_1"/>
+		<Parent Id="system_blk_mem_gen_0_1_synth_1"/>
+		<Parent Id="system_blk_mem_gen_0_2_synth_1"/>
+		<Parent Id="system_memory_select_0_0_synth_1"/>
+		<Parent Id="system_controller_system_0_0_synth_1"/>
+	</Run>
+	<Parameters>
+		<Parameter Name="runs.monitorLSFJobs" Val="true" Type="bool"/>
+		<Parameter Name="runs.enableClusterConf" Val="true" Type="bool"/>
+	</Parameters>
+</Runs>
+

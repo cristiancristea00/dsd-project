@@ -1,0 +1,39 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../ProcessorSystem.srcs/sources_1/new/cpu" --include "../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu/dependency_unit.v" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu/execute_unit.v" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu/fetch_unit.v" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu/read_unit.v" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu/register_file_unit.v" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu/write_back_unit.v" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu/core.v" \
+"../../../../ProcessorSystem.srcs/sources_1/new/memory_select.v" \
+
+sv xil_defaultlib  --include "../../../../ProcessorSystem.srcs/sources_1/new/cpu" --include "../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef" \
+"../../../../ProcessorSystem.srcs/sources_1/new/address_selector.sv" \
+"../../../../ProcessorSystem.srcs/sources_1/new/cpu_controller.sv" \
+"../../../../ProcessorSystem.srcs/sources_1/new/master_controller.sv" \
+"../../../../ProcessorSystem.srcs/sources_1/new/read_controller.sv" \
+"../../../../ProcessorSystem.srcs/sources_1/new/uart_controller.sv" \
+"../../../../ProcessorSystem.srcs/sources_1/new/uart_rx_ctrl.sv" \
+"../../../../ProcessorSystem.srcs/sources_1/new/uart_tx_ctrl.sv" \
+
+verilog xil_defaultlib  --include "../../../../ProcessorSystem.srcs/sources_1/new/cpu" --include "../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef" \
+"../../../../ProcessorSystem.srcs/sources_1/new/controller_system.v" \
+"../../../../ProcessorSystem.ip_user_files/bd/system_test/ip/system_test_axi_uartlite_0_0/system_test_axi_uartlite_0_0_sim_netlist.v" \
+"../../../../ProcessorSystem.ip_user_files/bd/system_test/ip/system_test_data_memory_0/sim/system_test_data_memory_0.v" \
+"../../../../ProcessorSystem.ip_user_files/bd/system_test/ip/system_test_program_memory_0/sim/system_test_program_memory_0.v" \
+"../../../../ProcessorSystem.ip_user_files/bd/system_test/ip/system_test_cpu_core_0/sim/system_test_cpu_core_0.v" \
+"../../../../ProcessorSystem.ip_user_files/bd/system_test/ip/system_test_memory_selector_0/sim/system_test_memory_selector_0.v" \
+"../../../../ProcessorSystem.ip_user_files/bd/system_test/ip/system_test_controller_system_0_0/sim/system_test_controller_system_0_0.v" \
+"../../../../ProcessorSystem.ip_user_files/bd/system_test/sim/system_test.v" \
+"../../../../ProcessorSystem.gen/sources_1/bd/system_test/hdl/system_test_wrapper.v" \
+
+sv xil_defaultlib  --include "../../../../ProcessorSystem.srcs/sources_1/new/cpu" --include "../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef" \
+"../../../../ProcessorSystem.srcs/sim_1/new/system_tb.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

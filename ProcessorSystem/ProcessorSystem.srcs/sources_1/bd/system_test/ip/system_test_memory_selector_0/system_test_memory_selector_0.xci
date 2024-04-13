@@ -1,0 +1,55 @@
+{
+  "schema": "xilinx.com:schema:json_instance:1.0",
+  "ip_inst": {
+    "xci_name": "system_test_memory_selector_0",
+    "cell_name": "memory_selector",
+    "component_reference": "xilinx.com:module_ref:memory_select:1.0",
+    "ip_revision": "1",
+    "gen_directory": "../../../../../../ProcessorSystem.gen/sources_1/bd/system_test/ip/system_test_memory_selector_0",
+    "parameters": {
+      "component_parameters": {
+        "Component_Name": [ { "value": "system_test_memory_selector_0", "resolve_type": "user", "usage": "all" } ]
+      },
+      "project_parameters": {
+        "ARCHITECTURE": [ { "value": "artix7" } ],
+        "BASE_BOARD_PART": [ { "value": "digilentinc.com:nexys-a7-100t:part0:1.3" } ],
+        "BOARD_CONNECTIONS": [ { "value": "" } ],
+        "DEVICE": [ { "value": "xc7a100t" } ],
+        "PACKAGE": [ { "value": "csg324" } ],
+        "PREFHDL": [ { "value": "VERILOG" } ],
+        "SILICON_REVISION": [ { "value": "" } ],
+        "SIMULATOR_LANGUAGE": [ { "value": "VERILOG" } ],
+        "SPEEDGRADE": [ { "value": "-1" } ],
+        "STATIC_POWER": [ { "value": "" } ],
+        "TEMPERATURE_GRADE": [ { "value": "" } ]
+      },
+      "runtime_parameters": {
+        "IPCONTEXT": [ { "value": "IP_Integrator" } ],
+        "IPREVISION": [ { "value": "1" } ],
+        "MANAGED": [ { "value": "TRUE" } ],
+        "OUTPUTDIR": [ { "value": "../../../../../../ProcessorSystem.gen/sources_1/bd/system_test/ip/system_test_memory_selector_0" } ],
+        "SELECTEDSIMMODEL": [ { "value": "" } ],
+        "SHAREDDIR": [ { "value": "../../ipshared" } ],
+        "SWVERSION": [ { "value": "2023.1.1" } ],
+        "SYNTHESISFLOW": [ { "value": "OOC_HIERARCHICAL" } ]
+      }
+    },
+    "boundary": {
+      "ports": {
+        "select": [ { "direction": "in" } ],
+        "address": [ { "direction": "in", "size_left": "9", "size_right": "0" } ],
+        "memory_in": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "memory_out": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
+        "write_enable": [ { "direction": "in" } ],
+        "data_address": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "data_in": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
+        "data_out": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "data_write_enable": [ { "direction": "out" } ],
+        "program_address": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "program_in": [ { "direction": "out", "size_left": "15", "size_right": "0" } ],
+        "program_out": [ { "direction": "in", "size_left": "15", "size_right": "0" } ],
+        "program_write_enable": [ { "direction": "out" } ]
+      }
+    }
+  }
+}
