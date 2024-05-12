@@ -75,12 +75,12 @@ input wire [9 : 0] address;
 input wire [31 : 0] memory_in;
 output wire [31 : 0] memory_out;
 input wire write_enable;
-output wire [9 : 0] data_address;
-output wire [31 : 0] data_in;
+output wire [11 : 0] data_address;
+output wire [7 : 0] data_in;
 input wire [31 : 0] data_out;
 output wire data_write_enable;
-output wire [9 : 0] program_address;
-output wire [15 : 0] program_in;
+output wire [10 : 0] program_address;
+output wire [7 : 0] program_in;
 input wire [15 : 0] program_out;
 output wire program_write_enable;
 

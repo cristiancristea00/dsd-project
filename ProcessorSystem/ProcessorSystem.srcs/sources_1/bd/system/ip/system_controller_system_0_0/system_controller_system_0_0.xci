@@ -68,7 +68,7 @@
         "cpu_clock": [ { "direction": "out" } ],
         "cpu_reset": [ { "direction": "out" } ],
         "select": [ { "direction": "out" } ],
-        "address": [ { "direction": "out", "size_left": "9", "size_right": "0" } ],
+        "address": [ { "direction": "out", "size_left": "11", "size_right": "0" } ],
         "memory_in": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
         "memory_out": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
         "write_enable": [ { "direction": "out" } ]

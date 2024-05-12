@@ -24,7 +24,7 @@ module master_controller
 
     /* Memory Port */
     output logic        select,
-    output logic [9:0]  address,
+    output logic [11:0] address,
     output logic [31:0] memory_in,
     output logic        write_enable,
     output logic        address_select

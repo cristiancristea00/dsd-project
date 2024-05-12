@@ -85,9 +85,9 @@ input wire clkb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB WE" *)
 input wire [0 : 0] web;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB ADDR" *)
-input wire [9 : 0] addrb;
+input wire [11 : 0] addrb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB DIN" *)
-input wire [31 : 0] dinb;
+input wire [7 : 0] dinb;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME BRAM_PORTB, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_WRITE_MODE READ_WRITE, READ_LATENCY 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB DOUT" *)
 output wire [31 : 0] doutb;
@@ -136,11 +136,11 @@ output wire [31 : 0] doutb;
     .C_USE_BYTE_WEB(0),
     .C_WEB_WIDTH(1),
     .C_WRITE_MODE_B("NO_CHANGE"),
-    .C_WRITE_WIDTH_B(32),
+    .C_WRITE_WIDTH_B(8),
     .C_READ_WIDTH_B(32),
-    .C_WRITE_DEPTH_B(1024),
+    .C_WRITE_DEPTH_B(4096),
     .C_READ_DEPTH_B(1024),
-    .C_ADDRB_WIDTH(10),
+    .C_ADDRB_WIDTH(12),
     .C_HAS_MEM_OUTPUT_REGS_A(1),
     .C_HAS_MEM_OUTPUT_REGS_B(0),
     .C_HAS_MUX_OUTPUT_REGS_A(0),
@@ -167,7 +167,7 @@ output wire [31 : 0] doutb;
     .C_DISABLE_WARN_BHV_RANGE(0),
     .C_COUNT_36K_BRAM("1"),
     .C_COUNT_18K_BRAM("0"),
-    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     5.26545 mW")
+    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     4.3817 mW")
   ) inst (
     .clka(clka),
     .rsta(1'D0),

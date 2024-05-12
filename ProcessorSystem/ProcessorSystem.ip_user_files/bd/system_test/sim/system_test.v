@@ -2,7 +2,7 @@
 //Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-//Date        : Sun May 12 11:34:40 2024
+//Date        : Sun May 12 12:52:02 2024
 //Host        : Jupiter running 64-bit major release  (build 9200)
 //Command     : generate_target system_test.bd
 //Design      : system_test
@@ -52,12 +52,12 @@ module system_test
   wire cpu_core_write;
   wire [31:0]data_memory_douta;
   wire [31:0]data_memory_doutb;
-  wire [9:0]memory_selector_data_address;
-  wire [31:0]memory_selector_data_in;
+  wire [11:0]memory_selector_data_address;
+  wire [7:0]memory_selector_data_in;
   wire memory_selector_data_write_enable;
   wire [31:0]memory_selector_memory_out;
-  wire [9:0]memory_selector_program_address;
-  wire [15:0]memory_selector_program_in;
+  wire [10:0]memory_selector_program_address;
+  wire [7:0]memory_selector_program_in;
   wire memory_selector_program_write_enable;
   wire [15:0]program_memory_douta;
   wire [15:0]program_memory_doutb;

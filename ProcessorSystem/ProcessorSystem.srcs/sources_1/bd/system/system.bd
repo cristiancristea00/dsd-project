@@ -131,6 +131,9 @@
           "Operating_Mode_B": {
             "value": "NO_CHANGE"
           },
+          "Read_Width_B": {
+            "value": "32"
+          },
           "Register_PortA_Output_of_Memory_Core": {
             "value": "false"
           },
@@ -148,6 +151,9 @@
           },
           "Write_Depth_A": {
             "value": "1024"
+          },
+          "Write_Width_B": {
+            "value": "8"
           },
           "use_bram_block": {
             "value": "Stand_Alone"
@@ -181,6 +187,9 @@
           "Operating_Mode_B": {
             "value": "WRITE_FIRST"
           },
+          "Read_Width_B": {
+            "value": "16"
+          },
           "Register_PortA_Output_of_Memory_Primitives": {
             "value": "false"
           },
@@ -195,6 +204,9 @@
           },
           "Write_Width_A": {
             "value": "16"
+          },
+          "Write_Width_B": {
+            "value": "8"
           },
           "use_bram_block": {
             "value": "Stand_Alone"
@@ -340,7 +352,7 @@
           },
           "address": {
             "direction": "I",
-            "left": "9",
+            "left": "11",
             "right": "0"
           },
           "memory_in": {
@@ -358,12 +370,12 @@
           },
           "data_address": {
             "direction": "O",
-            "left": "9",
+            "left": "11",
             "right": "0"
           },
           "data_in": {
             "direction": "O",
-            "left": "31",
+            "left": "7",
             "right": "0"
           },
           "data_out": {
@@ -376,12 +388,12 @@
           },
           "program_address": {
             "direction": "O",
-            "left": "9",
+            "left": "10",
             "right": "0"
           },
           "program_in": {
             "direction": "O",
-            "left": "15",
+            "left": "7",
             "right": "0"
           },
           "program_out": {
@@ -651,7 +663,7 @@
           },
           "address": {
             "direction": "O",
-            "left": "9",
+            "left": "11",
             "right": "0"
           },
           "memory_in": {

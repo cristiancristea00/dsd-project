@@ -47,7 +47,7 @@ module controller_system
 
     /* Memory Port */
     output wire                        select,
-    output wire [9:0]                  address,
+    output wire [11:0]                 address,
     output wire [31:0]                 memory_in,
     input  wire [31:0]                 memory_out,
     output wire                        write_enable

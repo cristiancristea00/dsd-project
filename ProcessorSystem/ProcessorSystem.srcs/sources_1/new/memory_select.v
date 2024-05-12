@@ -1,22 +1,22 @@
 module memory_select(
     /* Memory Port */
     input  wire        select, // 0 -> Data Memory, 1 -> Program Memory
-    input  wire [9:0]  address,
+    input  wire [11:0] address,
     input  wire [31:0] memory_in,
     output reg  [31:0] memory_out,
     input  wire        write_enable,
 
 
     /* Data Memory Port */
-    output reg  [9:0]  data_address,
-    output reg  [31:0] data_in,
+    output reg  [11:0] data_address,
+    output reg  [7:0]  data_in,
     input  wire [31:0] data_out,
     output reg         data_write_enable,
 
 
     /* Program Memory Port */
-    output reg  [9:0]  program_address,
-    output reg  [15:0] program_in,
+    output reg  [10:0] program_address,
+    output reg  [7:0]  program_in,
     input  wire [15:0] program_out,
     output reg         program_write_enable
 );
