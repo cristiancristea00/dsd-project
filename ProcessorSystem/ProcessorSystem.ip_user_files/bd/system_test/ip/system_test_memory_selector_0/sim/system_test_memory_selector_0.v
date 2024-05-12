@@ -71,8 +71,8 @@ module system_test_memory_selector_0 (
 );
 
 input wire select;
-input wire [9 : 0] address;
-input wire [31 : 0] memory_in;
+input wire [11 : 0] address;
+input wire [7 : 0] memory_in;
 output wire [31 : 0] memory_out;
 input wire write_enable;
 output wire [11 : 0] data_address;

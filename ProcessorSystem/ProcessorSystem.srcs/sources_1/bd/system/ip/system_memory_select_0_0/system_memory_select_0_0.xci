@@ -38,7 +38,7 @@
       "ports": {
         "select": [ { "direction": "in" } ],
         "address": [ { "direction": "in", "size_left": "11", "size_right": "0" } ],
-        "memory_in": [ { "direction": "in", "size_left": "31", "size_right": "0" } ],
+        "memory_in": [ { "direction": "in", "size_left": "7", "size_right": "0" } ],
         "memory_out": [ { "direction": "out", "size_left": "31", "size_right": "0" } ],
         "write_enable": [ { "direction": "in" } ],
         "data_address": [ { "direction": "out", "size_left": "11", "size_right": "0" } ],

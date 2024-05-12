@@ -109,7 +109,7 @@ output wire [15 : 0] doutb;
     .C_INIT_FILE_NAME("no_coe_file_loaded"),
     .C_INIT_FILE("NONE"),
     .C_USE_DEFAULT_DATA(1),
-    .C_DEFAULT_DATA("FF"),
+    .C_DEFAULT_DATA("FFFF"),
     .C_HAS_RSTA(0),
     .C_RST_PRIORITY_A("CE"),
     .C_RSTRAM_A(0),

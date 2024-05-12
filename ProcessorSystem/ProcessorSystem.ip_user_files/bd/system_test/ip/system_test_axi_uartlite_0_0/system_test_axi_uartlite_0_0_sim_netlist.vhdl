@@ -4,8 +4,8 @@
 -- Tool Version: Vivado v.2023.1.1 (lin64) Build 3900603 Fri Jun 16 19:30:25 MDT 2023
 -- Date        : Fri Apr 12 15:17:02 2024
 -- Host        : Hephaestion running 64-bit Ubuntu 23.10
--- Command     : write_vhdl -force -mode funcsim
---               /home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system_test/ip/system_test_axi_uartlite_0_0/system_test_axi_uartlite_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top system_test_axi_uartlite_0_0 -prefix
+--               system_test_axi_uartlite_0_0_ system_test_axi_uartlite_0_0_sim_netlist.vhdl
 -- Design      : system_test_axi_uartlite_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -21,8 +21,6 @@ entity system_test_axi_uartlite_0_0_baudrate is
     EN_16x_Baud_reg_0 : in STD_LOGIC;
     s_axi_aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_baudrate : entity is "baudrate";
 end system_test_axi_uartlite_0_0_baudrate;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_baudrate is
@@ -218,8 +216,6 @@ entity system_test_axi_uartlite_0_0_cdc_sync is
     rx : in STD_LOGIC;
     s_axi_aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_cdc_sync : entity is "cdc_sync";
 end system_test_axi_uartlite_0_0_cdc_sync;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_cdc_sync is
@@ -383,8 +379,6 @@ entity system_test_axi_uartlite_0_0_cntr_incr_decr_addn_f is
     s_axi_aresetn : in STD_LOGIC;
     s_axi_aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_cntr_incr_decr_addn_f : entity is "cntr_incr_decr_addn_f";
 end system_test_axi_uartlite_0_0_cntr_incr_decr_addn_f;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_cntr_incr_decr_addn_f is
@@ -800,8 +794,6 @@ entity system_test_axi_uartlite_0_0_dynshreg_f is
     Q : in STD_LOGIC_VECTOR ( 3 downto 0 );
     s_axi_aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_dynshreg_f : entity is "dynshreg_f";
 end system_test_axi_uartlite_0_0_dynshreg_f;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_dynshreg_f is
@@ -1147,8 +1139,6 @@ entity system_test_axi_uartlite_0_0_pselect_f is
     \GEN_BKEND_CE_REGISTERS[0].ce_out_i_reg[0]\ : in STD_LOGIC;
     \GEN_BKEND_CE_REGISTERS[0].ce_out_i_reg[0]_0\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_pselect_f : entity is "pselect_f";
 end system_test_axi_uartlite_0_0_pselect_f;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_pselect_f is
@@ -1239,8 +1229,6 @@ entity system_test_axi_uartlite_0_0_address_decoder is
     \GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]_2\ : in STD_LOGIC;
     \GEN_BKEND_CE_REGISTERS[2].ce_out_i_reg[2]_3\ : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_address_decoder : entity is "address_decoder";
 end system_test_axi_uartlite_0_0_address_decoder;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_address_decoder is
@@ -1695,8 +1683,6 @@ entity system_test_axi_uartlite_0_0_srl_fifo_rbu_f is
     s_axi_aresetn : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_srl_fifo_rbu_f : entity is "srl_fifo_rbu_f";
 end system_test_axi_uartlite_0_0_srl_fifo_rbu_f;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_srl_fifo_rbu_f is
@@ -1894,8 +1880,6 @@ entity system_test_axi_uartlite_0_0_slave_attachment is
     s_axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_slave_attachment : entity is "slave_attachment";
 end system_test_axi_uartlite_0_0_slave_attachment;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_slave_attachment is
@@ -2342,8 +2326,6 @@ entity system_test_axi_uartlite_0_0_srl_fifo_f is
     s_axi_aresetn : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_srl_fifo_f : entity is "srl_fifo_f";
 end system_test_axi_uartlite_0_0_srl_fifo_f;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_srl_fifo_f is
@@ -2465,8 +2447,6 @@ entity system_test_axi_uartlite_0_0_axi_lite_ipif is
     s_axi_araddr : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 1 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_axi_lite_ipif : entity is "axi_lite_ipif";
 end system_test_axi_uartlite_0_0_axi_lite_ipif;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_axi_lite_ipif is
@@ -2535,8 +2515,6 @@ entity system_test_axi_uartlite_0_0_uartlite_rx is
     \INFERRED_GEN.cnt_i_reg[0]\ : in STD_LOGIC;
     rx : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_uartlite_rx : entity is "uartlite_rx";
 end system_test_axi_uartlite_0_0_uartlite_rx;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_uartlite_rx is
@@ -3171,8 +3149,6 @@ entity system_test_axi_uartlite_0_0_uartlite_tx is
     s_axi_aresetn : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_uartlite_tx : entity is "uartlite_tx";
 end system_test_axi_uartlite_0_0_uartlite_tx;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_uartlite_tx is
@@ -3459,8 +3435,6 @@ entity system_test_axi_uartlite_0_0_uartlite_core is
     rx : in STD_LOGIC;
     s_axi_wdata : in STD_LOGIC_VECTOR ( 7 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_uartlite_core : entity is "uartlite_core";
 end system_test_axi_uartlite_0_0_uartlite_core;
 
 architecture STRUCTURE of system_test_axi_uartlite_0_0_uartlite_core is
@@ -3654,8 +3628,6 @@ entity system_test_axi_uartlite_0_0_axi_uartlite is
   attribute C_S_AXI_DATA_WIDTH of system_test_axi_uartlite_0_0_axi_uartlite : entity is 32;
   attribute C_USE_PARITY : integer;
   attribute C_USE_PARITY of system_test_axi_uartlite_0_0_axi_uartlite : entity is 0;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of system_test_axi_uartlite_0_0_axi_uartlite : entity is "axi_uartlite";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of system_test_axi_uartlite_0_0_axi_uartlite : entity is "yes";
 end system_test_axi_uartlite_0_0_axi_uartlite;

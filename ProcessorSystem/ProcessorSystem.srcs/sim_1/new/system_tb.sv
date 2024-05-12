@@ -80,12 +80,16 @@ endtask
 initial begin
     reset_dut();
     wait_clock(100);
-    send_byte(8'h20);
-    send_byte(8'h01);
-    send_byte(8'h02);
+    send_byte(8'h08);
     send_byte(8'h00);
-    send_byte(8'h02);
-    wait_clock(50000);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h04);
+    send_byte(8'h69);
+    send_byte(8'h88);
+    send_byte(8'hDE);
+    send_byte(8'hAD);
+    wait_clock(10000);
     $stop;
 end
 

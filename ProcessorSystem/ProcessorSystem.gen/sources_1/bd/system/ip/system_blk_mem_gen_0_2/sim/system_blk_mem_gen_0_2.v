@@ -82,9 +82,9 @@ input wire clkb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB WE" *)
 input wire [0 : 0] web;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB ADDR" *)
-input wire [9 : 0] addrb;
+input wire [10 : 0] addrb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB DIN" *)
-input wire [15 : 0] dinb;
+input wire [7 : 0] dinb;
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME BRAM_PORTB, MEM_SIZE 8192, MEM_WIDTH 32, MEM_ECC NONE, MASTER_TYPE OTHER, READ_WRITE_MODE READ_WRITE, READ_LATENCY 1" *)
 (* X_INTERFACE_INFO = "xilinx.com:interface:bram:1.0 BRAM_PORTB DOUT" *)
 output wire [15 : 0] doutb;
@@ -109,7 +109,7 @@ output wire [15 : 0] doutb;
     .C_INIT_FILE_NAME("no_coe_file_loaded"),
     .C_INIT_FILE("NONE"),
     .C_USE_DEFAULT_DATA(1),
-    .C_DEFAULT_DATA("FF"),
+    .C_DEFAULT_DATA("FFFF"),
     .C_HAS_RSTA(0),
     .C_RST_PRIORITY_A("CE"),
     .C_RSTRAM_A(0),
@@ -133,11 +133,11 @@ output wire [15 : 0] doutb;
     .C_USE_BYTE_WEB(0),
     .C_WEB_WIDTH(1),
     .C_WRITE_MODE_B("WRITE_FIRST"),
-    .C_WRITE_WIDTH_B(16),
+    .C_WRITE_WIDTH_B(8),
     .C_READ_WIDTH_B(16),
-    .C_WRITE_DEPTH_B(1024),
+    .C_WRITE_DEPTH_B(2048),
     .C_READ_DEPTH_B(1024),
-    .C_ADDRB_WIDTH(10),
+    .C_ADDRB_WIDTH(11),
     .C_HAS_MEM_OUTPUT_REGS_A(0),
     .C_HAS_MEM_OUTPUT_REGS_B(0),
     .C_HAS_MUX_OUTPUT_REGS_A(0),
@@ -164,7 +164,7 @@ output wire [15 : 0] doutb;
     .C_DISABLE_WARN_BHV_RANGE(0),
     .C_COUNT_36K_BRAM("0"),
     .C_COUNT_18K_BRAM("1"),
-    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     3.0901 mW")
+    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     2.72895 mW")
   ) inst (
     .clka(clka),
     .rsta(1'D0),

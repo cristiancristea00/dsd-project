@@ -121,7 +121,7 @@ output wire [31 : 0] doutb;
     .C_HAS_REGCEA(0),
     .C_USE_BYTE_WEA(0),
     .C_WEA_WIDTH(1),
-    .C_WRITE_MODE_A("NO_CHANGE"),
+    .C_WRITE_MODE_A("WRITE_FIRST"),
     .C_WRITE_WIDTH_A(32),
     .C_READ_WIDTH_A(32),
     .C_WRITE_DEPTH_A(1024),
@@ -141,7 +141,7 @@ output wire [31 : 0] doutb;
     .C_WRITE_DEPTH_B(4096),
     .C_READ_DEPTH_B(1024),
     .C_ADDRB_WIDTH(12),
-    .C_HAS_MEM_OUTPUT_REGS_A(1),
+    .C_HAS_MEM_OUTPUT_REGS_A(0),
     .C_HAS_MEM_OUTPUT_REGS_B(0),
     .C_HAS_MUX_OUTPUT_REGS_A(0),
     .C_HAS_MUX_OUTPUT_REGS_B(0),
@@ -167,7 +167,7 @@ output wire [31 : 0] doutb;
     .C_DISABLE_WARN_BHV_RANGE(0),
     .C_COUNT_36K_BRAM("1"),
     .C_COUNT_18K_BRAM("0"),
-    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     4.3817 mW")
+    .C_EST_POWER_SUMMARY("Estimated Power for IP     :     4.70905 mW")
   ) inst (
     .clka(clka),
     .rsta(1'D0),

@@ -42,8 +42,10 @@
 4. **Write Program Memory**
 
     ```custom
-    WRITE_PROG <ADDRESS> <LENGTH> <WORD_1> <WORD_2> ... <WORD_N>
+    WRITE_PROG <ADDRESS> <LENGTH> <BYTE_1> <BYTE_2> ... <BYTE_N>
     ```
+
+    > The bytes from the 16-bit instruction are stored in the memory in little-endian format.
 
     Opcode: `0x08`
 
@@ -52,11 +54,15 @@
     8'b0000_1000
     ```
 
+
+
 5. **Write Data Memory**
 
     ```custom
-    WRITE_DATA <ADDRESS> <LENGTH> <DOUBLE_WORD_1> <DOUBLE_WORD_2> ... <DOUBLE_WORD_N>
+    WRITE_DATA <ADDRESS> <LENGTH> <BYTE_1> <BYTE_2> ... <BYTE_N>
     ```
+
+    > The bytes from the 32-bit data are stored in the memory in little-endian format.
 
     Opcode: `0x10`
 

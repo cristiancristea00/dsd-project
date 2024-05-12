@@ -4,8 +4,8 @@
 // Tool Version: Vivado v.2023.1.1 (lin64) Build 3900603 Fri Jun 16 19:30:25 MDT 2023
 // Date        : Fri Apr 12 15:17:02 2024
 // Host        : Hephaestion running 64-bit Ubuntu 23.10
-// Command     : write_verilog -force -mode synth_stub
-//               /home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system_test/ip/system_test_axi_uartlite_0_0/system_test_axi_uartlite_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top system_test_axi_uartlite_0_0 -prefix
+//               system_test_axi_uartlite_0_0_ system_test_axi_uartlite_0_0_stub.v
 // Design      : system_test_axi_uartlite_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7a100tcsg324-1

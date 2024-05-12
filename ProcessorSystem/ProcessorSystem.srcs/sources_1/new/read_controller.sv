@@ -19,7 +19,7 @@ module read_controller
 
 
     /* Memory Port */
-    output logic [9:0]  address,
+    output logic [11:0] address,
     input  logic [31:0] memory_out
 );
 

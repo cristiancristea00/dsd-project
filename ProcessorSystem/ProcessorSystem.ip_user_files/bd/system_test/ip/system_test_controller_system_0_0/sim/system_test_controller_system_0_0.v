@@ -138,8 +138,8 @@ output wire cpu_clock;
 (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 cpu_reset RST" *)
 output wire cpu_reset;
 output wire select;
-output wire [9 : 0] address;
-output wire [31 : 0] memory_in;
+output wire [11 : 0] address;
+output wire [7 : 0] memory_in;
 input wire [31 : 0] memory_out;
 output wire write_enable;
 
