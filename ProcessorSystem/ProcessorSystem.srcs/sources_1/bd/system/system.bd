@@ -14,9 +14,9 @@
       "rst_inv": "",
       "data_memory": "",
       "program_memory": "",
+      "clk_gen": "",
       "cpu_core": "",
       "memory_selector": "",
-      "clk_gen": "",
       "controller_system": ""
     },
     "ports": {
@@ -51,7 +51,7 @@
       "axi_uart": {
         "vlnv": "xilinx.com:ip:axi_uartlite:2.0",
         "xci_name": "system_axi_uartlite_0_0",
-        "xci_path": "ip/system_axi_uartlite_0_0/system_axi_uartlite_0_0.xci",
+        "xci_path": "ip\\system_axi_uartlite_0_0\\system_axi_uartlite_0_0.xci",
         "inst_hier_path": "axi_uart",
         "parameters": {
           "C_BAUDRATE": {
@@ -65,7 +65,7 @@
       "rst_inv": {
         "vlnv": "xilinx.com:module_ref:rst_inv:1.0",
         "xci_name": "system_rst_inv_0_0",
-        "xci_path": "ip/system_rst_inv_0_0/system_rst_inv_0_0.xci",
+        "xci_path": "ip\\system_rst_inv_0_0\\system_rst_inv_0_0.xci",
         "inst_hier_path": "rst_inv",
         "reference_info": {
           "ref_type": "hdl",
@@ -98,7 +98,7 @@
       "data_memory": {
         "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
         "xci_name": "system_blk_mem_gen_0_1",
-        "xci_path": "ip/system_blk_mem_gen_0_1/system_blk_mem_gen_0_1.xci",
+        "xci_path": "ip\\system_blk_mem_gen_0_1\\system_blk_mem_gen_0_1.xci",
         "inst_hier_path": "data_memory",
         "parameters": {
           "Additional_Inputs_for_Power_Estimation": {
@@ -157,7 +157,7 @@
       "program_memory": {
         "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
         "xci_name": "system_blk_mem_gen_0_2",
-        "xci_path": "ip/system_blk_mem_gen_0_2/system_blk_mem_gen_0_2.xci",
+        "xci_path": "ip\\system_blk_mem_gen_0_2\\system_blk_mem_gen_0_2.xci",
         "inst_hier_path": "program_memory",
         "parameters": {
           "Assume_Synchronous_Clk": {
@@ -201,10 +201,75 @@
           }
         }
       },
+      "clk_gen": {
+        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
+        "xci_name": "system_clk_wiz_0_0",
+        "xci_path": "ip\\system_clk_wiz_0_0\\system_clk_wiz_0_0.xci",
+        "inst_hier_path": "clk_gen",
+        "parameters": {
+          "CLKOUT1_DRIVES": {
+            "value": "BUFGCE"
+          },
+          "CLKOUT1_JITTER": {
+            "value": "116.394"
+          },
+          "CLKOUT1_PHASE_ERROR": {
+            "value": "87.466"
+          },
+          "CLKOUT1_USED": {
+            "value": "true"
+          },
+          "CLKOUT2_DRIVES": {
+            "value": "BUFGCE"
+          },
+          "CLKOUT3_DRIVES": {
+            "value": "BUFGCE"
+          },
+          "CLKOUT4_DRIVES": {
+            "value": "BUFGCE"
+          },
+          "CLKOUT5_DRIVES": {
+            "value": "BUFGCE"
+          },
+          "CLKOUT6_DRIVES": {
+            "value": "BUFGCE"
+          },
+          "CLKOUT7_DRIVES": {
+            "value": "BUFGCE"
+          },
+          "CLK_OUT1_PORT": {
+            "value": "sys_clk"
+          },
+          "FEEDBACK_SOURCE": {
+            "value": "FDBK_AUTO"
+          },
+          "JITTER_SEL": {
+            "value": "Min_O_Jitter"
+          },
+          "MMCM_BANDWIDTH": {
+            "value": "HIGH"
+          },
+          "MMCM_CLKFBOUT_MULT_F": {
+            "value": "11.875"
+          },
+          "MMCM_CLKOUT0_DIVIDE_F": {
+            "value": "11.875"
+          },
+          "USE_LOCKED": {
+            "value": "false"
+          },
+          "USE_RESET": {
+            "value": "false"
+          },
+          "USE_SAFE_CLOCK_STARTUP": {
+            "value": "true"
+          }
+        }
+      },
       "cpu_core": {
         "vlnv": "xilinx.com:module_ref:core:1.0",
         "xci_name": "system_core_0_0",
-        "xci_path": "ip/system_core_0_0/system_core_0_0.xci",
+        "xci_path": "ip\\system_core_0_0\\system_core_0_0.xci",
         "inst_hier_path": "cpu_core",
         "reference_info": {
           "ref_type": "hdl",
@@ -219,10 +284,6 @@
               "ASSOCIATED_RESET": {
                 "value": "reset",
                 "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "system_controller_system_0_0_cpu_clock",
-                "value_src": "default_prop"
               }
             }
           },
@@ -266,7 +327,7 @@
       "memory_selector": {
         "vlnv": "xilinx.com:module_ref:memory_select:1.0",
         "xci_name": "system_memory_select_0_0",
-        "xci_path": "ip/system_memory_select_0_0/system_memory_select_0_0.xci",
+        "xci_path": "ip\\system_memory_select_0_0\\system_memory_select_0_0.xci",
         "inst_hier_path": "memory_selector",
         "reference_info": {
           "ref_type": "hdl",
@@ -333,75 +394,10 @@
           }
         }
       },
-      "clk_gen": {
-        "vlnv": "xilinx.com:ip:clk_wiz:6.0",
-        "xci_name": "system_clk_wiz_0_0",
-        "xci_path": "ip/system_clk_wiz_0_0/system_clk_wiz_0_0.xci",
-        "inst_hier_path": "clk_gen",
-        "parameters": {
-          "CLKOUT1_DRIVES": {
-            "value": "BUFGCE"
-          },
-          "CLKOUT1_JITTER": {
-            "value": "116.394"
-          },
-          "CLKOUT1_PHASE_ERROR": {
-            "value": "87.466"
-          },
-          "CLKOUT1_USED": {
-            "value": "true"
-          },
-          "CLKOUT2_DRIVES": {
-            "value": "BUFGCE"
-          },
-          "CLKOUT3_DRIVES": {
-            "value": "BUFGCE"
-          },
-          "CLKOUT4_DRIVES": {
-            "value": "BUFGCE"
-          },
-          "CLKOUT5_DRIVES": {
-            "value": "BUFGCE"
-          },
-          "CLKOUT6_DRIVES": {
-            "value": "BUFGCE"
-          },
-          "CLKOUT7_DRIVES": {
-            "value": "BUFGCE"
-          },
-          "CLK_OUT1_PORT": {
-            "value": "sys_clk"
-          },
-          "FEEDBACK_SOURCE": {
-            "value": "FDBK_AUTO"
-          },
-          "JITTER_SEL": {
-            "value": "Min_O_Jitter"
-          },
-          "MMCM_BANDWIDTH": {
-            "value": "HIGH"
-          },
-          "MMCM_CLKFBOUT_MULT_F": {
-            "value": "11.875"
-          },
-          "MMCM_CLKOUT0_DIVIDE_F": {
-            "value": "11.875"
-          },
-          "USE_LOCKED": {
-            "value": "false"
-          },
-          "USE_RESET": {
-            "value": "false"
-          },
-          "USE_SAFE_CLOCK_STARTUP": {
-            "value": "true"
-          }
-        }
-      },
       "controller_system": {
         "vlnv": "xilinx.com:module_ref:controller_system:1.0",
         "xci_name": "system_controller_system_0_0",
-        "xci_path": "ip/system_controller_system_0_0/system_controller_system_0_0.xci",
+        "xci_path": "ip\\system_controller_system_0_0\\system_controller_system_0_0.xci",
         "inst_hier_path": "controller_system",
         "reference_info": {
           "ref_type": "hdl",

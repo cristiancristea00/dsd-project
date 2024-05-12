@@ -61,7 +61,7 @@ always_ff @ (posedge clock) begin
         transfer_ready <= SET;
 
         internal_data <= CLEAR;
-        curr_byte <= CLEAR;
+        curr_byte <= 3;
         current_double_word <= CLEAR;
 
         address <= CLEAR;
@@ -109,10 +109,10 @@ always_ff @ (posedge clock) begin
                 start_write <= CLEAR;
 
                 if (write_data_ready) begin
-                    curr_byte <= curr_byte + 1;
+                    curr_byte <= curr_byte - 1;
 
-                    if (curr_byte == 3) begin
-                        curr_byte <= CLEAR;
+                    if (curr_byte == 0) begin
+                        curr_byte <= 3;
 
                         if (current_double_word == length) begin
                             state <= IDLE;

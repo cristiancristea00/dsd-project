@@ -43,7 +43,7 @@
       "axilite_uart": {
         "vlnv": "xilinx.com:ip:axi_uartlite:2.0",
         "xci_name": "system_test_axi_uartlite_0_0",
-        "xci_path": "ip/system_test_axi_uartlite_0_0/system_test_axi_uartlite_0_0.xci",
+        "xci_path": "ip\\system_test_axi_uartlite_0_0\\system_test_axi_uartlite_0_0.xci",
         "inst_hier_path": "axilite_uart",
         "parameters": {
           "C_BAUDRATE": {
@@ -57,7 +57,7 @@
       "data_memory": {
         "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
         "xci_name": "system_test_data_memory_0",
-        "xci_path": "ip/system_test_data_memory_0/system_test_data_memory_0.xci",
+        "xci_path": "ip\\system_test_data_memory_0\\system_test_data_memory_0.xci",
         "inst_hier_path": "data_memory",
         "parameters": {
           "Additional_Inputs_for_Power_Estimation": {
@@ -116,7 +116,7 @@
       "program_memory": {
         "vlnv": "xilinx.com:ip:blk_mem_gen:8.4",
         "xci_name": "system_test_program_memory_0",
-        "xci_path": "ip/system_test_program_memory_0/system_test_program_memory_0.xci",
+        "xci_path": "ip\\system_test_program_memory_0\\system_test_program_memory_0.xci",
         "inst_hier_path": "program_memory",
         "parameters": {
           "Assume_Synchronous_Clk": {
@@ -163,7 +163,7 @@
       "cpu_core": {
         "vlnv": "xilinx.com:module_ref:core:1.0",
         "xci_name": "system_test_cpu_core_0",
-        "xci_path": "ip/system_test_cpu_core_0/system_test_cpu_core_0.xci",
+        "xci_path": "ip\\system_test_cpu_core_0\\system_test_cpu_core_0.xci",
         "inst_hier_path": "cpu_core",
         "reference_info": {
           "ref_type": "hdl",
@@ -225,7 +225,7 @@
       "memory_selector": {
         "vlnv": "xilinx.com:module_ref:memory_select:1.0",
         "xci_name": "system_test_memory_selector_0",
-        "xci_path": "ip/system_test_memory_selector_0/system_test_memory_selector_0.xci",
+        "xci_path": "ip\\system_test_memory_selector_0\\system_test_memory_selector_0.xci",
         "inst_hier_path": "memory_selector",
         "reference_info": {
           "ref_type": "hdl",
@@ -295,7 +295,7 @@
       "controller_system": {
         "vlnv": "xilinx.com:module_ref:controller_system:1.0",
         "xci_name": "system_test_controller_system_0_0",
-        "xci_path": "ip/system_test_controller_system_0_0/system_test_controller_system_0_0.xci",
+        "xci_path": "ip\\system_test_controller_system_0_0\\system_test_controller_system_0_0.xci",
         "inst_hier_path": "controller_system",
         "reference_info": {
           "ref_type": "hdl",

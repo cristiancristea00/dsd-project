@@ -1,0 +1,10 @@
+system_axi_uartlite_0_0_sim_netlist.v,verilog,xil_defaultlib,../../../bd/system/ip/system_axi_uartlite_0_0/system_axi_uartlite_0_0_sim_netlist.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system_clk_wiz_0_0_sim_netlist.v,verilog,xil_defaultlib,../../../bd/system/ip/system_clk_wiz_0_0/system_clk_wiz_0_0_sim_netlist.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system_rst_inv_0_0.v,verilog,xil_defaultlib,../../../bd/system/ip/system_rst_inv_0_0/sim/system_rst_inv_0_0.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system_core_0_0.v,verilog,xil_defaultlib,../../../bd/system/ip/system_core_0_0/sim/system_core_0_0.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system_blk_mem_gen_0_1.v,verilog,xil_defaultlib,../../../bd/system/ip/system_blk_mem_gen_0_1/sim/system_blk_mem_gen_0_1.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system_blk_mem_gen_0_2.v,verilog,xil_defaultlib,../../../bd/system/ip/system_blk_mem_gen_0_2/sim/system_blk_mem_gen_0_2.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system_memory_select_0_0.v,verilog,xil_defaultlib,../../../bd/system/ip/system_memory_select_0_0/sim/system_memory_select_0_0.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system_controller_system_0_0.v,verilog,xil_defaultlib,../../../bd/system/ip/system_controller_system_0_0/sim/system_controller_system_0_0.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+system.v,verilog,xil_defaultlib,../../../bd/system/sim/system.v,incdir="../../../../ProcessorSystem.gen/sources_1/bd/system/ipshared/30ef"
+glbl.v,Verilog,xil_defaultlib,glbl.v

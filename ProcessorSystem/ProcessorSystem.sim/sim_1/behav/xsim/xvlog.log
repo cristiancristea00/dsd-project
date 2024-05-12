@@ -1,16 +1,14 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/address_selector.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/address_selector.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module address_selector
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/cpu_controller.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/cpu_controller.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module cpu_controller
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/master_controller.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/master_controller.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module master_controller
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module read_controller
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_controller.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_controller.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module uart_controller
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_rx_ctrl.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_rx_ctrl.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module uart_rx_ctrl
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_tx_ctrl.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_tx_ctrl.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module uart_tx_ctrl
-INFO: [VRFC 10-2263] Analyzing Verilog file "/home/cristian/Documents/ACES/DSD/ProcessorSystem/ProcessorSystem.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl

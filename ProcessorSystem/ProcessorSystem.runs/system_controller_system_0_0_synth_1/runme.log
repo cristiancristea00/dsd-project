@@ -1,0 +1,458 @@
+
+*** Running vivado
+    with args -log system_controller_system_0_0.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_controller_system_0_0.tcl
+
+
+ECHO is off.
+ECHO is off.
+
+****** Vivado v2023.1.1 (64-bit)
+  **** SW Build 3900603 on Fri Jun 16 19:31:24 MDT 2023
+  **** IP Build 3900379 on Sat Jun 17 05:28:05 MDT 2023
+  **** SharedData Build 3899622 on Fri Jun 16 03:34:24 MDT 2023
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source system_controller_system_0_0.tcl -notrace
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 470.074 ; gain = 198.191
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'W:/Xilinx/Vivado/2023.1/data/ip'.
+INFO: [IP_Flow 19-6924] IPCACHE: Running cache check for IP inst: system_controller_system_0_0
+Command: synth_design -top system_controller_system_0_0 -part xc7a100tcsg324-1 -incremental_mode off -mode out_of_context
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100t'
+INFO: [Device 21-403] Loading part xc7a100tcsg324-1
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 2472
+INFO: [Synth 8-11241] undeclared symbol 'ADDRESS', assumed default net type 'wire' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv:78]
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1308.965 ; gain = 409.570
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'system_controller_system_0_0' [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/synth/system_controller_system_0_0.v:53]
+INFO: [Synth 8-6157] synthesizing module 'controller_system' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/controller_system.v:1]
+INFO: [Synth 8-6157] synthesizing module 'master_controller' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/master_controller.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/master_controller.sv:66]
+INFO: [Synth 8-6155] done synthesizing module 'master_controller' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/master_controller.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'read_controller' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv:53]
+INFO: [Synth 8-6155] done synthesizing module 'read_controller' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'cpu_controller' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/cpu_controller.sv:1]
+INFO: [Synth 8-155] case statement is not full and has no default [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/cpu_controller.sv:42]
+INFO: [Synth 8-155] case statement is not full and has no default [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/cpu_controller.sv:50]
+INFO: [Synth 8-155] case statement is not full and has no default [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/cpu_controller.sv:40]
+INFO: [Synth 8-6155] done synthesizing module 'cpu_controller' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/cpu_controller.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'uart_controller' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_controller.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'uart_rx_ctrl' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_rx_ctrl.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'uart_rx_ctrl' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_rx_ctrl.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'uart_tx_ctrl' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_tx_ctrl.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'uart_tx_ctrl' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_tx_ctrl.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'uart_controller' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_controller.sv:1]
+INFO: [Synth 8-6157] synthesizing module 'address_selector' [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/address_selector.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'address_selector' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/address_selector.sv:1]
+INFO: [Synth 8-6155] done synthesizing module 'controller_system' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/controller_system.v:1]
+INFO: [Synth 8-6155] done synthesizing module 'system_controller_system_0_0' (0#1) [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/ip/system_controller_system_0_0/synth/system_controller_system_0_0.v:53]
+WARNING: [Synth 8-3848] Net address in module/entity read_controller does not have driver. [W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv:21]
+WARNING: [Synth 8-7129] Port axi_rdata[31] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[30] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[29] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[28] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[27] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[26] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[25] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[24] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[23] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[22] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[21] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[20] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[19] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[18] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[17] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[16] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[15] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[14] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[13] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[12] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[11] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[10] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[9] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[8] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rresp[1] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rresp[0] in module uart_rx_ctrl is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[9] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[8] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[7] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[6] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[5] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[4] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[3] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[2] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[1] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[0] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[31] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[30] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[29] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[28] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[27] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[26] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[25] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[24] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[23] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[22] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[21] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[20] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[19] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[18] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[17] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[16] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[15] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[14] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[13] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[12] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[11] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[10] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[9] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[8] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[7] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[6] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[5] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[4] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[3] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[2] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[1] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port memory_out[0] in module read_controller is either unconnected or has no load
+WARNING: [Synth 8-7129] Port transfer_ready in module master_controller is either unconnected or has no load
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1405.727 ; gain = 506.332
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1405.727 ; gain = 506.332
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1405.727 ; gain = 506.332
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1405.727 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1466.801 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.031 . Memory (MB): peak = 1466.812 ; gain = 0.012
+INFO: [Designutils 20-5008] Incremental synthesis strategy off
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7a100tcsg324-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'master_controller'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'read_controller'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'cpu_controller'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_rx_ctrl'
+INFO: [Synth 8-802] inferred FSM for state register 'state_reg' in module 'uart_tx_ctrl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                              001 |                              001
+                    WAIT |                              010 |                              010
+                    DONE |                              100 |                              100
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'master_controller'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                               01 |                               01
+                    WAIT |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'read_controller'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                 STOPPED |                               01 |                               01
+                 RUNNING |                               10 |                               10
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'cpu_controller'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                           000001 |                           000001
+       START_READ_STATUS |                           000010 |                           000010
+        WAIT_READ_STATUS |                           000100 |                           000100
+             READ_STATUS |                           001000 |                           001000
+         START_READ_DATA |                           010000 |                           010000
+               READ_DATA |                           100000 |                           100000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'uart_rx_ctrl'
+---------------------------------------------------------------------------------------------------
+                   State |                     New Encoding |                Previous Encoding 
+---------------------------------------------------------------------------------------------------
+*
+                    IDLE |                             0001 |                             0001
+                   START |                             0010 |                             0010
+                    SEND |                             0100 |                             0100
+                   CHECK |                             1000 |                             1000
+---------------------------------------------------------------------------------------------------
+INFO: [Synth 8-3898] No Re-encoding of one hot register 'state_reg' in module 'uart_tx_ctrl'
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Registers : 
+	               32 Bit    Registers := 3     
+	                8 Bit    Registers := 4     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 9     
++---Muxes : 
+	   7 Input   32 Bit        Muxes := 1     
+	   5 Input   32 Bit        Muxes := 2     
+	   2 Input   10 Bit        Muxes := 1     
+	   7 Input    8 Bit        Muxes := 1     
+	   7 Input    6 Bit        Muxes := 1     
+	   2 Input    5 Bit        Muxes := 1     
+	   5 Input    4 Bit        Muxes := 1     
+	   4 Input    3 Bit        Muxes := 1     
+	   2 Input    2 Bit        Muxes := 2     
+	   4 Input    2 Bit        Muxes := 2     
+	   3 Input    2 Bit        Muxes := 2     
+	   4 Input    1 Bit        Muxes := 6     
+	   3 Input    1 Bit        Muxes := 6     
+	   2 Input    1 Bit        Muxes := 5     
+	   7 Input    1 Bit        Muxes := 9     
+	   5 Input    1 Bit        Muxes := 6     
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 240 (col length:80)
+BRAMs: 270 (col length: RAMB18 80 RAMB36 40)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_awprot[2] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_awprot[1] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_awprot[0] driven by constant 1
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_wstrb[3] driven by constant 1
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_wstrb[2] driven by constant 1
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_wstrb[1] driven by constant 1
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_wstrb[0] driven by constant 1
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_bready driven by constant 1
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_arprot[2] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_arprot[1] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port axi_arprot[0] driven by constant 1
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port select driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[31] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[30] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[29] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[28] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[27] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[26] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[25] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[24] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[23] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[22] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[21] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[20] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[19] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[18] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[17] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[16] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[15] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[14] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[13] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[12] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[11] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[10] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[9] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[8] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[7] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[6] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[5] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[4] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[3] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[2] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[1] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port memory_in[0] driven by constant 0
+INFO: [Synth 8-3917] design system_controller_system_0_0 has port write_enable driven by constant 0
+WARNING: [Synth 8-7129] Port address[9] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[8] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[7] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[6] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[5] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[4] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[3] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[2] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[1] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port address[0] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[31] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[30] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[29] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[28] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[27] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[26] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[25] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[24] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[23] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[22] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[21] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[20] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[19] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[18] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[17] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[16] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[15] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[14] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[13] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[12] in module system_controller_system_0_0 is either unconnected or has no load
+WARNING: [Synth 8-7129] Port axi_rdata[11] in module system_controller_system_0_0 is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:20 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+-----+------+
+|      |Cell |Count |
++------+-----+------+
+|1     |LUT1 |     1|
+|2     |LUT2 |    11|
+|3     |LUT3 |     6|
+|4     |LUT4 |     8|
+|5     |LUT5 |     7|
+|6     |LUT6 |    25|
+|7     |FDRE |    36|
+|8     |FDSE |     4|
++------+-----+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 69 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:29 . Memory (MB): peak = 1466.812 ; gain = 506.332
+Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1466.812 ; gain = 567.418
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1466.812 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1466.812 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete | Checksum: ec4b4535
+INFO: [Common 17-83] Releasing license: Synthesis
+97 Infos, 102 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:35 ; elapsed = 00:00:38 . Memory (MB): peak = 1466.812 ; gain = 963.102
+INFO: [Common 17-1381] The checkpoint 'W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/system_controller_system_0_0_synth_1/system_controller_system_0_0.dcp' has been generated.
+INFO: [Coretcl 2-1648] Added synthesis output to IP cache for IP system_controller_system_0_0, cache-ID = 05f837e580a9a40b
+INFO: [Coretcl 2-1174] Renamed 6 cell refs.
+INFO: [Common 17-1381] The checkpoint 'W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/system_controller_system_0_0_synth_1/system_controller_system_0_0.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file system_controller_system_0_0_utilization_synth.rpt -pb system_controller_system_0_0_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Tue Apr  9 21:50:54 2024...
