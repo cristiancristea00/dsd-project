@@ -1,0 +1,51 @@
+title = 'Vector addition example'
+
+actions = [
+    'WRITE_PROG add',
+    'WRITE_DATA vector1',
+    'WRITE_DATA vector2',
+    'START',
+    'RESET',
+    'WAIT 1',
+    'STOP',
+    'READ_DATA result'
+]
+
+
+
+[programs]
+
+[programs.add]
+address = 0x0000
+data = '''
+    LOADC R0, 9       // Load the counter with 9
+    LOADC R1, 1       // Load the increment constant with 1
+    LOADC R2, 0x0000  // Load the address of the first vector
+    LOADC R3, 0x0009  // Load the address of the second vector
+    LOADC R4, 0x0012  // Load the address of the result vector
+    LOAD R5, R2       // Load the current element of the first vector
+    LOAD R6, R3       // Load the current element of the second vector
+    ADD R7, R5, R6    // Add the two elements
+    STORE R4, R7      // Store the result
+    ADD R2, R2, R1    // Increment the address of the first vector
+    ADD R3, R3, R1    // Increment the address of the second vector
+    ADD R4, R4, R1    // Increment the address of the result vector
+    SUB R0, R0, R1    // Decrement the counter
+    JMPRNZ R0, -8     // Repeat until the counter is zero
+'''
+
+
+
+[memories]
+
+[memories.vector1]
+address = 0x0000
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+[memories.vector2]
+address = 0x0009
+data = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+[memories.result]
+address = 0x0012
+length = 9

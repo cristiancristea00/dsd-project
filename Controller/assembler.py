@@ -184,7 +184,6 @@ class Assembler:
     @classmethod
     def _process_number(cls, number_str: str, no_of_bits: int, *, only_positive: bool = False, complement: bool = False) -> str:
         number: Final[int] = int(number_str, 16) if number_str.startswith('0x') else int(number_str)
-        print(number)
 
         if number < 0:
             if only_positive:
