@@ -12,15 +12,15 @@ class Assembler:
     @classmethod
     def run_on_string(cls, assembly: str) -> bytes:
         parsed: Final[tuple[str, ...]] = cls._parse_string(assembly)
-        return cls.run_on_list(parsed)
+        return cls.run_on_iterable(parsed)
 
     @classmethod
     def run_on_file(cls, file: Path | str, encoding: str = 'UTF-8') -> bytes:
         parsed: Final[tuple[str, ...]] = cls._parse_file(file, encoding)
-        return cls.run_on_list(parsed)
+        return cls.run_on_iterable(parsed)
 
     @classmethod
-    def run_on_list(cls, assembly: Iterable[str]) -> bytes:
+    def run_on_iterable(cls, assembly: Iterable[str]) -> bytes:
         return cls._parse_lines(assembly)
 
     @classmethod
@@ -63,7 +63,8 @@ class Assembler:
 
     @classmethod
     def _parse_lines(cls, lines: Iterable[str]) -> bytes:
-        return b''.join(cls._parse_line(line) for line in lines)
+        sanitized: Final[tuple[str, ...]] = tuple(cls._strip_line(line) for line in lines if cls._keep_line(line))
+        return b''.join(cls._parse_line(line) for line in sanitized)
 
     @classmethod
     def _parse_line(cls, line: str) -> bytes:
@@ -178,7 +179,8 @@ class Assembler:
 
     @classmethod
     def _bytes_from_instruction(cls, instruction: str) -> bytes:
-        in_hex: Final[str] = hex(int(instruction.zfill(16), 2))[2:]
+        in_hex: str = hex(int(instruction.zfill(16), 2))[2:]
+        in_hex = F'{in_hex[:8]}{in_hex[8:]}'  # Swap the bytes to have little-endian format
         return bytes.fromhex(in_hex)
 
     @classmethod
