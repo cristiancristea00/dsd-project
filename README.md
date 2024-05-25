@@ -1,4 +1,14 @@
-# Digital System Design Project – Control Language Specification
+# Digital System Design Project
+
+## Architecture
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="img/arch-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="img/arch-light.svg">
+  <img alt="Shows a diagram of the system architecture." src="img/arch-light.svg">
+</picture>
+
+## Control Language Specification
 
 1. **Reset the CPU**
 
