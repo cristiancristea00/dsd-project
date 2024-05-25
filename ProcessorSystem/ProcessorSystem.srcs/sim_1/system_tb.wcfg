@@ -12,14 +12,14 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000000 us"></ZoomStartTime>
-      <ZoomEndTime time="882.205001 us"></ZoomEndTime>
-      <Cursor1Time time="882.205000 us"></Cursor1Time>
+      <ZoomEndTime time="2,011.397126 us"></ZoomEndTime>
+      <Cursor1Time time="1,299.465000 us"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="203"></NameColumnWidth>
-      <ValueColumnWidth column_width="86"></ValueColumnWidth>
+      <ValueColumnWidth column_width="74"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="36" />
+   <WVObjectSize size="55" />
    <wvobject fp_name="/system_tb/clock" type="logic">
       <obj_property name="ElementShortName">clock</obj_property>
       <obj_property name="ObjectShortName">clock</obj_property>
@@ -167,5 +167,81 @@
    <wvobject fp_name="/system_tb/dut/system_test_i/controller_system/inst/read_ctrl/current_double_word" type="array">
       <obj_property name="ElementShortName">current_double_word[10:0]</obj_property>
       <obj_property name="ObjectShortName">current_double_word[10:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider46">
+      <obj_property name="label">cpu_ctrl</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/controller_system/inst/cpu_ctrl/cpu_clock" type="logic">
+      <obj_property name="ElementShortName">cpu_clock</obj_property>
+      <obj_property name="ObjectShortName">cpu_clock</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/controller_system/inst/cpu_ctrl/cpu_reset" type="logic">
+      <obj_property name="ElementShortName">cpu_reset</obj_property>
+      <obj_property name="ObjectShortName">cpu_reset</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/controller_system/inst/cpu_ctrl/state" type="array">
+      <obj_property name="ElementShortName">state[1:0]</obj_property>
+      <obj_property name="ObjectShortName">state[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider43">
+      <obj_property name="label">data_memory</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/data_memory/addrb" type="array">
+      <obj_property name="ElementShortName">addrb[11:0]</obj_property>
+      <obj_property name="ObjectShortName">addrb[11:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/data_memory/doutb" type="array">
+      <obj_property name="ElementShortName">doutb[31:0]</obj_property>
+      <obj_property name="ObjectShortName">doutb[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/data_memory/dinb" type="array">
+      <obj_property name="ElementShortName">dinb[7:0]</obj_property>
+      <obj_property name="ObjectShortName">dinb[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/data_memory/web" type="array">
+      <obj_property name="ElementShortName">web[0:0]</obj_property>
+      <obj_property name="ObjectShortName">web[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider51">
+      <obj_property name="label">program_memory</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/program_memory/addra" type="array">
+      <obj_property name="ElementShortName">addra[9:0]</obj_property>
+      <obj_property name="ObjectShortName">addra[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/program_memory/douta" type="array">
+      <obj_property name="ElementShortName">douta[15:0]</obj_property>
+      <obj_property name="ObjectShortName">douta[15:0]</obj_property>
+   </wvobject>
+   <wvobject type="divider" fp_name="divider54">
+      <obj_property name="label">cpu</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/cpu_core/inst/fetch_stage/halt" type="logic">
+      <obj_property name="ElementShortName">halt</obj_property>
+      <obj_property name="ObjectShortName">halt</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/cpu_core/inst/fetch_stage/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/cpu_core/inst/fetch_stage/jump" type="logic">
+      <obj_property name="ElementShortName">jump</obj_property>
+      <obj_property name="ObjectShortName">jump</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/cpu_core/inst/fetch_stage/instruction" type="array">
+      <obj_property name="ElementShortName">instruction[15:0]</obj_property>
+      <obj_property name="ObjectShortName">instruction[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/cpu_core/inst/fetch_stage/last_pc" type="array">
+      <obj_property name="ElementShortName">last_pc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">last_pc[9:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/system_tb/dut/system_test_i/cpu_core/inst/fetch_stage/pc" type="array">
+      <obj_property name="ElementShortName">pc[9:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[9:0]</obj_property>
    </wvobject>
 </wave_config>

@@ -79,7 +79,7 @@ always_ff @ (posedge clock) begin
             SET_ADDRESS : begin
                 state <= READ_DATA_WAIT;
 
-                address <= start_address + current_double_word;
+                address <= start_address + current_double_word * 4;
             end
 
             READ_DATA_WAIT : begin

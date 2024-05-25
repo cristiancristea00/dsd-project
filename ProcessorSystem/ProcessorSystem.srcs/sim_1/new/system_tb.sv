@@ -80,16 +80,61 @@ endtask
 initial begin
     reset_dut();
     wait_clock(100);
+    
+    
+    
+//    send_byte(8'h10);
+    
+//    send_byte(8'h00);
+//    send_byte(8'h00);
+    
+//    send_byte(8'h00);
+//    send_byte(8'h08);
+    
+//    send_byte(8'h69);
+//    send_byte(8'h88);
+//    send_byte(8'hDE);
+//    send_byte(8'hAD);
+    
+//    send_byte(8'h44);
+//    send_byte(8'h55);
+//    send_byte(8'h66);
+//    send_byte(8'h77);
+    
+    
+//    send_byte(8'h20);
+    
+    
+//    send_byte(8'h00);
+//    send_byte(8'h00);
+    
+    
+//    send_byte(8'h00);
+//    send_byte(8'h02);
+
+
     send_byte(8'h08);
+    
+    send_byte(8'h00);
+    send_byte(8'h00);
+    
+    send_byte(8'h00);
+    send_byte(8'h08);
+    
     send_byte(8'h00);
     send_byte(8'h00);
     send_byte(8'h00);
-    send_byte(8'h04);
-    send_byte(8'h69);
-    send_byte(8'h88);
-    send_byte(8'hDE);
-    send_byte(8'hAD);
-    wait_clock(10000);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    
+    send_byte(8'h02);
+    send_byte(8'h01);
+
+    
+    wait_clock(50000);
     $stop;
 end
 

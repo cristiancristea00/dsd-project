@@ -3,8 +3,8 @@
 # SW Build 3900603 on Fri Jun 16 19:31:24 MDT 2023
 # IP Build 3900379 on Sat Jun 17 05:28:05 MDT 2023
 # SharedData Build 3899622 on Fri Jun 16 03:34:24 MDT 2023
-# Start of session at: Sun May 12 21:51:31 2024
-# Process ID: 3308
+# Start of session at: Sat May 25 22:31:02 2024
+# Process ID: 18864
 # Current directory: W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1
 # Command line: vivado.exe -log system_wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source system_wrapper.tcl
 # Log file: W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/system_wrapper.vds
@@ -12,11 +12,11 @@
 # Running On: Jupiter, OS: Windows, CPU Frequency: 3504 MHz, CPU Physical cores: 4, Host memory: 17053 MB
 #-----------------------------------------------------------
 source system_wrapper.tcl -notrace
-create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:10 . Memory (MB): peak = 471.805 ; gain = 201.777
+create_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:11 . Memory (MB): peak = 470.598 ; gain = 201.145
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'W:/Xilinx/Vivado/2023.1/data/ip'.
-add_files: Time (s): cpu = 00:00:00 ; elapsed = 00:00:07 . Memory (MB): peak = 500.688 ; gain = 28.883
+add_files: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 499.457 ; gain = 28.859
 Command: synth_design -top system_wrapper -part xc7a100tcsg324-1 -directive PerformanceOptimized -fsm_extraction one_hot -keep_equivalent_registers -resource_sharing off -no_lc -shreg_min_size 5
 Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7a100t'
@@ -24,48 +24,48 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 696
+INFO: [Synth 8-7075] Helper process launched with PID 4836
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:06 . Memory (MB): peak = 1311.473 ; gain = 410.133
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:06 . Memory (MB): peak = 1311.102 ; gain = 409.828
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'system_wrapper' [W:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/hdl/system_wrapper.v:13]
 INFO: [Synth 8-6157] synthesizing module 'system' [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/synth/system.v:13]
-INFO: [Synth 8-6157] synthesizing module 'system_axi_uartlite_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_axi_uartlite_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_axi_uartlite_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_axi_uartlite_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_axi_uartlite_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_axi_uartlite_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_axi_uartlite_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_axi_uartlite_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'interrupt' of module 'system_axi_uartlite_0_0' is unconnected for instance 'axi_uart' [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/synth/system.v:74]
 WARNING: [Synth 8-7023] instance 'axi_uart' of module 'system_axi_uartlite_0_0' has 22 connections declared, but only 21 given [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/synth/system.v:74]
-INFO: [Synth 8-6157] synthesizing module 'system_clk_wiz_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_clk_wiz_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_clk_wiz_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_clk_wiz_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'system_controller_system_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_controller_system_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_controller_system_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_controller_system_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_clk_wiz_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_clk_wiz_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_clk_wiz_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_clk_wiz_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_controller_system_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_controller_system_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_controller_system_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_controller_system_0_0_stub.v:6]
 WARNING: [Synth 8-7071] port 'axi_awprot' of module 'system_controller_system_0_0' is unconnected for instance 'controller_system' [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/synth/system.v:99]
 WARNING: [Synth 8-7071] port 'axi_arprot' of module 'system_controller_system_0_0' is unconnected for instance 'controller_system' [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/synth/system.v:99]
 WARNING: [Synth 8-7023] instance 'controller_system' of module 'system_controller_system_0_0' has 28 connections declared, but only 26 given [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/synth/system.v:99]
-INFO: [Synth 8-6157] synthesizing module 'system_core_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_core_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_core_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_core_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'system_blk_mem_gen_0_1' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_blk_mem_gen_0_1_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_blk_mem_gen_0_1' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_blk_mem_gen_0_1_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'system_memory_select_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_memory_select_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_memory_select_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_memory_select_0_0_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'system_blk_mem_gen_0_2' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_blk_mem_gen_0_2_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_blk_mem_gen_0_2' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_blk_mem_gen_0_2_stub.v:6]
-INFO: [Synth 8-6157] synthesizing module 'system_rst_inv_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_rst_inv_0_0_stub.v:6]
-INFO: [Synth 8-6155] done synthesizing module 'system_rst_inv_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-3308-Jupiter/realtime/system_rst_inv_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_core_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_core_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_core_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_core_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_blk_mem_gen_0_1' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_blk_mem_gen_0_1_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_blk_mem_gen_0_1' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_blk_mem_gen_0_1_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_memory_select_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_memory_select_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_memory_select_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_memory_select_0_0_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_blk_mem_gen_0_2' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_blk_mem_gen_0_2_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_blk_mem_gen_0_2' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_blk_mem_gen_0_2_stub.v:6]
+INFO: [Synth 8-6157] synthesizing module 'system_rst_inv_0_0' [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_rst_inv_0_0_stub.v:6]
+INFO: [Synth 8-6155] done synthesizing module 'system_rst_inv_0_0' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/.Xil/Vivado-18864-Jupiter/realtime/system_rst_inv_0_0_stub.v:6]
 INFO: [Synth 8-6155] done synthesizing module 'system' (0#1) [w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/synth/system.v:13]
 INFO: [Synth 8-6155] done synthesizing module 'system_wrapper' (0#1) [W:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/hdl/system_wrapper.v:13]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:07 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished RTL Elaboration : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1404.281 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1404.402 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -94,22 +94,22 @@ Parsing XDC File [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/do
 Finished Parsing XDC File [W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1404.281 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1404.402 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1404.281 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1404.402 ; gain = 0.000
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'system_i/data_memory' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 WARNING: [Timing 38-316] Clock period '20.000' specified during out-of-context synthesis of instance 'system_i/program_memory' at clock pin 'clka' is different from the actual clock period '10.000', this can lead to different synthesis results.
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished Constraint Validation : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
@@ -126,10 +126,10 @@ Applied set_property KEEP_HIERARCHY = SOFT for system_i/cpu_core. (constraint fi
 Applied set_property KEEP_HIERARCHY = SOFT for system_i/memory_selector. (constraint file  auto generated constraint).
 Applied set_property KEEP_HIERARCHY = SOFT for system_i/controller_system. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:15 ; elapsed = 00:00:16 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:19 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
@@ -152,25 +152,25 @@ Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:17 ; elapsed = 00:00:18 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:18 ; elapsed = 00:00:21 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished Timing Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1404.402 ; gain = 503.129
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:23 ; elapsed = 00:00:24 . Memory (MB): peak = 1404.281 ; gain = 502.941
+Finished Technology Mapping : Time (s): cpu = 00:00:24 ; elapsed = 00:00:27 . Memory (MB): peak = 1405.070 ; gain = 503.797
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -188,37 +188,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Finished IO Insertion : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -253,16 +253,16 @@ Report Cell Usage:
 |10    |OBUF                       |     1|
 +------+---------------------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 1 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:26 . Memory (MB): peak = 1417.941 ; gain = 516.602
-Synthesis Optimization Complete : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1417.941 ; gain = 516.602
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:20 ; elapsed = 00:00:29 . Memory (MB): peak = 1419.879 ; gain = 518.605
+Synthesis Optimization Complete : Time (s): cpu = 00:00:29 ; elapsed = 00:00:32 . Memory (MB): peak = 1419.879 ; gain = 518.605
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1430.051 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.004 . Memory (MB): peak = 1431.926 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1440.691 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1443.312 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
@@ -270,7 +270,7 @@ Synth Design complete | Checksum: 7e2a5b03
 INFO: [Common 17-83] Releasing license: Synthesis
 36 Infos, 8 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1440.691 ; gain = 940.004
+synth_design: Time (s): cpu = 00:00:34 ; elapsed = 00:00:41 . Memory (MB): peak = 1443.312 ; gain = 943.855
 INFO: [Common 17-1381] The checkpoint 'W:/dsd-project/ProcessorSystem/ProcessorSystem.runs/synth_1/system_wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file system_wrapper_utilization_synth.rpt -pb system_wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sun May 12 21:52:27 2024...
+INFO: [Common 17-206] Exiting Vivado at Sat May 25 22:32:08 2024...

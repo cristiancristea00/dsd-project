@@ -39,19 +39,15 @@ always_ff @ (posedge clock) begin
     else begin
         case (state)
             STOPPED : begin
-                case (command)
-                    START : begin
-                        state <= RUNNING;
-                    end
-                endcase
+                if (command == START) begin
+                    state <= RUNNING;
+                end
             end
 
             RUNNING : begin
-                case (command)
-                    STOP : begin
-                        state <= STOPPED;
-                    end
-                endcase
+                if (command == STOP) begin
+                    state <= STOPPED;
+                end
             end
         endcase
     end

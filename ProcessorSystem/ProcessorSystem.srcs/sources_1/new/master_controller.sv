@@ -139,19 +139,19 @@ always_ff @ (posedge clock) begin
                         COMM_RESET : begin
                             state <= IDLE;
                         
-                            command <= START;
+                            command <= RESET;
                         end
     
                         COMM_START : begin
                             state <= IDLE;
                         
-                            command <= STOP;
+                            command <= START;
                         end
     
                         COMM_STOP : begin
                             state <= IDLE;
                         
-                            command <= RESET;
+                            command <= STOP;
                         end
                         
                         COMM_WRITE_PROG : begin
@@ -183,7 +183,7 @@ always_ff @ (posedge clock) begin
                 state <= IDLE;
 
                 case (control_state)
-                    COMMAND : begin
+                    COMMAND : begin                    
                         control_state <= READ_ADDRESS;
                     end
 
@@ -269,6 +269,9 @@ always_ff @ (posedge clock) begin
                             state <= IDLE;
 
                             control_state <= COMMAND;
+
+                            curr_byte <= CLEAR;
+                            length <= CLEAR;
                         end
                         else begin
                             control_state <= NEW_BYTE;

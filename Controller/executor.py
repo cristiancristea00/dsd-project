@@ -99,6 +99,7 @@ class Executor:
                     device.write(b'\x10' + bytes(self.memories[command[1]]))
                 case 'READ_DATA':
                     device.write(b'\x20' + bytes(self.memories[command[1]]))
+                    print()
                     print_bytes(device.read(self.memories[command[1]].length * 4))
                 case 'WAIT':
                     sleep(int(command[1]))
@@ -107,6 +108,6 @@ class Executor:
 
 
 if __name__ == '__main__':
-    executor = Executor('input.toml')
+    executor = Executor('input.toml', port='COM4')
     print(executor)
     executor.run()

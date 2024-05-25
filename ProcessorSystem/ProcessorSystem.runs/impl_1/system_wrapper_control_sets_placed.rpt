@@ -1,0 +1,116 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
+| Date         : Sat May 25 22:33:15 2024
+| Host         : Jupiter running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file system_wrapper_control_sets_placed.rpt
+| Design       : system_wrapper
+| Device       : xc7a100t
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    38 |
+|    Minimum number of control sets                        |    38 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |    71 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    38 |
+| >= 0 to < 4        |     0 |
+| >= 4 to < 6        |     4 |
+| >= 6 to < 8        |     6 |
+| >= 8 to < 10       |     8 |
+| >= 10 to < 12      |     2 |
+| >= 12 to < 14      |     3 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    15 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |              16 |            4 |
+| No           | No                    | Yes                    |             173 |           65 |
+| No           | Yes                   | No                     |              70 |           31 |
+| Yes          | No                    | No                     |               2 |            1 |
+| Yes          | No                    | Yes                    |             292 |          135 |
+| Yes          | Yes                   | No                     |             224 |           57 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|                       Clock Signal                       |                                            Enable Signal                                            |                                               Set/Reset Signal                                               | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/uart_ctrl/uart_tx_controller/state_n_0                              | RST_IBUF                                                                                                     |                2 |              4 |         2.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/axi_uart/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/start2                                      | system_i/axi_uart/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/cs_ce_clr                                  |                1 |              4 |         4.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/axi_uart/U0/UARTLITE_CORE_I/BAUD_RATE_I/en_16x_Baud                                        |                                                                                                              |                1 |              4 |         4.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/master_ctrl/state[4]_i_1_n_0                                        | RST_IBUF                                                                                                     |                2 |              5 |         2.50 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/uart_ctrl/uart_rx_controller/state[5]_i_1_n_0                       | RST_IBUF                                                                                                     |                2 |              6 |         3.00 |
+|  system_i/clk_gen/inst/sys_clk                           |                                                                                                     | system_i/axi_uart/U0/UARTLITE_CORE_I/UARTLITE_RX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/SS[0] |                2 |              6 |         3.00 |
+|  system_i/clk_gen/inst/sys_clk                           |                                                                                                     | system_i/axi_uart/U0/UARTLITE_CORE_I/UARTLITE_TX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/CNTR_INCR_DECR_ADDN_F_I/SS[0] |                2 |              6 |         3.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/master_ctrl/control_state[5]_i_1_n_0                                | RST_IBUF                                                                                                     |                3 |              6 |         2.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/read_ctrl/state                                                     | RST_IBUF                                                                                                     |                2 |              7 |         3.50 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/axi_uart/U0/UARTLITE_CORE_I/BAUD_RATE_I/en_16x_Baud                                        | system_i/axi_uart/U0/UARTLITE_CORE_I/UARTLITE_RX_I/SERIAL_TO_PARALLEL[8].fifo_din[8]_i_1_n_0                 |                1 |              7 |         7.00 |
+|  system_i/clk_gen/inst/sys_clk_system_clk_wiz_0_0_en_clk |                                                                                                     |                                                                                                              |                1 |              8 |         8.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/axi_uart/U0/UARTLITE_CORE_I/UARTLITE_RX_I/SRL_FIFO_I/I_SRL_FIFO_RBU_F/DYNSHREG_F_I/fifo_wr |                                                                                                              |                1 |              8 |         8.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/uart_ctrl/uart_rx_controller/read_data[7]_i_1_n_0                   | RST_IBUF                                                                                                     |                2 |              8 |         4.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/read_ctrl/write_data                                                | RST_IBUF                                                                                                     |                3 |              8 |         2.67 |
+|  system_i/clk_gen/inst/sys_clk                           |                                                                                                     |                                                                                                              |                3 |              8 |         2.67 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/master_ctrl/internal_data[7]_i_1_n_0                                | RST_IBUF                                                                                                     |                1 |              8 |         8.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/axi_uart/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/I_DECODER/fifo_wr                           |                                                                                                              |                1 |              8 |         8.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/axi_uart/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/s_axi_rresp_i                               | system_i/axi_uart/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst                                                  |                2 |              8 |         4.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/uart_ctrl/uart_tx_controller/axi_awaddr[2]_i_2_n_0                  | RST_IBUF                                                                                                     |                4 |             10 |         2.50 |
+|  system_i/clk_gen/inst/sys_clk                           |                                                                                                     | system_i/axi_uart/U0/AXI_LITE_IPIF_I/I_SLAVE_ATTACHMENT/rst                                                  |                4 |             11 |         2.75 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/read_ctrl/address                                                   | RST_IBUF                                                                                                     |                4 |             12 |         3.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/master_ctrl/p_1_in                                                  | RST_IBUF                                                                                                     |                3 |             12 |         4.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/master_ctrl/start_address[11]_i_1_n_0                               | RST_IBUF                                                                                                     |                2 |             12 |         6.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/master_ctrl/length[15]_i_1_n_0                                      | RST_IBUF                                                                                                     |                5 |             16 |         3.20 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/master_ctrl/memory_in[7]_i_1_n_0                                    | RST_IBUF                                                                                                     |                4 |             20 |         5.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/axi_uart/U0/UARTLITE_CORE_I/BAUD_RATE_I/en_16x_Baud                                        | RST_IBUF                                                                                                     |                6 |             28 |         4.67 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/destination_reg[0]_4[0]                                        | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               17 |             32 |         1.88 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/destination_reg[0]_3[0]                                        | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               14 |             32 |         2.29 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/destination_reg[0]_1[0]                                        | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               16 |             32 |         2.00 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/destination_reg[0]_0[0]                                        | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               18 |             32 |         1.78 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/destination_reg[2]_2[0]                                        | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               10 |             32 |         3.20 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/E[0]                                                           | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               22 |             32 |         1.45 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/destination_reg[2]_1[0]                                        | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               11 |             32 |         2.91 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/execute_stage/destination_reg[0]_2[0]                                        | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               18 |             32 |         1.78 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG | system_i/cpu_core/inst/read_stage/E[0]                                                              | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |                9 |             36 |         4.00 |
+|  system_i/clk_gen/inst/sys_clk                           | system_i/controller_system/inst/read_ctrl/internal_data_0                                           | RST_IBUF                                                                                                     |                8 |             43 |         5.38 |
+|  system_i/clk_gen/inst/sys_clk                           |                                                                                                     | RST_IBUF                                                                                                     |               23 |             47 |         2.04 |
+|  system_i/controller_system/inst/cpu_ctrl/cpu_clock_BUFG |                                                                                                     | system_i/controller_system/inst/master_ctrl/cpu_reset                                                        |               65 |            173 |         2.66 |
++----------------------------------------------------------+-----------------------------------------------------------------------------------------------------+--------------------------------------------------------------------------------------------------------------+------------------+----------------+--------------+
+
+
