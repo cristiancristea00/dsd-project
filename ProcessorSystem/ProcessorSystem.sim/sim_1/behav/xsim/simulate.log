@@ -5,19 +5,5 @@ Block Memory Generator module system_tb.dut.system_test_i.data_memory.inst.\nati
  Block Memory Generator module loading initial data...
  Block Memory Generator data initialization complete.
 Block Memory Generator module system_tb.dut.system_test_i.program_memory.inst.\native_mem_module.blk_mem_gen_v8_4_6_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
-$stop called at time : 1803005 ns : File "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sim_1/new/system_tb.sv" Line 138
- Block Memory Generator module loading initial data...
- Block Memory Generator data initialization complete.
-Block Memory Generator module system_tb.dut.system_test_i.data_memory.inst.\native_mem_module.blk_mem_gen_v8_4_6_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
- Block Memory Generator module loading initial data...
- Block Memory Generator data initialization complete.
-Block Memory Generator module system_tb.dut.system_test_i.program_memory.inst.\native_mem_module.blk_mem_gen_v8_4_6_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
-$stop called at time : 1803005 ns : File "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sim_1/new/system_tb.sv" Line 138
- Block Memory Generator module loading initial data...
- Block Memory Generator data initialization complete.
-Block Memory Generator module system_tb.dut.system_test_i.data_memory.inst.\native_mem_module.blk_mem_gen_v8_4_6_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
- Block Memory Generator module loading initial data...
- Block Memory Generator data initialization complete.
-Block Memory Generator module system_tb.dut.system_test_i.program_memory.inst.\native_mem_module.blk_mem_gen_v8_4_6_inst  is using a behavioral model for simulation which will not precisely model memory collision behavior.
-$stop called at time : 1803005 ns : File "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sim_1/new/system_tb.sv" Line 138
-INFO: xsimkernel Simulation Memory Usage: 20888 KB (Peak: 20888 KB), Simulation CPU Usage: 12499 ms
+$stop called at time : 11677405 ns : File "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sim_1/new/system_tb.sv" Line 234
+INFO: xsimkernel Simulation Memory Usage: 21044 KB (Peak: 21044 KB), Simulation CPU Usage: 24671 ms

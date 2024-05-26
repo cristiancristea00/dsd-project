@@ -8,7 +8,7 @@
   <img alt="Shows a diagram of the system architecture." src="img/arch-light.svg">
 </picture>
 
-### UART Controller
+### **UART Controller**
 
 - *UART RX Controller*
 
@@ -18,15 +18,15 @@
 
   Abstracts the AXI4-Lite interface of the UART TX module of the AXI UART Lite IP. It is responsible for sending data on the TX line using the UART TX module. It uses the Write Address, Write Data, and Write Response channels of the AXI4-Lite interface.
 
-### Master Controller
+### **Master Controller**
 
 This module represents the main part of the system. It's main purpose is to read the instructions from the UART RX Controller and execute them. It is responsible for writing the CPU instructions to the Program Memory and data to the Data Memory and issuing commands to the Read Controller and CPU Controller.
 
-### Read Controller
+### **Read Controller**
 
 This module receives read requests from the Master Controller and is responsible for reading the data from the Data Memory and sending it to the UART TX Controller.
 
-### CPU Controller
+### **CPU Controller**
 
 This modules receives commands from the Master Controller and is responsible for controlling the CPU. It is responsible for issuing the start, stop, and reset commands to the CPU.
 

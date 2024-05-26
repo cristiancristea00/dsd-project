@@ -1,0 +1,24 @@
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/architecture.vh" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/core.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module core
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/data_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module data_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/execute_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module execute_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/fetch_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module fetch_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/program_memory.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module program_memory
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/read_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module read_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/register_file_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module register_file_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/write_back_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module write_back_unit
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/computer.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module computer
+INFO: [VRFC 10-2263] Analyzing Verilog file "W:/dsd-project/Risky/rtl/dependency_unit.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module dependency_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/Risky/rtl/architecture.vh" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "W:/dsd-project/Risky/sim/testbench.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module testbench

@@ -1,0 +1,21 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib "W:/dsd-project/Risky/rtl/architecture.vh" --include "../../../../rtl" \
+"../../../../rtl/core.v" \
+"../../../../rtl/data_memory.v" \
+"../../../../rtl/execute_unit.v" \
+"../../../../rtl/fetch_unit.v" \
+"../../../../rtl/program_memory.v" \
+"../../../../rtl/read_unit.v" \
+"../../../../rtl/register_file_unit.v" \
+"../../../../rtl/write_back_unit.v" \
+"../../../../rtl/computer.v" \
+"../../../../rtl/dependency_unit.v" \
+
+sv xil_defaultlib "W:/dsd-project/Risky/rtl/architecture.vh" --include "../../../../rtl" \
+"../../../../sim/testbench.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

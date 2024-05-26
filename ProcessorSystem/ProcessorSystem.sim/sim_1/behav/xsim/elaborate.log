@@ -15,6 +15,7 @@ WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sou
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_rx_ctrl.sv" Line 1. Module uart_rx_ctrl doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_tx_ctrl.sv" Line 1. Module uart_tx_ctrl_default doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/address_selector.sv" Line 1. Module address_selector doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/memory_select.v" Line 1. Module memory_select doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/controller_system.v" Line 1. Module controller_system(AXI_STRB_WIDTH=4) doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/master_controller.sv" Line 1. Module master_controller doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/read_controller.sv" Line 1. Module read_controller doesn't have a timescale but at least one module in design has a timescale.
@@ -23,6 +24,7 @@ WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sou
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_rx_ctrl.sv" Line 1. Module uart_rx_ctrl doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/uart_tx_ctrl.sv" Line 1. Module uart_tx_ctrl_default doesn't have a timescale but at least one module in design has a timescale.
 WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/address_selector.sv" Line 1. Module address_selector doesn't have a timescale but at least one module in design has a timescale.
+WARNING: [XSIM 43-4099] "W:/dsd-project/ProcessorSystem/ProcessorSystem.srcs/sources_1/new/memory_select.v" Line 1. Module memory_select doesn't have a timescale but at least one module in design has a timescale.
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
 Compiling module unisims_ver.GND

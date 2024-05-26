@@ -16,8 +16,8 @@
       "data_memory": "",
       "program_memory": "",
       "clk_gen": "",
-      "cpu_core": "",
       "memory_selector": "",
+      "cpu_core": "",
       "controller_system": ""
     },
     "ports": {
@@ -144,7 +144,7 @@
             "value": "true"
           },
           "Enable_A": {
-            "value": "Use_ENA_Pin"
+            "value": "Always_Enabled"
           },
           "Enable_B": {
             "value": "Always_Enabled"
@@ -311,68 +311,6 @@
           }
         }
       },
-      "cpu_core": {
-        "vlnv": "xilinx.com:module_ref:core:1.0",
-        "xci_name": "system_core_0_0",
-        "xci_path": "ip\\system_core_0_0\\system_core_0_0.xci",
-        "inst_hier_path": "cpu_core",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "core",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clock": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "ASSOCIATED_RESET": {
-                "value": "reset",
-                "value_src": "constant"
-              },
-              "CLK_DOMAIN": {
-                "value": "system_controller_system_0_0_cpu_clock",
-                "value_src": "default_prop"
-              }
-            }
-          },
-          "reset": {
-            "type": "rst",
-            "direction": "I"
-          },
-          "instruction": {
-            "direction": "I",
-            "left": "15",
-            "right": "0"
-          },
-          "pc": {
-            "direction": "O",
-            "left": "9",
-            "right": "0"
-          },
-          "read": {
-            "direction": "O"
-          },
-          "write": {
-            "direction": "O"
-          },
-          "address": {
-            "direction": "O",
-            "left": "9",
-            "right": "0"
-          },
-          "data_out": {
-            "direction": "O",
-            "left": "31",
-            "right": "0"
-          },
-          "data_in": {
-            "direction": "I",
-            "left": "31",
-            "right": "0"
-          }
-        }
-      },
       "memory_selector": {
         "vlnv": "xilinx.com:module_ref:memory_select:1.0",
         "xci_name": "system_memory_select_0_0",
@@ -440,6 +378,68 @@
           },
           "program_write_enable": {
             "direction": "O"
+          }
+        }
+      },
+      "cpu_core": {
+        "vlnv": "xilinx.com:module_ref:core:1.0",
+        "xci_name": "system_core_0_0",
+        "xci_path": "ip\\system_core_0_0\\system_core_0_0.xci",
+        "inst_hier_path": "cpu_core",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "core",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clock": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "reset",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "system_controller_system_0_0_cpu_clock",
+                "value_src": "default_prop"
+              }
+            }
+          },
+          "reset": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "instruction": {
+            "direction": "I",
+            "left": "15",
+            "right": "0"
+          },
+          "pc": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "read": {
+            "direction": "O"
+          },
+          "write": {
+            "direction": "O"
+          },
+          "address": {
+            "direction": "O",
+            "left": "9",
+            "right": "0"
+          },
+          "data_out": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "data_in": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
           }
         }
       },
@@ -847,12 +847,6 @@
         "ports": [
           "cpu_core/pc",
           "program_memory/addra"
-        ]
-      },
-      "cpu_core_read": {
-        "ports": [
-          "cpu_core/read",
-          "data_memory/ena"
         ]
       },
       "cpu_core_write": {

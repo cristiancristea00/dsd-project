@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sat May 25 22:29:53 2024" VIVADOVERSION="2023.1.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun May 26 17:16:27 2024" VIVADOVERSION="2023.1.1">
 
   <SYSTEMINFO ARCH="artix7" BOARD="digilentinc.com:nexys-a7-100t:part0:1.3" DEVICE="7a100t" NAME="system" PACKAGE="csg324" SPEEDGRADE="-1"/>
 
@@ -1223,11 +1223,7 @@
             <CONNECTION INSTANCE="program_memory" PORT="addra"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="read" SIGIS="undef" SIGNAME="cpu_core_read">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="data_memory" PORT="ena"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="O" NAME="read" SIGIS="undef"/>
         <PORT DIR="O" NAME="write" SIGIS="undef" SIGNAME="cpu_core_write">
           <CONNECTIONS>
             <CONNECTION INSTANCE="data_memory" PORT="wea"/>
@@ -1280,7 +1276,7 @@
         <PARAMETER NAME="C_RST_PRIORITY_A" VALUE="CE"/>
         <PARAMETER NAME="C_RSTRAM_A" VALUE="0"/>
         <PARAMETER NAME="C_INITA_VAL" VALUE="0"/>
-        <PARAMETER NAME="C_HAS_ENA" VALUE="1"/>
+        <PARAMETER NAME="C_HAS_ENA" VALUE="0"/>
         <PARAMETER NAME="C_HAS_REGCEA" VALUE="0"/>
         <PARAMETER NAME="C_USE_BYTE_WEA" VALUE="0"/>
         <PARAMETER NAME="C_WEA_WIDTH" VALUE="1"/>
@@ -1360,7 +1356,7 @@
         <PARAMETER NAME="Write_Depth_A" VALUE="1024"/>
         <PARAMETER NAME="Read_Width_A" VALUE="32"/>
         <PARAMETER NAME="Operating_Mode_A" VALUE="NO_CHANGE"/>
-        <PARAMETER NAME="Enable_A" VALUE="Use_ENA_Pin"/>
+        <PARAMETER NAME="Enable_A" VALUE="Always_Enabled"/>
         <PARAMETER NAME="Write_Width_B" VALUE="8"/>
         <PARAMETER NAME="Read_Width_B" VALUE="32"/>
         <PARAMETER NAME="Operating_Mode_B" VALUE="NO_CHANGE"/>
@@ -1409,11 +1405,6 @@
         <PORT CLKFREQUENCY="100000000" DIR="I" NAME="clka" SIGIS="clk" SIGNAME="clk_gen_sys_clk">
           <CONNECTIONS>
             <CONNECTION INSTANCE="clk_gen" PORT="sys_clk"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="ena" SIGIS="undef" SIGNAME="cpu_core_read">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="cpu_core" PORT="read"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="0" NAME="wea" RIGHT="0" SIGIS="undef" SIGNAME="cpu_core_write">
@@ -1475,7 +1466,6 @@
             <PORTMAP LOGICAL="CLK" PHYSICAL="clka"/>
             <PORTMAP LOGICAL="DIN" PHYSICAL="dina"/>
             <PORTMAP LOGICAL="DOUT" PHYSICAL="douta"/>
-            <PORTMAP LOGICAL="EN" PHYSICAL="ena"/>
             <PORTMAP LOGICAL="WE" PHYSICAL="wea"/>
           </PORTMAPS>
         </BUSINTERFACE>

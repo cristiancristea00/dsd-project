@@ -269,7 +269,8 @@ always_ff @ (posedge clock) begin
                             state <= IDLE;
 
                             control_state <= COMMAND;
-
+    
+                            start_address <= CLEAR;
                             curr_byte <= CLEAR;
                             length <= CLEAR;
                         end

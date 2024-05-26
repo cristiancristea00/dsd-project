@@ -54,7 +54,20 @@ always_ff @ (posedge clock) begin
 end
 
 
-assign cpu_clock = (state == RUNNING) ? clock : 1'b0;
+always_ff @ (posedge clock) begin
+    if (!resetn) begin
+        cpu_clock <= 1'b0;
+    end
+    else begin
+        if (state == RUNNING) begin
+            cpu_clock <= ~cpu_clock;
+        end
+        else begin
+            cpu_clock <= 1'b0;
+        end
+    end
+end
+
 
 assign cpu_reset = (command == RESET) ? 1'b0 : 1'b1;
 

@@ -20,11 +20,11 @@ class Program:
     data: tuple[str, ...]
     length: int
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return F'Program "{self.name}" at 0x{self.address:04X} with {len(self.data)} instructions:\n{'\n'.join(self.data)}'
 
-    def __bytes__(self):
-        address: Final[bytes] = self.address.to_bytes(2, 'big')
+    def __bytes__(self) -> bytes:
+        address: Final[bytes] = (self.address * 2).to_bytes(2, 'big')
         length: Final[bytes] = (self.length * 2).to_bytes(2, 'big')
         data: Final[bytes] = Assembler.run_on_iterable(self.data)
         return address + length + data
@@ -43,15 +43,19 @@ class Memory:
 
         return F'Write Memory "{self.name}" at 0x{self.address:04X} with data {self.data}'
 
-    def __bytes__(self):
-        address: Final[bytes] = self.address.to_bytes(2, 'big')
-        length: Final[bytes] = (self.length * 4).to_bytes(2, 'big')
+    def __bytes__(self) -> bytes:
+        if not self.data: # Read Memory
+            length: Final[bytes] = self.length.to_bytes(2, 'big')
+        else:             # Write Memory
+            length: Final[bytes] = (self.length * 4).to_bytes(2, 'big')
+        address: Final[bytes] = (self.address * 4).to_bytes(2, 'big')
         data: Final[bytes] = b''.join(byte.to_bytes(4, 'little') for byte in self.data) if self.data else b''
+        print_bytes(address + length + data)
         return address + length + data
 
 
 class Executor:
-    def __init__(self, file: str | Path, port: str = '/dev/ttyUSB0', baudrate: int = 115200):
+    def __init__(self, file: str | Path, port: str = '/dev/ttyUSB0', baudrate: int = 115200) -> None:
         with open(file, 'rb') as file:
             data: Final[dict[str, Any]] = tomllib.load(file)
 
@@ -74,14 +78,14 @@ class Executor:
                 length: int = memory.get('length', len(values))
                 self.memories[name] = Memory(name, address, values, length)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         actions: Final[str] = '\n'.join(self.actions)
         programs: Final[str] = '\n'.join(str(program) for program in self.programs.values())
         memories: Final[str] = '\n'.join(str(memory) for memory in self.memories.values())
         return F'Actions:\n{actions}\n\nPrograms:\n{programs}\n\nMemories:\n{memories}'
 
-    def run(self):
-        device: Final[Serial] = Serial(self.port, self.baudrate)
+    def run(self) -> None:
+        device: Final[Serial] = Serial(self.port, self.baudrate, timeout=5)
 
         for action in self.actions:
             command = action.split(' ')
@@ -100,7 +104,7 @@ class Executor:
                 case 'READ_DATA':
                     device.write(b'\x20' + bytes(self.memories[command[1]]))
                     print()
-                    print_bytes(device.read(self.memories[command[1]].length * 4))
+                    print_bytes(device.read(self.memories[command[1]].length * 4, ))
                 case 'WAIT':
                     sleep(int(command[1]))
 

@@ -81,60 +81,156 @@ initial begin
     reset_dut();
     wait_clock(100);
     
+    send_byte(8'h08); // Write Program Memory
     
-    
-//    send_byte(8'h10);
-    
-//    send_byte(8'h00);
-//    send_byte(8'h00);
-    
-//    send_byte(8'h00);
-//    send_byte(8'h08);
-    
-//    send_byte(8'h69);
-//    send_byte(8'h88);
-//    send_byte(8'hDE);
-//    send_byte(8'hAD);
-    
-//    send_byte(8'h44);
-//    send_byte(8'h55);
-//    send_byte(8'h66);
-//    send_byte(8'h77);
-    
-    
-//    send_byte(8'h20);
-    
-    
-//    send_byte(8'h00);
-//    send_byte(8'h00);
-    
-    
-//    send_byte(8'h00);
-//    send_byte(8'h02);
-
-
-    send_byte(8'h08);
-    
-    send_byte(8'h00);
+    send_byte(8'h00); // Address 
     send_byte(8'h00);
     
-    send_byte(8'h00);
-    send_byte(8'h08);
+    send_byte(8'h00); // Length
+    send_byte(8'h1C);
     
-    send_byte(8'h00);
-    send_byte(8'h00);
-    send_byte(8'h00);
-    send_byte(8'h00);
-    send_byte(8'h00);
-    send_byte(8'h00);
-    send_byte(8'h00);
-    send_byte(8'h00);
-    
-    send_byte(8'h02);
+    send_byte(8'h09); // Payload
+    send_byte(8'h88);
     send_byte(8'h01);
-
+    send_byte(8'h89);
+    send_byte(8'h00);
+    send_byte(8'h8A);
+    send_byte(8'h09);
+    send_byte(8'h8B);
+    send_byte(8'h12);
+    send_byte(8'h8C);
+    send_byte(8'h02);
+    send_byte(8'h85);
+    send_byte(8'h03);
+    send_byte(8'h86);
+    send_byte(8'hEE);
+    send_byte(8'h21);
+    send_byte(8'h07);
+    send_byte(8'h94);
+    send_byte(8'h91);
+    send_byte(8'h20);
+    send_byte(8'hD9);
+    send_byte(8'h20);
+    send_byte(8'h21);
+    send_byte(8'h21);
+    send_byte(8'h01);
+    send_byte(8'h24);
+    send_byte(8'h38);
+    send_byte(8'hD6);
     
-    wait_clock(50000);
+    
+    
+    send_byte(8'h10); // Write Data Memory
+    
+    send_byte(8'h00); // Address 
+    send_byte(8'h00);
+    
+    send_byte(8'h00); // Length
+    send_byte(8'h24);
+    
+    send_byte(8'h01); // Payload
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h02);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h03);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h04);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h05);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h06);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h07);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h08);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h09);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    
+    
+    
+    send_byte(8'h10); // Write Data Memory
+    
+    send_byte(8'h00); // Address 
+    send_byte(8'h24);
+    
+    send_byte(8'h00); // Length
+    send_byte(8'h24);
+    
+    send_byte(8'h01); // Payload
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h02);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h03);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h04);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h05);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h06);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h07);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h08);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h09);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    send_byte(8'h00);
+    
+    
+    
+    send_byte(8'h02); // Start
+    send_byte(8'h01); // Reset
+    send_byte(8'h04); // Stop
+    
+    
+    
+    send_byte(8'h20); // Read Data Memory
+    
+    
+    send_byte(8'h00); // Address 
+    send_byte(8'h48);
+    
+    send_byte(8'h00); // Length
+    send_byte(8'h09);
+        
+
+    wait_clock(100000);
     $stop;
 end
 

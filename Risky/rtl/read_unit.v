@@ -138,6 +138,16 @@ always @ (*) begin
         int_opcode  = instruction[`OPCODE_SELECT];
 
         case (inst_type)
+            `HALT : begin
+                int_operand0  = `DATA_SIZE'b0;
+                int_operand1  = `DATA_SIZE'b0;
+                int_operand2  = `DATA_SIZE'b0;
+                int_value     = `VALUE_SIZE'b0;
+                int_constant  = `CONSTANT_SIZE'b0;
+                int_offset    = `OFFSET_SIZE'b0;
+                int_condition = `CONDITION_SIZE'b0;
+            end
+
             `ARITHMETIC, `LOGIC : begin
                 int_operand0 = instruction[8:6];
                 int_operand1 = read_data0;

@@ -1,0 +1,17 @@
+0.7
+2020.2
+Jun 16 2023
+19:55:58
+W:/dsd-project/Risky/Risky.sim/simulations/behav/xsim/glbl.v,1683266558,verilog,,,,glbl,,uvm,,,,,,
+W:/dsd-project/Risky/rtl/architecture.vh,1710658866,systemVerilog,,W:/dsd-project/Risky/rtl/core.v;W:/dsd-project/Risky/sim/testbench.sv,,,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/computer.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/dependency_unit.v,W:/dsd-project/Risky/rtl/architecture.vh,computer,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/core.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/data_memory.v,W:/dsd-project/Risky/rtl/architecture.vh,core,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/data_memory.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/execute_unit.v,W:/dsd-project/Risky/rtl/architecture.vh,data_memory,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/dependency_unit.v,1710658866,verilog,,,W:/dsd-project/Risky/rtl/architecture.vh,dependency_unit,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/execute_unit.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/fetch_unit.v,W:/dsd-project/Risky/rtl/architecture.vh,execute_unit,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/fetch_unit.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/program_memory.v,W:/dsd-project/Risky/rtl/architecture.vh,fetch_unit,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/program_memory.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/read_unit.v,W:/dsd-project/Risky/rtl/architecture.vh,program_memory,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/read_unit.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/register_file_unit.v,W:/dsd-project/Risky/rtl/architecture.vh,read_unit,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/register_file_unit.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/write_back_unit.v,W:/dsd-project/Risky/rtl/architecture.vh,register_file_unit,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/rtl/write_back_unit.v,1710658866,verilog,,W:/dsd-project/Risky/rtl/computer.v,W:/dsd-project/Risky/rtl/architecture.vh,write_back_unit,,uvm,../../../../rtl,,,,,
+W:/dsd-project/Risky/sim/testbench.sv,1710658866,systemVerilog,,,W:/dsd-project/Risky/rtl/architecture.vh,testbench,,uvm,../../../../rtl,,,,,

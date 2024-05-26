@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.1.1 (win64) Build 3900603 Fri Jun 16 19:31:24 MDT 2023
-| Date         : Sun May 12 21:38:09 2024
+| Date         : Sun May 26 17:17:40 2024
 | Host         : Jupiter running 64-bit major release  (build 9200)
 | Command      : report_utilization -file system_core_0_0_utilization_synth.rpt -pb system_core_0_0_utilization_synth.pb
 | Design       : system_core_0_0
@@ -31,13 +31,13 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |  887 |     0 |          0 |     63400 |  1.40 |
-|   LUT as Logic          |  887 |     0 |          0 |     63400 |  1.40 |
+| Slice LUTs*             |  851 |     0 |          0 |     63400 |  1.34 |
+|   LUT as Logic          |  851 |     0 |          0 |     63400 |  1.34 |
 |   LUT as Memory         |    0 |     0 |          0 |     19000 |  0.00 |
 | Slice Registers         |  465 |     0 |          0 |    126800 |  0.37 |
 |   Register as Flip Flop |  465 |     0 |          0 |    126800 |  0.37 |
 |   Register as Latch     |    0 |     0 |          0 |    126800 |  0.00 |
-| F7 Muxes                |   64 |     0 |          0 |     31700 |  0.20 |
+| F7 Muxes                |   60 |     0 |          0 |     31700 |  0.19 |
 | F8 Muxes                |    0 |     0 |          0 |     15850 |  0.00 |
 +-------------------------+------+-------+------------+-----------+-------+
 * Warning! The Final LUT count, after physical optimizations and full implementation, is typically lower. Run opt_design after synthesis, if not already completed, for a more realistic count.
@@ -148,15 +148,15 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| LUT6     |  582 |                 LUT |
+| LUT6     |  535 |                 LUT |
 | FDCE     |  465 |        Flop & Latch |
-| LUT4     |  152 |                 LUT |
-| LUT5     |  142 |                 LUT |
-| LUT2     |   77 |                 LUT |
-| MUXF7    |   64 |               MuxFx |
-| LUT3     |   61 |                 LUT |
+| LUT5     |  162 |                 LUT |
+| LUT4     |  136 |                 LUT |
+| LUT3     |   74 |                 LUT |
+| MUXF7    |   60 |               MuxFx |
+| LUT2     |   31 |                 LUT |
+| LUT1     |   22 |                 LUT |
 | CARRY4   |   11 |          CarryLogic |
-| LUT1     |    3 |                 LUT |
 +----------+------+---------------------+
 
 

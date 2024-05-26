@@ -180,7 +180,7 @@ class Assembler:
     @classmethod
     def _bytes_from_instruction(cls, instruction: str) -> bytes:
         in_hex: str = hex(int(instruction.zfill(16), 2))[2:]
-        in_hex = F'{in_hex[:8]}{in_hex[8:]}'  # Swap the bytes to have little-endian format
+        in_hex = F'{in_hex[2:]}{in_hex[:2]}'  # Swap the bytes to have little-endian format
         return bytes.fromhex(in_hex)
 
     @classmethod
@@ -206,4 +206,3 @@ class Assembler:
             raise ValueError(F'Expected number smaller than {max_value} but got: {number_str}')
 
         return bin(number)[2:].zfill(no_of_bits)
-   

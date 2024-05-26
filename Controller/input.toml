@@ -6,7 +6,6 @@ actions = [
     'WRITE_DATA vector2',
     'START',
     'RESET',
-    'WAIT 1',
     'STOP',
     'READ_DATA result'
 ]

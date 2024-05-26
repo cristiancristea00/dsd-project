@@ -21,13 +21,13 @@ set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==system_blk_
 # IP: bd/system/ip/system_clk_wiz_0_0/system_clk_wiz_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==system_clk_wiz_0_0 || ORIG_REF_NAME==system_clk_wiz_0_0} -quiet] -quiet
 
-# IP: bd/system/ip/system_core_0_0/system_core_0_0.xci
-set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==system_core_0_0 || ORIG_REF_NAME==system_core_0_0} -quiet] -quiet
-
 # IP: bd/system/ip/system_memory_select_0_0/system_memory_select_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==system_memory_select_0_0 || ORIG_REF_NAME==system_memory_select_0_0} -quiet] -quiet
 
 # IP: bd/system/ip/system_controller_system_0_0/system_controller_system_0_0.xci
 set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==system_controller_system_0_0 || ORIG_REF_NAME==system_controller_system_0_0} -quiet] -quiet
+
+# IP: bd/system/ip/system_core_0_0/system_core_0_0.xci
+set_property KEEP_HIERARCHY SOFT [get_cells -hier -filter {REF_NAME==system_core_0_0 || ORIG_REF_NAME==system_core_0_0} -quiet] -quiet
 
 # XDC: w:/dsd-project/ProcessorSystem/ProcessorSystem.gen/sources_1/bd/system/system_ooc.xdc
